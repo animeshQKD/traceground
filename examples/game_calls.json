@@ -1,0 +1,15 @@
+[
+  {
+    "name": "player_game_stats",
+    "args": {
+      "player": "Jordan Reyes",
+      "date": "2026-11-16"
+    },
+    "result": {
+      "points": 27,
+      "rebounds": 11,
+      "assists": 7,
+      "minutes": 34
+    }
+  }
+]

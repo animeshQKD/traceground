@@ -1,0 +1,1059 @@
+{
+ "version": "2026-11-17a",
+ "about": "Questions for the real-answer evaluation. 'calls': the calls a correct answer needs ('any' = arguments not compared); 'values': the values a correct answer must state, from a call's result ('call', 'key') or given ('value'); kind 'acknowledge': a correct answer says the tool failed or that it cannot do this.",
+ "questions": [
+  {
+   "id": "f01",
+   "domain": "finance",
+   "question": "What is the monthly payment on a 20,000 USD loan at 6% annual interest over 4 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 20000,
+      "annual_rate": 0.06,
+      "years": 4
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "monthly_payment"
+    }
+   ]
+  },
+  {
+   "id": "f02",
+   "domain": "finance",
+   "question": "How much interest do I pay in total on a 15,000 loan at 7.5% over 5 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 15000,
+      "annual_rate": 0.075,
+      "years": 5
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "total_interest"
+    }
+   ]
+  },
+  {
+   "id": "f03",
+   "domain": "finance",
+   "question": "Compare the total amount paid on a 10,000 loan at 5% over 3 years and over 5 years.",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 10000,
+      "annual_rate": 0.05,
+      "years": 3
+     }
+    ],
+    [
+     "loan_cost",
+     {
+      "principal": 10000,
+      "annual_rate": 0.05,
+      "years": 5
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "total_paid"
+    },
+    {
+     "call": 1,
+     "key": "total_paid"
+    }
+   ]
+  },
+  {
+   "id": "f04",
+   "domain": "finance",
+   "question": "What is the 5-year cost at 7% interest on a 12,000 loan?",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 12000,
+      "annual_rate": 0.07,
+      "years": 5
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "total_paid"
+    }
+   ]
+  },
+  {
+   "id": "f05",
+   "domain": "finance",
+   "question": "If I invest 5,000 at 4% compounded monthly for 10 years, how much will I have?",
+   "kind": "value",
+   "calls": [
+    [
+     "compound_interest",
+     {
+      "principal": 5000,
+      "annual_rate": 0.04,
+      "years": 10,
+      "compounds_per_year": 12
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "final_amount"
+    }
+   ]
+  },
+  {
+   "id": "f06",
+   "domain": "finance",
+   "question": "How much interest does 8,000 earn at 3.5% compounded quarterly over 6 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "compound_interest",
+     {
+      "principal": 8000,
+      "annual_rate": 0.035,
+      "years": 6,
+      "compounds_per_year": 4
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "interest_earned"
+    }
+   ]
+  },
+  {
+   "id": "f07",
+   "domain": "finance",
+   "question": "What's the monthly payment for 18,000 at 0.5% annual interest over 3 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 18000,
+      "annual_rate": 0.005,
+      "years": 3
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "monthly_payment"
+    }
+   ],
+   "note": "trap: 0.5% is 0.005"
+  },
+  {
+   "id": "f08",
+   "domain": "finance",
+   "question": "What is the total paid on a 9,500 loan at 12% over 2 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 9500,
+      "annual_rate": 0.12,
+      "years": 2
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "total_paid"
+    }
+   ],
+   "note": "trap: 12% is 0.12, not 12"
+  },
+  {
+   "id": "f09",
+   "domain": "finance",
+   "question": "For a 30,000 loan at 4.5%, what are the monthly payments over 3 years and over 6 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "loan_cost",
+     {
+      "principal": 30000,
+      "annual_rate": 0.045,
+      "years": 3
+     }
+    ],
+    [
+     "loan_cost",
+     {
+      "principal": 30000,
+      "annual_rate": 0.045,
+      "years": 6
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "monthly_payment"
+    },
+    {
+     "call": 1,
+     "key": "monthly_payment"
+    }
+   ],
+   "note": "trap: two values to keep apart"
+  },
+  {
+   "id": "c01",
+   "domain": "currency",
+   "question": "Convert 120 USD and 80 GBP to euros.",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_currency",
+     {
+      "amount": 120,
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    ],
+    [
+     "convert_currency",
+     {
+      "amount": 80,
+      "from_currency": "GBP",
+      "to_currency": "EUR"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "converted_amount"
+    },
+    {
+     "call": 1,
+     "key": "converted_amount"
+    }
+   ],
+   "note": "trap: amounts to swap"
+  },
+  {
+   "id": "c02",
+   "domain": "currency",
+   "question": "How many Japanese yen is 250 euros?",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_currency",
+     {
+      "amount": 250,
+      "from_currency": "EUR",
+      "to_currency": "JPY"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "converted_amount"
+    }
+   ]
+  },
+  {
+   "id": "c03",
+   "domain": "currency",
+   "question": "What is 1,500 INR in US dollars?",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_currency",
+     {
+      "amount": 1500,
+      "from_currency": "INR",
+      "to_currency": "USD"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "converted_amount"
+    }
+   ]
+  },
+  {
+   "id": "c04",
+   "domain": "currency",
+   "question": "I have 300 CHF and 200 GBP. How much is that in euros altogether?",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_currency",
+     {
+      "amount": 300,
+      "from_currency": "CHF",
+      "to_currency": "EUR"
+     }
+    ],
+    [
+     "convert_currency",
+     {
+      "amount": 200,
+      "from_currency": "GBP",
+      "to_currency": "EUR"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "value": 549.0
+    }
+   ],
+   "note": "the sum is computed from two results"
+  },
+  {
+   "id": "c05",
+   "domain": "currency",
+   "question": "Convert 75 GBP to USD and 75 USD to GBP.",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_currency",
+     {
+      "amount": 75,
+      "from_currency": "GBP",
+      "to_currency": "USD"
+     }
+    ],
+    [
+     "convert_currency",
+     {
+      "amount": 75,
+      "from_currency": "USD",
+      "to_currency": "GBP"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "converted_amount"
+    },
+    {
+     "call": 1,
+     "key": "converted_amount"
+    }
+   ],
+   "note": "trap: directions to swap"
+  },
+  {
+   "id": "u01",
+   "domain": "units",
+   "question": "How many kilometres is a 26.2-mile marathon?",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_units",
+     {
+      "value": 26.2,
+      "from_unit": "mi",
+      "to_unit": "km"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "result"
+    }
+   ]
+  },
+  {
+   "id": "u02",
+   "domain": "units",
+   "question": "Convert 72 °F to Celsius.",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_units",
+     {
+      "value": 72,
+      "from_unit": "f",
+      "to_unit": "c"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "result"
+    }
+   ]
+  },
+  {
+   "id": "u03",
+   "domain": "units",
+   "question": "A parcel weighs 4.5 kg. What is that in pounds?",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_units",
+     {
+      "value": 4.5,
+      "from_unit": "kg",
+      "to_unit": "lb"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "result"
+    }
+   ]
+  },
+  {
+   "id": "u04",
+   "domain": "units",
+   "question": "Convert 5 km to miles and 10 miles to km.",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_units",
+     {
+      "value": 5,
+      "from_unit": "km",
+      "to_unit": "mi"
+     }
+    ],
+    [
+     "convert_units",
+     {
+      "value": 10,
+      "from_unit": "mi",
+      "to_unit": "km"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "result"
+    },
+    {
+     "call": 1,
+     "key": "result"
+    }
+   ]
+  },
+  {
+   "id": "u05",
+   "domain": "units",
+   "question": "Convert 0.75 miles to metres.",
+   "kind": "value",
+   "calls": [
+    [
+     "convert_units",
+     {
+      "value": 0.75,
+      "from_unit": "mi",
+      "to_unit": "m"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "result"
+    }
+   ]
+  },
+  {
+   "id": "w01",
+   "domain": "weather",
+   "question": "What will the weather be like in Oslo tomorrow?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_weather",
+     {
+      "city": "Oslo"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "high_c"
+    },
+    {
+     "call": 0,
+     "key": "rain_chance_pct"
+    }
+   ]
+  },
+  {
+   "id": "w02",
+   "domain": "weather",
+   "question": "Compare tomorrow's highs in Paris and Rome.",
+   "kind": "value",
+   "calls": [
+    [
+     "get_weather",
+     {
+      "city": "Paris"
+     }
+    ],
+    [
+     "get_weather",
+     {
+      "city": "Rome"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "high_c"
+    },
+    {
+     "call": 1,
+     "key": "high_c"
+    }
+   ]
+  },
+  {
+   "id": "w03",
+   "domain": "weather",
+   "question": "Will it rain in London tomorrow, and how windy will it be?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_weather",
+     {
+      "city": "London"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "rain_chance_pct"
+    },
+    {
+     "call": 0,
+     "key": "wind_kmh"
+    }
+   ]
+  },
+  {
+   "id": "w04",
+   "domain": "weather",
+   "question": "What's tomorrow's weather in Reykjavik?",
+   "kind": "acknowledge",
+   "calls": [
+    [
+     "get_weather",
+     {
+      "city": "Reykjavik"
+     }
+    ]
+   ],
+   "values": [],
+   "note": "the tool fails: a correct answer says so"
+  },
+  {
+   "id": "w05",
+   "domain": "weather",
+   "question": "How warm will it get in Mumbai tomorrow, in Fahrenheit?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_weather",
+     {
+      "city": "Mumbai"
+     }
+    ],
+    [
+     "convert_units",
+     {
+      "value": 33,
+      "from_unit": "c",
+      "to_unit": "f"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 1,
+     "key": "result"
+    }
+   ]
+  },
+  {
+   "id": "w06",
+   "domain": "weather",
+   "question": "What are tomorrow's high and low in Bengaluru?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_weather",
+     {
+      "city": "Bengaluru"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "high_c"
+    },
+    {
+     "call": 0,
+     "key": "low_c"
+    }
+   ],
+   "note": "trap: high and low to swap"
+  },
+  {
+   "id": "p01",
+   "domain": "products",
+   "question": "How much does the MX-200 cost and how heavy is it?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "MX-200"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "price_usd"
+    },
+    {
+     "call": 0,
+     "key": "weight_kg"
+    }
+   ]
+  },
+  {
+   "id": "p02",
+   "domain": "products",
+   "question": "Is the MX-200 still under warranty after 3 years?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "MX-200"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "warranty_years"
+    }
+   ]
+  },
+  {
+   "id": "p03",
+   "domain": "products",
+   "question": "Which lasts longer on a charge, the MX-200 or the LT-50?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "MX-200"
+     }
+    ],
+    [
+     "get_product",
+     {
+      "sku": "LT-50"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "battery_hours"
+    },
+    {
+     "call": 1,
+     "key": "battery_hours"
+    }
+   ]
+  },
+  {
+   "id": "p04",
+   "domain": "products",
+   "question": "What is the price of product ZZ-999?",
+   "kind": "acknowledge",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "ZZ-999"
+     }
+    ]
+   ],
+   "values": [],
+   "note": "unknown product: a correct answer says so"
+  },
+  {
+   "id": "p05",
+   "domain": "products",
+   "question": "How much would 3 LT-50 lamps cost?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "LT-50"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "value": 119.7
+    }
+   ],
+   "note": "a product of a result and a question value"
+  },
+  {
+   "id": "p06",
+   "domain": "products",
+   "question": "How much is the QX-9 in euros?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "QX-9"
+     }
+    ],
+    [
+     "convert_currency",
+     {
+      "amount": 179.5,
+      "from_currency": "USD",
+      "to_currency": "EUR"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 1,
+     "key": "converted_amount"
+    }
+   ]
+  },
+  {
+   "id": "p07",
+   "domain": "products",
+   "question": "Is the LT-50 in stock, and how long is its warranty?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_product",
+     {
+      "sku": "LT-50"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "warranty_years"
+    }
+   ]
+  },
+  {
+   "id": "s01",
+   "domain": "sports",
+   "question": "How did Jordan Reyes play on 2026-11-16?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_player_stats",
+     {
+      "player": "Jordan Reyes",
+      "date": "2026-11-16"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "points"
+    },
+    {
+     "call": 0,
+     "key": "rebounds"
+    },
+    {
+     "call": 0,
+     "key": "assists"
+    }
+   ],
+   "note": "trap: rebounds and assists to swap"
+  },
+  {
+   "id": "s02",
+   "domain": "sports",
+   "question": "What was Maya Chen's field-goal percentage on 2026-11-16?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_player_stats",
+     {
+      "player": "Maya Chen",
+      "date": "2026-11-16"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "fg_pct"
+    }
+   ]
+  },
+  {
+   "id": "s03",
+   "domain": "sports",
+   "question": "Who scored more points on 2026-11-16, Jordan Reyes or Sam Okafor?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_player_stats",
+     {
+      "player": "Jordan Reyes",
+      "date": "2026-11-16"
+     }
+    ],
+    [
+     "get_player_stats",
+     {
+      "player": "Sam Okafor",
+      "date": "2026-11-16"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "points"
+    },
+    {
+     "call": 1,
+     "key": "points"
+    }
+   ]
+  },
+  {
+   "id": "s04",
+   "domain": "sports",
+   "question": "How many assists and rebounds did Maya Chen have on 2026-11-16?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_player_stats",
+     {
+      "player": "Maya Chen",
+      "date": "2026-11-16"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "assists"
+    },
+    {
+     "call": 0,
+     "key": "rebounds"
+    }
+   ]
+  },
+  {
+   "id": "k01",
+   "domain": "stocks",
+   "question": "What is ACME's share price and how much did it change today?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_stock_quote",
+     {
+      "symbol": "ACME"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "price"
+    },
+    {
+     "call": 0,
+     "key": "change_pct"
+    }
+   ]
+  },
+  {
+   "id": "k02",
+   "domain": "stocks",
+   "question": "What was GLOBX's trading range today?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_stock_quote",
+     {
+      "symbol": "GLOBX"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "day_low"
+    },
+    {
+     "call": 0,
+     "key": "day_high"
+    }
+   ]
+  },
+  {
+   "id": "k03",
+   "domain": "stocks",
+   "question": "Which moved more today, ACME or GLOBX?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_stock_quote",
+     {
+      "symbol": "ACME"
+     }
+    ],
+    [
+     "get_stock_quote",
+     {
+      "symbol": "GLOBX"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "change_pct"
+    },
+    {
+     "call": 1,
+     "key": "change_pct"
+    }
+   ]
+  },
+  {
+   "id": "x01",
+   "domain": "calculator",
+   "question": "What is 15% of 240?",
+   "kind": "value",
+   "calls": [
+    [
+     "calculator",
+     "any"
+    ]
+   ],
+   "values": [
+    {
+     "value": 36
+    }
+   ]
+  },
+  {
+   "id": "x02",
+   "domain": "calculator",
+   "question": "What is (125.5 - 37.25) * 4?",
+   "kind": "value",
+   "calls": [
+    [
+     "calculator",
+     "any"
+    ]
+   ],
+   "values": [
+    {
+     "value": 353
+    }
+   ]
+  },
+  {
+   "id": "x03",
+   "domain": "calculator",
+   "question": "Split a 1,234.50 bill between 6 people.",
+   "kind": "value",
+   "calls": [
+    [
+     "calculator",
+     "any"
+    ]
+   ],
+   "values": [
+    {
+     "value": 205.75
+    }
+   ]
+  },
+  {
+   "id": "n01",
+   "domain": "no tool",
+   "question": "Search the web for the latest reviews of the MX-200 and summarize them.",
+   "kind": "acknowledge",
+   "calls": [],
+   "values": [],
+   "note": "no web tool: a correct answer says it cannot search"
+  },
+  {
+   "id": "n02",
+   "domain": "no tool",
+   "question": "Check the database for the status of my order 12345.",
+   "kind": "acknowledge",
+   "calls": [],
+   "values": [],
+   "note": "no database tool: a correct answer says it cannot"
+  }
+ ]
+}

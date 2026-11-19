@@ -1,0 +1,2 @@
+# store text files with LF in the repository, whatever the editor writes
+* text=auto

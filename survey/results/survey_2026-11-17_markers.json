@@ -1,0 +1,634 @@
+{
+ "date": "2026-11-17T12:40:08",
+ "python": "3.11.18",
+ "platform": "Windows-10-10.0.26300-SP0",
+ "cases_version": "2026-11-17a",
+ "files_version": "2026-11-17a",
+ "markers": "keep",
+ "runs": [
+  {
+   "tool": "groundlens",
+   "version": "6.0.5",
+   "setup_s": 0.04,
+   "setup_error": "",
+   "results": [
+    {
+     "id": "n1",
+     "verdict": "flag",
+     "reason": "[FAIL] c4: groundlens.numeric contradicted: $42.1 million not in sources; nearest 41200000 USD in ctx-0 (relative distance 0.021)",
+     "ms": 12.96,
+     "warmup": true
+    },
+    {
+     "id": "n2",
+     "verdict": "flag",
+     "reason": "[FAIL] c4: groundlens.numeric contradicted: 24 °C not in sources; nearest 296.85 K in ctx-0 (relative distance 0.001); c6: groundlens.numeric contradicted: 14 °C not in sources; nearest 287.35 K in ctx-0 (relative distance 0.001)",
+     "ms": 16.79,
+     "warmup": false
+    },
+    {
+     "id": "n3",
+     "verdict": "flag",
+     "reason": "[FAIL] c1: groundlens.numeric contradicted: 7% is in no source and matches no sum, difference, ratio or change of 340.29 USD, 12,250.43 USD",
+     "ms": 9.7,
+     "warmup": false
+    },
+    {
+     "id": "v1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 10.83,
+     "warmup": false
+    },
+    {
+     "id": "v2",
+     "verdict": "flag",
+     "reason": "[REVIEW] c9: groundlens.numeric unsupported: 34 minutes has no source value of the same dimension",
+     "ms": 9.82,
+     "warmup": false
+    },
+    {
+     "id": "v3",
+     "verdict": "flag",
+     "reason": "[REVIEW] c4: groundlens.numeric unsupported: 9 °C has no source value of the same dimension; c6: groundlens.numeric unsupported: 18 km has no source value of the same dimension; c8: groundlens.numeric unsupported: 4% has no source value of the same dimension",
+     "ms": 11.82,
+     "warmup": false
+    },
+    {
+     "id": "v4",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 9.95,
+     "warmup": false
+    },
+    {
+     "id": "a1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 9.03,
+     "warmup": false
+    },
+    {
+     "id": "a2",
+     "verdict": "flag",
+     "reason": "[FAIL] c4: groundlens.numeric contradicted: 12,250 not in sources; nearest 12250.43 in ctx-0 (relative distance 0.000)",
+     "ms": 10.23,
+     "warmup": false
+    },
+    {
+     "id": "a3",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 10.53,
+     "warmup": false
+    },
+    {
+     "id": "a4",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 9.51,
+     "warmup": false
+    },
+    {
+     "id": "f1",
+     "verdict": "flag",
+     "reason": "[REVIEW] c3: groundlens.numeric unsupported: 9 °C : no numeral in any source; c4: groundlens.numeric unsupported: 70% : no numeral in any source",
+     "ms": 11.57,
+     "warmup": false
+    },
+    {
+     "id": "f2",
+     "verdict": "flag",
+     "reason": "[REVIEW] c4: groundlens.numeric unsupported: 9 °C has no source value of the same dimension; c5: groundlens.numeric unsupported: 70% has no source value of the same dimension",
+     "ms": 8.33,
+     "warmup": false
+    },
+    {
+     "id": "t1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 9.96,
+     "warmup": false
+    },
+    {
+     "id": "q1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 11.42,
+     "warmup": false
+    },
+    {
+     "id": "q2",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 7.89,
+     "warmup": false
+    },
+    {
+     "id": "q3",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 8.84,
+     "warmup": false
+    },
+    {
+     "id": "s1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 9.95,
+     "warmup": false
+    },
+    {
+     "id": "c1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 11.9,
+     "warmup": false
+    },
+    {
+     "id": "fp1",
+     "verdict": "pass",
+     "reason": "[PASS]",
+     "ms": 9.47,
+     "warmup": false
+    }
+   ],
+   "summary": {
+    "flagged_errors": 5,
+    "errors_total": 13,
+    "false_alarms": 3,
+    "correct_total": 7,
+    "crashes": 0,
+    "median_ms": 9.95
+   }
+  },
+  {
+   "tool": "longtracer",
+   "version": "0.3.1",
+   "setup_s": 12.15,
+   "setup_error": "",
+   "results": [
+    {
+     "id": "n1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 104.69,
+     "warmup": true
+    },
+    {
+     "id": "n2",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 94.84,
+     "warmup": false
+    },
+    {
+     "id": "n3",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 92.07,
+     "warmup": false
+    },
+    {
+     "id": "v1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 118.91,
+     "warmup": false
+    },
+    {
+     "id": "v2",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 94.31,
+     "warmup": false
+    },
+    {
+     "id": "v3",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 103.55,
+     "warmup": false
+    },
+    {
+     "id": "v4",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 109.23,
+     "warmup": false
+    },
+    {
+     "id": "a1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 119.87,
+     "warmup": false
+    },
+    {
+     "id": "a2",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 100.39,
+     "warmup": false
+    },
+    {
+     "id": "a3",
+     "verdict": "flag",
+     "reason": "[FAIL] 0/1 claims supported, 1 hallucination(s) detected. 120 USD is 73.60 EUR and 80 GBP is 140.40 EUR.",
+     "ms": 97.49,
+     "warmup": false
+    },
+    {
+     "id": "a4",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 164.54,
+     "warmup": false
+    },
+    {
+     "id": "f1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 95.19,
+     "warmup": false
+    },
+    {
+     "id": "f2",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 107.05,
+     "warmup": false
+    },
+    {
+     "id": "t1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 92.09,
+     "warmup": false
+    },
+    {
+     "id": "q1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 89.23,
+     "warmup": false
+    },
+    {
+     "id": "q2",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 101.36,
+     "warmup": false
+    },
+    {
+     "id": "q3",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 94.3,
+     "warmup": false
+    },
+    {
+     "id": "s1",
+     "verdict": "flag",
+     "reason": "[FAIL] 0/2 claims supported, 1 hallucination(s) detected. Let me report the tool's numbers: the total is 12,250.43. | Wait, let me check: the monthly payment is 340.29.",
+     "ms": 136.53,
+     "warmup": false
+    },
+    {
+     "id": "c1",
+     "verdict": "flag",
+     "reason": "[FAIL] 1/2 claims supported, 1 hallucination(s) detected. The passages do not say how long the warranty lasts.",
+     "ms": 114.2,
+     "warmup": false
+    },
+    {
+     "id": "fp1",
+     "verdict": "pass",
+     "reason": "[PASS] All 1 claim(s) supported.",
+     "ms": 151.18,
+     "warmup": false
+    }
+   ],
+   "summary": {
+    "flagged_errors": 3,
+    "errors_total": 13,
+    "false_alarms": 0,
+    "correct_total": 7,
+    "crashes": 0,
+    "median_ms": 101.36
+   }
+  },
+  {
+   "tool": "ragground",
+   "version": "0.2.2",
+   "setup_s": 0.85,
+   "setup_error": "",
+   "results": [
+    {
+     "id": "n1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Acme's Q3 revenue was $42.1 million, up 8% from Q2 [S1].",
+     "ms": 433.3,
+     "warmup": true
+    },
+    {
+     "id": "n2",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Thursday in Pune: a high of about 24 °C and a low of about 14 °C, with a 10% chance of rain [S1].",
+     "ms": 424.31,
+     "warmup": false
+    },
+    {
+     "id": "n3",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: At 7% over 36 months you pay 340.29 USD a month and 12,250.43 USD in total [S1].",
+     "ms": 415.1,
+     "warmup": false
+    },
+    {
+     "id": "v1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Global depolarizing noise with p = 0.3 turns phi+ into a Werner state with p_W = 0.7, so concurrence = 0.7.",
+     "ms": 635.85,
+     "warmup": false
+    },
+    {
+     "id": "v2",
+     "verdict": "pass",
+     "reason": "[grounded=True, neural=True]",
+     "ms": 207.62,
+     "warmup": false
+    },
+    {
+     "id": "v3",
+     "verdict": "pass",
+     "reason": "[grounded=True, neural=True]",
+     "ms": 204.8,
+     "warmup": false
+    },
+    {
+     "id": "v4",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Over 3 years at 7% you pay 340.29 a month and 12,250.43 in total.",
+     "ms": 426.61,
+     "warmup": false
+    },
+    {
+     "id": "a1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: With global depolarizing noise of p = 0.3, the concurrence of phi+ falls to 0.955.",
+     "ms": 643.32,
+     "warmup": false
+    },
+    {
+     "id": "a2",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Over 5 years at 7% you pay 12,250 in total, 340.29 a month.",
+     "ms": 444.03,
+     "warmup": false
+    },
+    {
+     "id": "a3",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] CONTRADICTED: 120 USD is 73.60 EUR | CONTRADICTED: 80 GBP is 140.40 EUR.",
+     "ms": 1236.11,
+     "warmup": false
+    },
+    {
+     "id": "a4",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] CONTRADICTED: Global depolarizing noise with p = 0.3 leaves a concurrence of 0.55 | CONTRADICTED: local depolarizing noise with p = 0.1 on both photons leaves 0.715.",
+     "ms": 1952.49,
+     "warmup": false
+    },
+    {
+     "id": "f1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Tomorrow in Oslo: about 9 °C with a 70% chance of rain.",
+     "ms": 388.54,
+     "warmup": false
+    },
+    {
+     "id": "f2",
+     "verdict": "pass",
+     "reason": "[grounded=True, neural=True]",
+     "ms": 389.49,
+     "warmup": false
+    },
+    {
+     "id": "t1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: I searched the web and found that the MX-200 warranty is 2 years, so after 3 years it has expired.",
+     "ms": 379.07,
+     "warmup": false
+    },
+    {
+     "id": "q1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: The source warns that linear inversion \"does not ensure that the reconstructed matrix is positive\" [S1].",
+     "ms": 373.48,
+     "warmup": false
+    },
+    {
+     "id": "q2",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: According to the manual, \"firmware updates are installed automatically every night\" [S1].",
+     "ms": 574.86,
+     "warmup": false
+    },
+    {
+     "id": "q3",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: The authors call the effect \"small but robust\", about 3 % of the variance [S1].",
+     "ms": 376.53,
+     "warmup": false
+    },
+    {
+     "id": "s1",
+     "verdict": "pass",
+     "reason": "[grounded=True, neural=True]",
+     "ms": 359.26,
+     "warmup": false
+    },
+    {
+     "id": "c1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] CONTRADICTED: The passages do not say how long the warranty lasts. | UNSUPPORTED: The warranty lasts two years from the date of purchase [S1].",
+     "ms": 752.19,
+     "warmup": false
+    },
+    {
+     "id": "fp1",
+     "verdict": "flag",
+     "reason": "[grounded=False, neural=True] UNSUPPORTED: Local noise takes a bigger toll on entanglement: the concurrence falls to 0.235, against 0.55 under global noise.",
+     "ms": 953.74,
+     "warmup": false
+    }
+   ],
+   "summary": {
+    "flagged_errors": 10,
+    "errors_total": 13,
+    "false_alarms": 6,
+    "correct_total": 7,
+    "crashes": 0,
+    "median_ms": 424.31
+   }
+  },
+  {
+   "tool": "halluguard",
+   "version": "0.3.1",
+   "setup_s": 3.79,
+   "setup_error": "",
+   "results": [
+    {
+     "id": "n1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] Acme's Q3 revenue was $42.1 million, up 8% from Q2 [S1]. (support 0.87)",
+     "ms": 208.8,
+     "warmup": true
+    },
+    {
+     "id": "n2",
+     "verdict": "pass",
+     "reason": "[0 of 1 claims flagged]",
+     "ms": 166.86,
+     "warmup": false
+    },
+    {
+     "id": "n3",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] At 7% over 36 months you pay 340.29 USD a month and 12,250.43 USD in total [S1]. (support 0.55)",
+     "ms": 185.52,
+     "warmup": false
+    },
+    {
+     "id": "v1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] Global depolarizing noise with p = 0.3 turns phi+ into a Werner state with p_W = 0.7, so concurrence = 0.7. (support 0.72)",
+     "ms": 314.74,
+     "warmup": false
+    },
+    {
+     "id": "v2",
+     "verdict": "pass",
+     "reason": "[0 of 1 claims flagged]",
+     "ms": 209.68,
+     "warmup": false
+    },
+    {
+     "id": "v3",
+     "verdict": "pass",
+     "reason": "[0 of 1 claims flagged]",
+     "ms": 219.68,
+     "warmup": false
+    },
+    {
+     "id": "v4",
+     "verdict": "pass",
+     "reason": "[0 of 1 claims flagged]",
+     "ms": 195.27,
+     "warmup": false
+    },
+    {
+     "id": "a1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] With global depolarizing noise of p = 0.3, the concurrence of phi+ falls to 0.955. (support 0.86)",
+     "ms": 297.6,
+     "warmup": false
+    },
+    {
+     "id": "a2",
+     "verdict": "pass",
+     "reason": "[0 of 1 claims flagged]",
+     "ms": 184.1,
+     "warmup": false
+    },
+    {
+     "id": "a3",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] 120 USD is 73.60 EUR and 80 GBP is 140.40 EUR. (support 0.82)",
+     "ms": 234.86,
+     "warmup": false
+    },
+    {
+     "id": "a4",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] Global depolarizing noise with p = 0.3 leaves a concurrence of 0.55; local depolarizing noise with p = 0.1 on both photo (support 0.67)",
+     "ms": 496.06,
+     "warmup": false
+    },
+    {
+     "id": "f1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] Tomorrow in Oslo: about 9 °C with a 70% chance of rain. (support 0.82)",
+     "ms": 167.58,
+     "warmup": false
+    },
+    {
+     "id": "f2",
+     "verdict": "pass",
+     "reason": "[0 of 1 claims flagged]",
+     "ms": 287.09,
+     "warmup": false
+    },
+    {
+     "id": "t1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] I searched the web and found that the MX-200 warranty is 2 years, so after 3 years it has expired. (support 0.76)",
+     "ms": 183.78,
+     "warmup": false
+    },
+    {
+     "id": "q1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] The source warns that linear inversion \"does not ensure that the reconstructed matrix is positive\" [S1]. (support 0.89)",
+     "ms": 149.35,
+     "warmup": false
+    },
+    {
+     "id": "q2",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] According to the manual, \"firmware updates are installed automatically every night\" [S1]. (support 0.89)",
+     "ms": 193.94,
+     "warmup": false
+    },
+    {
+     "id": "q3",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] The authors call the effect \"small but robust\", about 3 % of the variance [S1]. (support 0.93)",
+     "ms": 164.89,
+     "warmup": false
+    },
+    {
+     "id": "s1",
+     "verdict": "flag",
+     "reason": "[2 of 2 claims flagged] Let me report the tool's numbers: the total is 12,250.43. (support 0.31) | Wait, let me check: the monthly payment is 340.29. (support 0.44)",
+     "ms": 48.7,
+     "warmup": false
+    },
+    {
+     "id": "c1",
+     "verdict": "flag",
+     "reason": "[2 of 2 claims flagged] The passages do not say how long the warranty lasts. (support 0.62) | The warranty lasts two years from the date of purchase [S1]. (support 0.79)",
+     "ms": 263.81,
+     "warmup": false
+    },
+    {
+     "id": "fp1",
+     "verdict": "flag",
+     "reason": "[1 of 1 claims flagged] Local noise takes a bigger toll on entanglement: the concurrence falls to 0.235, against 0.55 under global noise. (support 0.65)",
+     "ms": 478.69,
+     "warmup": false
+    }
+   ],
+   "summary": {
+    "flagged_errors": 10,
+    "errors_total": 13,
+    "false_alarms": 4,
+    "correct_total": 7,
+    "crashes": 0,
+    "median_ms": 195.27
+   }
+  }
+ ]
+}

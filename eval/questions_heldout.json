@@ -1,0 +1,533 @@
+{
+ "version": "2026-11-17-heldout",
+ "about": "Held-out questions: written before the wrong-field changes of 0.1.0.dev8 and never used to tune them. They use the held-out tools of tools.py, whose results have several fields of one kind. Same format as questions.json.",
+ "questions": [
+  {
+   "id": "h01",
+   "domain": "flights",
+   "question": "How long is flight LH-400 and how far does it fly?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_flight",
+     {
+      "flight_no": "LH-400"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "duration_min"
+    },
+    {
+     "call": 0,
+     "key": "distance_km"
+    }
+   ]
+  },
+  {
+   "id": "h02",
+   "domain": "flights",
+   "question": "How late is AI-101 and how many seats are still free?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_flight",
+     {
+      "flight_no": "AI-101"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "delay_min"
+    },
+    {
+     "call": 0,
+     "key": "seats_left"
+    }
+   ]
+  },
+  {
+   "id": "h03",
+   "domain": "flights",
+   "question": "Which ticket is cheaper, LH-400 or BA-117?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_flight",
+     {
+      "flight_no": "LH-400"
+     }
+    ],
+    [
+     "get_flight",
+     {
+      "flight_no": "BA-117"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "price_eur"
+    },
+    {
+     "call": 1,
+     "key": "price_eur"
+    }
+   ]
+  },
+  {
+   "id": "h04",
+   "domain": "invoices",
+   "question": "What is the total of invoice INV-1001, and how much of it is tax?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_invoice",
+     {
+      "invoice_id": "INV-1001"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "total"
+    },
+    {
+     "call": 0,
+     "key": "tax"
+    }
+   ]
+  },
+  {
+   "id": "h05",
+   "domain": "invoices",
+   "question": "What discount was applied to INV-1001, and what was the subtotal before it?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_invoice",
+     {
+      "invoice_id": "INV-1001"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "discount"
+    },
+    {
+     "call": 0,
+     "key": "subtotal"
+    }
+   ]
+  },
+  {
+   "id": "h06",
+   "domain": "invoices",
+   "question": "How much shipping is charged on INV-1002, and what is its total?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_invoice",
+     {
+      "invoice_id": "INV-1002"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "shipping"
+    },
+    {
+     "call": 0,
+     "key": "total"
+    }
+   ]
+  },
+  {
+   "id": "h07",
+   "domain": "companies",
+   "question": "What were Nordwind's revenue and net income in 2025?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_company_financials",
+     {
+      "company": "Nordwind",
+      "year": 2025
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "revenue_musd"
+    },
+    {
+     "call": 0,
+     "key": "net_income_musd"
+    }
+   ]
+  },
+  {
+   "id": "h08",
+   "domain": "companies",
+   "question": "How much did Nordwind's revenue grow from 2024 to 2025?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_company_financials",
+     {
+      "company": "Nordwind",
+      "year": 2024
+     }
+    ],
+    [
+     "get_company_financials",
+     {
+      "company": "Nordwind",
+      "year": 2025
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "revenue_musd"
+    },
+    {
+     "call": 1,
+     "key": "revenue_musd"
+    }
+   ]
+  },
+  {
+   "id": "h09",
+   "domain": "companies",
+   "question": "What was Nordwind's operating margin in 2024, and how many people did it employ?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_company_financials",
+     {
+      "company": "Nordwind",
+      "year": 2024
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "operating_margin_pct"
+    },
+    {
+     "call": 0,
+     "key": "employees"
+    }
+   ]
+  },
+  {
+   "id": "h10",
+   "domain": "nutrition",
+   "question": "How many calories and how much protein are in a serving of dal tadka?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_nutrition",
+     {
+      "dish": "dal tadka"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "calories_kcal"
+    },
+    {
+     "call": 0,
+     "key": "protein_g"
+    }
+   ]
+  },
+  {
+   "id": "h11",
+   "domain": "nutrition",
+   "question": "How much fat and how many carbs are in a serving of margherita pizza?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_nutrition",
+     {
+      "dish": "margherita pizza"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "fat_g"
+    },
+    {
+     "call": 0,
+     "key": "carbs_g"
+    }
+   ]
+  },
+  {
+   "id": "h12",
+   "domain": "nutrition",
+   "question": "Which has more fiber per serving, dal tadka or margherita pizza?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_nutrition",
+     {
+      "dish": "dal tadka"
+     }
+    ],
+    [
+     "get_nutrition",
+     {
+      "dish": "margherita pizza"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "fiber_g"
+    },
+    {
+     "call": 1,
+     "key": "fiber_g"
+    }
+   ]
+  },
+  {
+   "id": "h13",
+   "domain": "sensors",
+   "question": "What are the temperature and humidity at sensor LAB-1?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_sensor",
+     {
+      "sensor_id": "LAB-1"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "temperature_c"
+    },
+    {
+     "call": 0,
+     "key": "humidity_pct"
+    }
+   ]
+  },
+  {
+   "id": "h14",
+   "domain": "sensors",
+   "question": "Is the CO2 level at LAB-2 high, and how charged is its battery?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_sensor",
+     {
+      "sensor_id": "LAB-2"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "co2_ppm"
+    },
+    {
+     "call": 0,
+     "key": "battery_pct"
+    }
+   ]
+  },
+  {
+   "id": "h15",
+   "domain": "sensors",
+   "question": "Compare the air pressure at LAB-1 and LAB-2.",
+   "kind": "value",
+   "calls": [
+    [
+     "get_sensor",
+     {
+      "sensor_id": "LAB-1"
+     }
+    ],
+    [
+     "get_sensor",
+     {
+      "sensor_id": "LAB-2"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "pressure_hpa"
+    },
+    {
+     "call": 1,
+     "key": "pressure_hpa"
+    }
+   ]
+  },
+  {
+   "id": "h16",
+   "domain": "shipping",
+   "question": "How much does it cost to ship a 3.5 kg parcel to India, and how long does it take?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_shipping_quote",
+     {
+      "weight_kg": 3.5,
+      "country": "India"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "cost_eur"
+    },
+    {
+     "call": 0,
+     "key": "days_min"
+    },
+    {
+     "call": 0,
+     "key": "days_max"
+    }
+   ]
+  },
+  {
+   "id": "h17",
+   "domain": "shipping",
+   "question": "Compare the cost of shipping a 2 kg parcel to Germany and to the United States.",
+   "kind": "value",
+   "calls": [
+    [
+     "get_shipping_quote",
+     {
+      "weight_kg": 2,
+      "country": "Germany"
+     }
+    ],
+    [
+     "get_shipping_quote",
+     {
+      "weight_kg": 2,
+      "country": "United States"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "cost_eur"
+    },
+    {
+     "call": 1,
+     "key": "cost_eur"
+    }
+   ]
+  },
+  {
+   "id": "h18",
+   "domain": "cities",
+   "question": "What are the population and area of Lyon?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_city_stats",
+     {
+      "city": "Lyon"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "population"
+    },
+    {
+     "call": 0,
+     "key": "area_km2"
+    }
+   ]
+  },
+  {
+   "id": "h19",
+   "domain": "cities",
+   "question": "Which is more densely populated, Lyon or Pune?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_city_stats",
+     {
+      "city": "Lyon"
+     }
+    ],
+    [
+     "get_city_stats",
+     {
+      "city": "Pune"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "density_per_km2"
+    },
+    {
+     "call": 1,
+     "key": "density_per_km2"
+    }
+   ]
+  },
+  {
+   "id": "h20",
+   "domain": "cities",
+   "question": "What is the median age in Pune, and how many people live there?",
+   "kind": "value",
+   "calls": [
+    [
+     "get_city_stats",
+     {
+      "city": "Pune"
+     }
+    ]
+   ],
+   "values": [
+    {
+     "call": 0,
+     "key": "median_age"
+    },
+    {
+     "call": 0,
+     "key": "population"
+    }
+   ]
+  }
+ ]
+}

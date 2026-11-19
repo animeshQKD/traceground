@@ -1,0 +1,4395 @@
+{
+ "date": "2026-11-19T09:58:44",
+ "runs": [
+  "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-17_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "digits swapped",
+   "change": "6,200 -> 6,020",
+   "answer": "Flight LH‑400 travels about 6,020 km and takes roughly 535 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6,020\" is not in the tool results or the question. The closest values they give: 6200 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "last digit off by one",
+   "change": "6,200 -> 6,201",
+   "answer": "Flight LH‑400 travels about 6,201 km and takes roughly 535 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6,201\" is not in the tool results or the question. The closest values they give: 6200 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "6,200 (distance_km) -> 535 (duration_min)",
+   "answer": "Flight LH‑400 travels about 535 km and takes roughly 535 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"535\": the tool results give distance_km = 6200 (get_flight). 535 is the duration_min (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "6,200 (distance_km) -> 25 (delay_min)",
+   "answer": "Flight LH‑400 travels about 25 km and takes roughly 535 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25\": the tool results give distance_km = 6200 (get_flight). 25 is the delay_min (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "digits swapped",
+   "change": "535 -> 553",
+   "answer": "Flight LH‑400 travels about 6,200 km and takes roughly 553 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"553\" is not in the tool results or the question. The closest values they give: 535 (get_flight) or 689.0 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "last digit off by one",
+   "change": "535 -> 536",
+   "answer": "Flight LH‑400 travels about 6,200 km and takes roughly 536 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"536\" is not in the tool results or the question. The closest values they give: 535 (get_flight) or 689.0 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "535 (duration_min) -> 6200 (distance_km)",
+   "answer": "Flight LH‑400 travels about 6,200 km and takes roughly 6200 minutes (about 8 hours 55 minutes).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "535 (duration_min) -> 25 (delay_min)",
+   "answer": "Flight LH‑400 travels about 6,200 km and takes roughly 25 minutes (about 8 hours 55 minutes).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "last digit off by one",
+   "change": "55 -> 56",
+   "answer": "Flight LH‑400 travels about 6,200 km and takes roughly 535 minutes (about 8 hours 56 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"56\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h01",
+   "kind": "two values swapped",
+   "change": "6,200 (distance_km) <-> 535 (duration_min)",
+   "answer": "Flight LH‑400 travels about 535 km and takes roughly 6,200 minutes (about 8 hours 55 minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"535\": the tool results give distance_km = 6200 (get_flight). 535 is the duration_min (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "digits swapped",
+   "change": "689.0 -> 680.9",
+   "answer": "LH‑400 costs €680.9, while BA‑117 costs €812.5, so LH‑400 is the cheaper ticket.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"680.9\" is not in the tool results or the question. The closest values they give: 689.0 (get_flight (call 1)) or 812.5 (get_flight (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "last digit off by one",
+   "change": "689.0 -> 689.1",
+   "answer": "LH‑400 costs €689.1, while BA‑117 costs €812.5, so LH‑400 is the cheaper ticket.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"689.1\" is not in the tool results or the question. The closest values they give: 689.0 (get_flight (call 1)) or 812.5 (get_flight (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "689.0 (price_eur) -> 6200 (distance_km)",
+   "answer": "LH‑400 costs €6200, while BA‑117 costs €812.5, so LH‑400 is the cheaper ticket.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "689.0 (price_eur) -> 535 (duration_min)",
+   "answer": "LH‑400 costs €535, while BA‑117 costs €812.5, so LH‑400 is the cheaper ticket.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "digits swapped",
+   "change": "812.5 -> 815.2",
+   "answer": "LH‑400 costs €689.0, while BA‑117 costs €815.2, so LH‑400 is the cheaper ticket.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"815.2\" is not in the tool results or the question. The closest values they give: 812.5 (get_flight (call 2)) or 689.0 (get_flight (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "last digit off by one",
+   "change": "812.5 -> 812.6",
+   "answer": "LH‑400 costs €689.0, while BA‑117 costs €812.6, so LH‑400 is the cheaper ticket.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"812.6\" is not in the tool results or the question. The closest values they give: 812.5 (get_flight (call 2)) or 689.0 (get_flight (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "812.5 (price_eur) -> 5540 (distance_km)",
+   "answer": "LH‑400 costs €689.0, while BA‑117 costs €5540, so LH‑400 is the cheaper ticket.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "812.5 (price_eur) -> 495 (duration_min)",
+   "answer": "LH‑400 costs €689.0, while BA‑117 costs €495, so LH‑400 is the cheaper ticket.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "digits swapped",
+   "change": "1,343.04 -> 1,343.40",
+   "answer": "The invoice totals €1,343.40, of which €212.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,343.40\" is not in the tool results or the question. The closest values they give: 1343.04 (get_invoice) or 1240.0 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "last digit off by one",
+   "change": "1,343.04 -> 1,343.05",
+   "answer": "The invoice totals €1,343.05, of which €212.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,343.05\" is not in the tool results or the question. The closest values they give: 1343.04 (get_invoice) or 1240.0 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "1,343.04 (total) -> 8 (items)",
+   "answer": "The invoice totals €8, of which €212.04 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "1,343.04 (total) -> 1,240 (subtotal)",
+   "answer": "The invoice totals €1,240, of which €212.04 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "digits swapped",
+   "change": "212.04 -> 212.40",
+   "answer": "The invoice totals €1,343.04, of which €212.40 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"212.40\" is not in the tool results or the question. The closest values they give: 212.04 (get_invoice) or 124.0 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "last digit off by one",
+   "change": "212.04 -> 212.05",
+   "answer": "The invoice totals €1,343.04, of which €212.05 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"212.05\" is not in the tool results or the question. The closest values they give: 212.04 (get_invoice) or 124.0 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "212.04 (tax) -> 8 (items)",
+   "answer": "The invoice totals €1,343.04, of which €8 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "212.04 (tax) -> 1240 (subtotal)",
+   "answer": "The invoice totals €1,343.04, of which €1240 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h04",
+   "kind": "two values swapped",
+   "change": "1,343.04 (total) <-> 212.04 (tax)",
+   "answer": "The invoice totals €212.04, of which €1,343.04 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "digits swapped",
+   "change": "124.0 -> 120.4",
+   "answer": "The invoice shows a discount of €120.4, which was applied to a subtotal of €1,240.0.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of €120.4\": the tool results give discount = 124 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "last digit off by one",
+   "change": "124.0 -> 124.1",
+   "answer": "The invoice shows a discount of €124.1, which was applied to a subtotal of €1,240.0.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of €124.1\": the tool results give discount = 124 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "124.0 (discount) -> 8 (items)",
+   "answer": "The invoice shows a discount of €8, which was applied to a subtotal of €1,240.0.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of €8\": the tool results give discount = 124 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "124.0 (discount) -> 1240 (subtotal)",
+   "answer": "The invoice shows a discount of €1240, which was applied to a subtotal of €1,240.0.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of €1240\": the tool results give discount = 124 (get_invoice). 1240 is the subtotal (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "digits swapped",
+   "change": "1,240.0 -> 1,204.0",
+   "answer": "The invoice shows a discount of €124.0, which was applied to a subtotal of €1,204.0.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €1,204.0\": the tool results give subtotal = 1240 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "last digit off by one",
+   "change": "1,240.0 -> 1,240.1",
+   "answer": "The invoice shows a discount of €124.0, which was applied to a subtotal of €1,240.1.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €1,240.1\": the tool results give subtotal = 1240 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "1,240.0 (subtotal) -> 8 (items)",
+   "answer": "The invoice shows a discount of €124.0, which was applied to a subtotal of €8.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €8\": the tool results give subtotal = 1240 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "1,240.0 (subtotal) -> 124 (discount)",
+   "answer": "The invoice shows a discount of €124.0, which was applied to a subtotal of €124.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €124\": the tool results give subtotal = 1240 (get_invoice). 124 is the discount (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h05",
+   "kind": "two values swapped",
+   "change": "124.0 (discount) <-> 1,240.0 (subtotal)",
+   "answer": "The invoice shows a discount of €1,240.0, which was applied to a subtotal of €124.0.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of €1,240.0\": the tool results give discount = 124 (get_invoice). 1,240.0 is the subtotal (get_invoice).",
+    "\"subtotal of €124.0\": the tool results give subtotal = 1240 (get_invoice). 124.0 is the discount (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "digits swapped",
+   "change": "9.90 -> 9.09",
+   "answer": "The invoice INV‑1002 charges €9.09 for shipping, and its total amount is €468.65.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"9.09 for shipping\": the tool results give shipping = 9.9 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "last digit off by one",
+   "change": "9.90 -> 9.91",
+   "answer": "The invoice INV‑1002 charges €9.91 for shipping, and its total amount is €468.65.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"9.91 for shipping\": the tool results give shipping = 9.9 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "9.90 (shipping) -> 3 (items)",
+   "answer": "The invoice INV‑1002 charges €3 for shipping, and its total amount is €468.65.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"3 for shipping\": the tool results give shipping = 9.9 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "9.90 (shipping) -> 385.5 (subtotal)",
+   "answer": "The invoice INV‑1002 charges €385.5 for shipping, and its total amount is €468.65.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"385.5 for shipping\": the tool results give shipping = 9.9 (get_invoice). 385.5 is the subtotal (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "digits swapped",
+   "change": "468.65 -> 468.56",
+   "answer": "The invoice INV‑1002 charges €9.90 for shipping, and its total amount is €468.56.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount is €468.56\": the tool results give total = 468.65 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "last digit off by one",
+   "change": "468.65 -> 468.66",
+   "answer": "The invoice INV‑1002 charges €9.90 for shipping, and its total amount is €468.66.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount is €468.66\": the tool results give total = 468.65 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "468.65 (total) -> 3 (items)",
+   "answer": "The invoice INV‑1002 charges €9.90 for shipping, and its total amount is €3.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount is €3\": the tool results give total = 468.65 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "468.65 (total) -> 385.5 (subtotal)",
+   "answer": "The invoice INV‑1002 charges €9.90 for shipping, and its total amount is €385.5.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount is €385.5\": the tool results give total = 468.65 (get_invoice). 385.5 is the subtotal (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h06",
+   "kind": "two values swapped",
+   "change": "9.90 (shipping) <-> 468.65 (total)",
+   "answer": "The invoice INV‑1002 charges €468.65 for shipping, and its total amount is €9.90.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"468.65 for shipping\": the tool results give shipping = 9.9 (get_invoice). 468.65 is the total (get_invoice).",
+    "\"total amount is €9.90\": the tool results give total = 468.65 (get_invoice). 9.90 is the shipping (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "digits swapped",
+   "change": "1,612.3 -> 1,613.2",
+   "answer": "Nordwind’s revenue grew from $1,613.2 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,613.2 million\" is not in the tool results or the question. The closest values they give: 1612.3 (get_company_financials (call 1)) or 1840.5 (get_company_financials (call 2)).",
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "last digit off by one",
+   "change": "1,612.3 -> 1,612.4",
+   "answer": "Nordwind’s revenue grew from $1,612.4 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,612.4 million\" is not in the tool results or the question. The closest values they give: 1612.3 (get_company_financials (call 1)) or 1840.5 (get_company_financials (call 2)).",
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "1,612.3 (revenue_musd) -> 2,024 (year)",
+   "answer": "Nordwind’s revenue grew from $2,024 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "1,612.3 (revenue_musd) -> 251.6 (operating_income_musd)",
+   "answer": "Nordwind’s revenue grew from $251.6 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "digits swapped",
+   "change": "2024 -> 2042",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2042 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2042\" is not in the tool results or the question. The closest values they give: 2025 (get_company_financials (call 2)) or 2024 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "last digit off by one",
+   "change": "2024 -> 2025",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2025 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "2024 (year) -> 1612.3 (revenue_musd)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 1612.3 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "2024 (year) -> 251.6 (operating_income_musd)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 251.6 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "digits swapped",
+   "change": "1,840.5 -> 1,845.0",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,845.0 million in 2025, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,845.0 million\" is not in the tool results or the question. The closest values they give: 1840.5 (get_company_financials (call 2)) or 2024 (get_company_financials (call 1)).",
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "last digit off by one",
+   "change": "1,840.5 -> 1,840.6",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.6 million in 2025, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,840.6 million\" is not in the tool results or the question. The closest values they give: 1840.5 (get_company_financials (call 2)) or 2024 (get_company_financials (call 1)).",
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "1,840.5 (revenue_musd) -> 2,025 (year)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $2,025 million in 2025, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "1,840.5 (revenue_musd) -> 312.9 (operating_income_musd)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $312.9 million in 2025, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "digits swapped",
+   "change": "2025 -> 2052",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 2052, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2052\" is not in the tool results or the question. The closest values they give: 2025 (get_company_financials (call 2)) or 2024 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "last digit off by one",
+   "change": "2025 -> 2026",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 2026, an increase of about $228.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2026\" is not in the tool results or the question. The closest values they give: 2025 (get_company_financials (call 2)) or 2024 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "2025 (year) -> 1840.5 (revenue_musd)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 1840.5, an increase of about $228.2 million.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "value of another field",
+   "change": "2025 (year) -> 312.9 (operating_income_musd)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 312.9, an increase of about $228.2 million.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "digits swapped",
+   "change": "228.2 -> 222.8",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 2025, an increase of about $222.8 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"222.8 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "last digit off by one",
+   "change": "228.2 -> 228.3",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 2025, an increase of about $228.3 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"228.3 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "two values swapped",
+   "change": "1,612.3 (revenue_musd) <-> 2024 (year)",
+   "answer": "Nordwind’s revenue grew from $2024 million in 1,612.3 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "two values swapped",
+   "change": "1,612.3 (revenue_musd) <-> 2025 (year)",
+   "answer": "Nordwind’s revenue grew from $2025 million in 2024 to $1,840.5 million in 1,612.3, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h08",
+   "kind": "two values swapped",
+   "change": "2024 (year) <-> 1,840.5 (revenue_musd)",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 1,840.5 to $2024 million in 2025, an increase of about $228.2 million.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"228.2 million\" is not in the tool results or the question. The closest values they give: 221.4 (get_company_financials (call 2)) or 251.6 (get_company_financials (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "digits swapped",
+   "change": "2024 -> 2042",
+   "answer": "Nordwind’s operating margin in 2042 was 15.6 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2042\" is not in the tool results or the question. The closest values they give: 2024 (get_company_financials) or 1612.3 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "last digit off by one",
+   "change": "2024 -> 2025",
+   "answer": "Nordwind’s operating margin in 2025 was 15.6 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2025\" is not in the tool results or the question. The closest values they give: 2024 (get_company_financials) or 1612.3 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "2024 (year) -> 1612.3 (revenue_musd)",
+   "answer": "Nordwind’s operating margin in 1612.3 was 15.6 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 1612.3\": the tool results give operating_margin_pct = 15.6 (get_company_financials). 1612.3 is the revenue_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "2024 (year) -> 251.6 (operating_income_musd)",
+   "answer": "Nordwind’s operating margin in 251.6 was 15.6 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 251.6\": the tool results give operating_margin_pct = 15.6 (get_company_financials). 251.6 is the operating_income_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "digits swapped",
+   "change": "15.6 -> 16.5",
+   "answer": "Nordwind’s operating margin in 2024 was 16.5 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 2024 was 16.5 %\": the tool results give operating_margin_pct = 15.6 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "last digit off by one",
+   "change": "15.6 -> 15.7",
+   "answer": "Nordwind’s operating margin in 2024 was 15.7 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 2024 was 15.7 %\": the tool results give operating_margin_pct = 15.6 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "fraction as percent",
+   "change": "15.6% -> 0.156%",
+   "answer": "Nordwind’s operating margin in 2024 was 0.156 % and it employed 4,980 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 2024 was 0.156 %\": the tool results give operating_margin_pct = 15.6 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "digits swapped",
+   "change": "4,980 -> 4,908",
+   "answer": "Nordwind’s operating margin in 2024 was 15.6 % and it employed 4,908 people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,908\" is not in the tool results or the question. The closest values they give: 4980 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "last digit off by one",
+   "change": "4,980 -> 4,981",
+   "answer": "Nordwind’s operating margin in 2024 was 15.6 % and it employed 4,981 people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,981\" is not in the tool results or the question. The closest values they give: 4980 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "4,980 (employees) -> 2,024 (year)",
+   "answer": "Nordwind’s operating margin in 2024 was 15.6 % and it employed 2,024 people.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "4,980 (employees) -> 1,612.3 (revenue_musd)",
+   "answer": "Nordwind’s operating margin in 2024 was 15.6 % and it employed 1,612.3 people.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h09",
+   "kind": "two values swapped",
+   "change": "2024 (year) <-> 4,980 (employees)",
+   "answer": "Nordwind’s operating margin in 4,980 was 15.6 % and it employed 2024 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 4,980\": the tool results give operating_margin_pct = 15.6 (get_company_financials). 4,980 is the employees (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "digits swapped",
+   "change": "310 -> 301",
+   "answer": "A serving of dal tadka contains about 301 kcal and 14.2 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"301\" is not in the tool results or the question. The closest values they give: 310 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "last digit off by one",
+   "change": "310 -> 311",
+   "answer": "A serving of dal tadka contains about 311 kcal and 14.2 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"311\" is not in the tool results or the question. The closest values they give: 310 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "310 (calories_kcal) -> 14.2 (protein_g)",
+   "answer": "A serving of dal tadka contains about 14.2 kcal and 14.2 g of protein.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "310 (calories_kcal) -> 9.8 (fat_g)",
+   "answer": "A serving of dal tadka contains about 9.8 kcal and 14.2 g of protein.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "digits swapped",
+   "change": "14.2 -> 12.4",
+   "answer": "A serving of dal tadka contains about 310 kcal and 12.4 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12.4 g of protein\": the tool results give protein_g = 14.2 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "last digit off by one",
+   "change": "14.2 -> 14.3",
+   "answer": "A serving of dal tadka contains about 310 kcal and 14.3 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"14.3 g of protein\": the tool results give protein_g = 14.2 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "14.2 (protein_g) -> 310 (calories_kcal)",
+   "answer": "A serving of dal tadka contains about 310 kcal and 310 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"310 g of protein\": the tool results give protein_g = 14.2 (get_nutrition). 310 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "14.2 (protein_g) -> 9.8 (fat_g)",
+   "answer": "A serving of dal tadka contains about 310 kcal and 9.8 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"9.8 g of protein\": the tool results give protein_g = 14.2 (get_nutrition). 9.8 is the fat_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h10",
+   "kind": "two values swapped",
+   "change": "310 (calories_kcal) <-> 14.2 (protein_g)",
+   "answer": "A serving of dal tadka contains about 14.2 kcal and 310 g of protein.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"310 g of protein\": the tool results give protein_g = 14.2 (get_nutrition). 310 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "digits swapped",
+   "change": "32.5 -> 35.2",
+   "answer": "A serving of margherita pizza contains about **35.2 g of fat** and **98 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"35.2 g of fat\": the tool results give fat_g = 32.5 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "last digit off by one",
+   "change": "32.5 -> 32.6",
+   "answer": "A serving of margherita pizza contains about **32.6 g of fat** and **98 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"32.6 g of fat\": the tool results give fat_g = 32.5 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "32.5 (fat_g) -> 840 (calories_kcal)",
+   "answer": "A serving of margherita pizza contains about **840 g of fat** and **98 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"840 g of fat\": the tool results give fat_g = 32.5 (get_nutrition). 840 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "32.5 (fat_g) -> 34 (protein_g)",
+   "answer": "A serving of margherita pizza contains about **34 g of fat** and **98 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"34 g of fat\": the tool results give fat_g = 32.5 (get_nutrition). 34 is the protein_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "digits swapped",
+   "change": "98 -> 89",
+   "answer": "A serving of margherita pizza contains about **32.5 g of fat** and **89 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"89 g of carbs\": the tool results give carbs_g = 98 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "last digit off by one",
+   "change": "98 -> 99",
+   "answer": "A serving of margherita pizza contains about **32.5 g of fat** and **99 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"99 g of carbs\": the tool results give carbs_g = 98 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "98 (carbs_g) -> 840 (calories_kcal)",
+   "answer": "A serving of margherita pizza contains about **32.5 g of fat** and **840 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"840 g of carbs\": the tool results give carbs_g = 98 (get_nutrition). 840 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "98 (carbs_g) -> 34 (protein_g)",
+   "answer": "A serving of margherita pizza contains about **32.5 g of fat** and **34 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"34 g of carbs\": the tool results give carbs_g = 98 (get_nutrition). 34 is the protein_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h11",
+   "kind": "two values swapped",
+   "change": "32.5 (fat_g) <-> 98 (carbs_g)",
+   "answer": "A serving of margherita pizza contains about **98 g of fat** and **32.5 g of carbs**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"98 g of fat\": the tool results give fat_g = 32.5 (get_nutrition). 98 is the carbs_g (get_nutrition).",
+    "\"32.5 g of carbs\": the tool results give carbs_g = 98 (get_nutrition). 32.5 is the fat_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "digits swapped",
+   "change": "8.1 -> 1.8",
+   "answer": "Dal tadka provides about 1.8 g of fiber per serving, while margherita pizza has about 5.2 g. So dal tadka has more fiber.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1.8 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "last digit off by one",
+   "change": "8.1 -> 8.2",
+   "answer": "Dal tadka provides about 8.2 g of fiber per serving, while margherita pizza has about 5.2 g. So dal tadka has more fiber.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"8.2 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "8.1 (fiber_g) -> 310 (calories_kcal)",
+   "answer": "Dal tadka provides about 310 g of fiber per serving, while margherita pizza has about 5.2 g. So dal tadka has more fiber.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"310 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2)). 310 is the calories_kcal (get_nutrition (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "8.1 (fiber_g) -> 14.2 (protein_g)",
+   "answer": "Dal tadka provides about 14.2 g of fiber per serving, while margherita pizza has about 5.2 g. So dal tadka has more fiber.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"14.2 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2)). 14.2 is the protein_g (get_nutrition (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "digits swapped",
+   "change": "5.2 -> 2.5",
+   "answer": "Dal tadka provides about 8.1 g of fiber per serving, while margherita pizza has about 2.5 g. So dal tadka has more fiber.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.5\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "last digit off by one",
+   "change": "5.2 -> 5.3",
+   "answer": "Dal tadka provides about 8.1 g of fiber per serving, while margherita pizza has about 5.3 g. So dal tadka has more fiber.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.3\" is not in the tool results or the question. The closest values they give: 5.2 (get_nutrition (call 2)) or 8.1 (get_nutrition (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "5.2 (fiber_g) -> 840 (calories_kcal)",
+   "answer": "Dal tadka provides about 8.1 g of fiber per serving, while margherita pizza has about 840 g. So dal tadka has more fiber.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "5.2 (fiber_g) -> 34 (protein_g)",
+   "answer": "Dal tadka provides about 8.1 g of fiber per serving, while margherita pizza has about 34 g. So dal tadka has more fiber.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "digits swapped",
+   "change": "22.4 -> 24.2",
+   "answer": "Sensor LAB-1 reports a temperature of 24.2 °C and humidity of 41 %.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of 24.2\": the tool results give temperature_c = 22.4 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "last digit off by one",
+   "change": "22.4 -> 22.5",
+   "answer": "Sensor LAB-1 reports a temperature of 22.5 °C and humidity of 41 %.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of 22.5\": the tool results give temperature_c = 22.4 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "value of another field",
+   "change": "22.4 (temperature_c) -> 41 (humidity_pct)",
+   "answer": "Sensor LAB-1 reports a temperature of 41 °C and humidity of 41 %.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of 41\": the tool results give temperature_c = 22.4 (get_sensor). 41 is the humidity_pct (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "value of another field",
+   "change": "22.4 (temperature_c) -> 1012.6 (pressure_hpa)",
+   "answer": "Sensor LAB-1 reports a temperature of 1012.6 °C and humidity of 41 %.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of 1012.6\": the tool results give temperature_c = 22.4 (get_sensor). 1012.6 is the pressure_hpa (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "digits swapped",
+   "change": "41  -> 14 ",
+   "answer": "Sensor LAB-1 reports a temperature of 22.4 °C and humidity of 14 %.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"humidity of 14 %\": the tool results give humidity_pct = 41 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "last digit off by one",
+   "change": "41  -> 42 ",
+   "answer": "Sensor LAB-1 reports a temperature of 22.4 °C and humidity of 42 %.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"humidity of 42 %\": the tool results give humidity_pct = 41 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h13",
+   "kind": "fraction as percent",
+   "change": "41 % -> 0.41%",
+   "answer": "Sensor LAB-1 reports a temperature of 22.4 °C and humidity of 0.41%.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"humidity of 0.41%\": the tool results give humidity_pct = 41 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "digits swapped",
+   "change": "1012.6 -> 1016.2",
+   "answer": "LAB‑1’s pressure is 1016.2 hPa, while LAB‑2’s is 1009.3 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 1016.2\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "last digit off by one",
+   "change": "1012.6 -> 1012.7",
+   "answer": "LAB‑1’s pressure is 1012.7 hPa, while LAB‑2’s is 1009.3 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 1012.7\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1012.6 (pressure_hpa) -> 22.4 (temperature_c)",
+   "answer": "LAB‑1’s pressure is 22.4 hPa, while LAB‑2’s is 1009.3 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 22.4\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)). 22.4 is the temperature_c (get_sensor (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1012.6 (pressure_hpa) -> 41 (humidity_pct)",
+   "answer": "LAB‑1’s pressure is 41 hPa, while LAB‑2’s is 1009.3 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 41\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)). 41 is the humidity_pct (get_sensor (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "digits swapped",
+   "change": "1009.3 -> 1003.9",
+   "answer": "LAB‑1’s pressure is 1012.6 hPa, while LAB‑2’s is 1003.9 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 1012.6 hPa, while LAB‑2’s is 1003.9\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "last digit off by one",
+   "change": "1009.3 -> 1009.4",
+   "answer": "LAB‑1’s pressure is 1012.6 hPa, while LAB‑2’s is 1009.4 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 1012.6 hPa, while LAB‑2’s is 1009.4\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1009.3 (pressure_hpa) -> 19.8 (temperature_c)",
+   "answer": "LAB‑1’s pressure is 1012.6 hPa, while LAB‑2’s is 19.8 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 1012.6 hPa, while LAB‑2’s is 19.8\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)). 19.8 is the temperature_c (get_sensor (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1009.3 (pressure_hpa) -> 55 (humidity_pct)",
+   "answer": "LAB‑1’s pressure is 1012.6 hPa, while LAB‑2’s is 55 hPa.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure is 1012.6 hPa, while LAB‑2’s is 55\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)). 55 is the humidity_pct (get_sensor (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "digits swapped",
+   "change": "3.5 -> 5.3",
+   "answer": "Shipping a 5.3 kg parcel to India costs €24.5 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.3\" is not in the tool results or the question. The closest values they give: 6 (get_shipping_quote) or 3.5 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "last digit off by one",
+   "change": "3.5 -> 3.6",
+   "answer": "Shipping a 3.6 kg parcel to India costs €24.5 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.6\" is not in the tool results or the question. The closest values they give: 3.5 (get_shipping_quote) or 6 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "3.5 (weight_kg) -> 24.5 (cost_eur)",
+   "answer": "Shipping a 24.5 kg parcel to India costs €24.5 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24.5\": the tool results give weight_kg = 3.5 (get_shipping_quote). 24.5 is the cost_eur (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "3.5 (weight_kg) -> 6 (days_min)",
+   "answer": "Shipping a 6 kg parcel to India costs €24.5 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"6\": the tool results give weight_kg = 3.5 (get_shipping_quote). 6 is the days_min (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "digits swapped",
+   "change": "24.5 -> 25.4",
+   "answer": "Shipping a 3.5 kg parcel to India costs €25.4 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €25.4\": the tool results give cost_eur = 24.5 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "last digit off by one",
+   "change": "24.5 -> 24.6",
+   "answer": "Shipping a 3.5 kg parcel to India costs €24.6 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €24.6\": the tool results give cost_eur = 24.5 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "24.5 (cost_eur) -> 3.5 (weight_kg)",
+   "answer": "Shipping a 3.5 kg parcel to India costs €3.5 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €3.5\": the tool results give cost_eur = 24.5 (get_shipping_quote). 3.5 is the weight_kg (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "24.5 (cost_eur) -> 6 (days_min)",
+   "answer": "Shipping a 3.5 kg parcel to India costs €6 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €6\": the tool results give cost_eur = 24.5 (get_shipping_quote). 6 is the days_min (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h16",
+   "kind": "two values swapped",
+   "change": "3.5 (weight_kg) <-> 24.5 (cost_eur)",
+   "answer": "Shipping a 24.5 kg parcel to India costs €3.5 and takes about 6 to 10 days.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24.5\": the tool results give weight_kg = 3.5 (get_shipping_quote). 24.5 is the cost_eur (get_shipping_quote).",
+    "\"costs €3.5\": the tool results give cost_eur = 24.5 (get_shipping_quote). 3.5 is the weight_kg (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "digits swapped",
+   "change": "7.3 -> 3.7",
+   "answer": "Shipping a 2 kg parcel costs €3.7 to Germany and €14.5 to the United States.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €3.7\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "last digit off by one",
+   "change": "7.3 -> 7.4",
+   "answer": "Shipping a 2 kg parcel costs €7.4 to Germany and €14.5 to the United States.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €7.4\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "7.3 (cost_eur) -> 2 (weight_kg)",
+   "answer": "Shipping a 2 kg parcel costs €2 to Germany and €14.5 to the United States.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €2\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2)). 2 is the weight_kg (get_shipping_quote (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "7.3 (cost_eur) -> 1 (days_min)",
+   "answer": "Shipping a 2 kg parcel costs €1 to Germany and €14.5 to the United States.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs €1\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2)). 1 is the days_min (get_shipping_quote (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "digits swapped",
+   "change": "14.5 -> 15.4",
+   "answer": "Shipping a 2 kg parcel costs €7.3 to Germany and €15.4 to the United States.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"15.4\" is not in the tool results or the question. The closest values they give: 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "last digit off by one",
+   "change": "14.5 -> 14.6",
+   "answer": "Shipping a 2 kg parcel costs €7.3 to Germany and €14.6 to the United States.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": [
+    "\"14.6\" is not in the tool results or the question; it is 7.3 (get_shipping_quote (call 1)) × 2 (the question), worked out in the answer rather than by a tool."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "14.5 (cost_eur) -> 2 (weight_kg)",
+   "answer": "Shipping a 2 kg parcel costs €7.3 to Germany and €2 to the United States.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "14.5 (cost_eur) -> 4 (days_min)",
+   "answer": "Shipping a 2 kg parcel costs €7.3 to Germany and €4 to the United States.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "digits swapped",
+   "change": "522,250 -> 522,205",
+   "answer": "Lyon has a population of about 522,205 people and covers an area of roughly 47.9 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 522,205\": the tool results give population = 522250 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "last digit off by one",
+   "change": "522,250 -> 522,251",
+   "answer": "Lyon has a population of about 522,251 people and covers an area of roughly 47.9 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 522,251\": the tool results give population = 522250 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "522,250 (population) -> 47.87 (area_km2)",
+   "answer": "Lyon has a population of about 47.87 people and covers an area of roughly 47.9 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 47.87\": the tool results give population = 522250 (get_city_stats). 47.87 is the area_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "522,250 (population) -> 10,910 (density_per_km2)",
+   "answer": "Lyon has a population of about 10,910 people and covers an area of roughly 47.9 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 10,910\": the tool results give population = 522250 (get_city_stats). 10,910 is the density_per_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "digits swapped",
+   "change": "47.9 -> 49.7",
+   "answer": "Lyon has a population of about 522,250 people and covers an area of roughly 49.7 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly 49.7\": the tool results give area_km2 = 47.87 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "last digit off by one",
+   "change": "47.9 -> 47.8",
+   "answer": "Lyon has a population of about 522,250 people and covers an area of roughly 47.8 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly 47.8\": the tool results give area_km2 = 47.87 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "47.9 (area_km2) -> 522250 (population)",
+   "answer": "Lyon has a population of about 522,250 people and covers an area of roughly 522250 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly 522250\": the tool results give area_km2 = 47.87 (get_city_stats). 522250 is the population (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "47.9 (area_km2) -> 10910 (density_per_km2)",
+   "answer": "Lyon has a population of about 522,250 people and covers an area of roughly 10910 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly 10910\": the tool results give area_km2 = 47.87 (get_city_stats). 10910 is the density_per_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h18",
+   "kind": "two values swapped",
+   "change": "522,250 (population) <-> 47.9 (area_km2)",
+   "answer": "Lyon has a population of about 47.9 people and covers an area of roughly 522,250 km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 47.9\": the tool results give population = 522250 (get_city_stats). 47.9 is the area_km2 (get_city_stats).",
+    "\"area of roughly 522,250\": the tool results give area_km2 = 47.87 (get_city_stats). 522,250 is the population (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "digits swapped",
+   "change": "10,910 -> 10,901",
+   "answer": "Lyon is more densely populated, with about 10,901 people per km² versus Pune’s roughly 9,432 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"10,901\" is not in the tool results or the question. The closest values they give: 10910 (get_city_stats (call 1)) or 9432 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "last digit off by one",
+   "change": "10,910 -> 10,911",
+   "answer": "Lyon is more densely populated, with about 10,911 people per km² versus Pune’s roughly 9,432 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"10,911\" is not in the tool results or the question. The closest values they give: 10910 (get_city_stats (call 1)) or 9432 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "10,910 (density_per_km2) -> 522,250 (population)",
+   "answer": "Lyon is more densely populated, with about 522,250 people per km² versus Pune’s roughly 9,432 people per km².",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "10,910 (density_per_km2) -> 47.87 (area_km2)",
+   "answer": "Lyon is more densely populated, with about 47.87 people per km² versus Pune’s roughly 9,432 people per km².",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "digits swapped",
+   "change": "9,432 -> 9,423",
+   "answer": "Lyon is more densely populated, with about 10,910 people per km² versus Pune’s roughly 9,423 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9,423\" is not in the tool results or the question. The closest values they give: 9432 (get_city_stats (call 2)) or 10910 (get_city_stats (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "last digit off by one",
+   "change": "9,432 -> 9,433",
+   "answer": "Lyon is more densely populated, with about 10,910 people per km² versus Pune’s roughly 9,433 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9,433\" is not in the tool results or the question. The closest values they give: 9432 (get_city_stats (call 2)) or 10910 (get_city_stats (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "9,432 (density_per_km2) -> 3,124,458 (population)",
+   "answer": "Lyon is more densely populated, with about 10,910 people per km² versus Pune’s roughly 3,124,458 people per km².",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "9,432 (density_per_km2) -> 331.26 (area_km2)",
+   "answer": "Lyon is more densely populated, with about 10,910 people per km² versus Pune’s roughly 331.26 people per km².",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "digits swapped",
+   "change": "29.4 -> 24.9",
+   "answer": "Pune’s median age is 24.9 years and its population is 3,124,458 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age is 24.9\": the tool results give median_age = 29.4 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "last digit off by one",
+   "change": "29.4 -> 29.5",
+   "answer": "Pune’s median age is 29.5 years and its population is 3,124,458 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age is 29.5\": the tool results give median_age = 29.4 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "29.4 (median_age) -> 3124458 (population)",
+   "answer": "Pune’s median age is 3124458 years and its population is 3,124,458 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age is 3124458\": the tool results give median_age = 29.4 (get_city_stats). 3124458 is the population (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "29.4 (median_age) -> 331.26 (area_km2)",
+   "answer": "Pune’s median age is 331.26 years and its population is 3,124,458 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age is 331.26\": the tool results give median_age = 29.4 (get_city_stats). 331.26 is the area_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "digits swapped",
+   "change": "3,124,458 -> 3,124,485",
+   "answer": "Pune’s median age is 29.4 years and its population is 3,124,485 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population is 3,124,485\": the tool results give population = 3124458 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "last digit off by one",
+   "change": "3,124,458 -> 3,124,459",
+   "answer": "Pune’s median age is 29.4 years and its population is 3,124,459 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population is 3,124,459\": the tool results give population = 3124458 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "3,124,458 (population) -> 331.26 (area_km2)",
+   "answer": "Pune’s median age is 29.4 years and its population is 331.26 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population is 331.26\": the tool results give population = 3124458 (get_city_stats). 331.26 is the area_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "3,124,458 (population) -> 9,432 (density_per_km2)",
+   "answer": "Pune’s median age is 29.4 years and its population is 9,432 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population is 9,432\": the tool results give population = 3124458 (get_city_stats). 9,432 is the density_per_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h20",
+   "kind": "two values swapped",
+   "change": "29.4 (median_age) <-> 3,124,458 (population)",
+   "answer": "Pune’s median age is 3,124,458 years and its population is 29.4 people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age is 3,124,458\": the tool results give median_age = 29.4 (get_city_stats). 3,124,458 is the population (get_city_stats).",
+    "\"population is 29.4\": the tool results give population = 3124458 (get_city_stats). 29.4 is the median_age (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "digits swapped",
+   "change": "6,200 -> 6,020",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,020 km and takes about 535 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6,020\" is not in the tool results or the question. The closest values they give: 6200 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "last digit off by one",
+   "change": "6,200 -> 6,201",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,201 km and takes about 535 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6,201\" is not in the tool results or the question. The closest values they give: 6200 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "6,200 (distance_km) -> 535 (duration_min)",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 535 km and takes about 535 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"535\": the tool results give distance_km = 6200 (get_flight). 535 is the duration_min (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "6,200 (distance_km) -> 25 (delay_min)",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 25 km and takes about 535 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25\": the tool results give distance_km = 6200 (get_flight). 25 is the delay_min (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "digits swapped",
+   "change": "535 -> 553",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,200 km and takes about 553 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"553\" is not in the tool results or the question. The closest values they give: 535 (get_flight) or 689.0 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "last digit off by one",
+   "change": "535 -> 536",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,200 km and takes about 536 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"536\" is not in the tool results or the question. The closest values they give: 535 (get_flight) or 689.0 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "535 (duration_min) -> 6200 (distance_km)",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,200 km and takes about 6200 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "value of another field",
+   "change": "535 (duration_min) -> 25 (delay_min)",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,200 km and takes about 25 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "last digit off by one",
+   "change": "55 -> 56",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,200 km and takes about 535 minutes (≈8 h 56 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"56\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h01",
+   "kind": "two values swapped",
+   "change": "6,200 (distance_km) <-> 535 (duration_min)",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 535 km and takes about 6,200 minutes (≈8 h 55 min) of flight time.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"535\": the tool results give distance_km = 6200 (get_flight). 535 is the duration_min (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "AI‑101 is scheduled to depart 54 minutes late, and there are 27 seats still available.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"54\" is not in the tool results or the question. The closest values they give: 45 (get_flight) or 27 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "AI‑101 is scheduled to depart 46 minutes late, and there are 27 seats still available.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"46\" is not in the tool results or the question. The closest values they give: 45 (get_flight) or 27 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "value of another field",
+   "change": "45 (delay_min) -> 11760 (distance_km)",
+   "answer": "AI‑101 is scheduled to depart 11760 minutes late, and there are 27 seats still available.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "value of another field",
+   "change": "45 (delay_min) -> 960 (duration_min)",
+   "answer": "AI‑101 is scheduled to depart 960 minutes late, and there are 27 seats still available.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "digits swapped",
+   "change": "27 -> 72",
+   "answer": "AI‑101 is scheduled to depart 45 minutes late, and there are 72 seats still available.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"72\" is not in the tool results or the question. The closest values they give: 45 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "last digit off by one",
+   "change": "27 -> 28",
+   "answer": "AI‑101 is scheduled to depart 45 minutes late, and there are 28 seats still available.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"28\" is not in the tool results or the question. The closest values they give: 27 (get_flight) or 45 (get_flight)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "value of another field",
+   "change": "27 (seats_left) -> 11760 (distance_km)",
+   "answer": "AI‑101 is scheduled to depart 45 minutes late, and there are 11760 seats still available.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "value of another field",
+   "change": "27 (seats_left) -> 960 (duration_min)",
+   "answer": "AI‑101 is scheduled to depart 45 minutes late, and there are 960 seats still available.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h02",
+   "kind": "two values swapped",
+   "change": "45 (delay_min) <-> 27 (seats_left)",
+   "answer": "AI‑101 is scheduled to depart 27 minutes late, and there are 45 seats still available.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "digits swapped",
+   "change": "689.00 -> 680.90",
+   "answer": "LH‑400 is cheaper. It costs €680.90, whereas BA‑117 costs €812.50.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"680.90\" is not in the tool results or the question. The closest values they give: 689.0 (get_flight (call 1)) or 812.5 (get_flight (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "last digit off by one",
+   "change": "689.00 -> 689.01",
+   "answer": "LH‑400 is cheaper. It costs €689.01, whereas BA‑117 costs €812.50.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"689.01\" is not in the tool results or the question. The closest values they give: 689.0 (get_flight (call 1)) or 812.5 (get_flight (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "689.00 (price_eur) -> 6200 (distance_km)",
+   "answer": "LH‑400 is cheaper. It costs €6200, whereas BA‑117 costs €812.50.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "689.00 (price_eur) -> 535 (duration_min)",
+   "answer": "LH‑400 is cheaper. It costs €535, whereas BA‑117 costs €812.50.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "digits swapped",
+   "change": "812.50 -> 812.05",
+   "answer": "LH‑400 is cheaper. It costs €689.00, whereas BA‑117 costs €812.05.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"812.05\" is not in the tool results or the question. The closest values they give: 812.5 (get_flight (call 2)) or 689.0 (get_flight (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "last digit off by one",
+   "change": "812.50 -> 812.51",
+   "answer": "LH‑400 is cheaper. It costs €689.00, whereas BA‑117 costs €812.51.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"812.51\" is not in the tool results or the question. The closest values they give: 812.5 (get_flight (call 2)) or 689.0 (get_flight (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "812.50 (price_eur) -> 5540 (distance_km)",
+   "answer": "LH‑400 is cheaper. It costs €689.00, whereas BA‑117 costs €5540.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h03",
+   "kind": "value of another field",
+   "change": "812.50 (price_eur) -> 495 (duration_min)",
+   "answer": "LH‑400 is cheaper. It costs €689.00, whereas BA‑117 costs €495.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "digits swapped",
+   "change": "1,343.04 -> 1,343.40",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.40, of which €212.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount on invoice INV‑1001 is €1,343.40\": the tool results give total = 1343.04 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "last digit off by one",
+   "change": "1,343.04 -> 1,343.05",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.05, of which €212.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount on invoice INV‑1001 is €1,343.05\": the tool results give total = 1343.04 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "1,343.04 (total) -> 8 (items)",
+   "answer": "The total amount on invoice INV‑1001 is €8, of which €212.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount on invoice INV‑1001 is €8\": the tool results give total = 1343.04 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "1,343.04 (total) -> 1,240 (subtotal)",
+   "answer": "The total amount on invoice INV‑1001 is €1,240, of which €212.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount on invoice INV‑1001 is €1,240\": the tool results give total = 1343.04 (get_invoice). 1,240 is the subtotal (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "digits swapped",
+   "change": "212.04 -> 212.40",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.04, of which €212.40 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"212.40\" is not in the tool results or the question. The closest values they give: 212.04 (get_invoice) or 124.0 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "last digit off by one",
+   "change": "212.04 -> 212.05",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.04, of which €212.05 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"212.05\" is not in the tool results or the question. The closest values they give: 212.04 (get_invoice) or 124.0 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "212.04 (tax) -> 8 (items)",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.04, of which €8 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "value of another field",
+   "change": "212.04 (tax) -> 1240 (subtotal)",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.04, of which €1240 is tax.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h04",
+   "kind": "two values swapped",
+   "change": "1,343.04 (total) <-> 212.04 (tax)",
+   "answer": "The total amount on invoice INV‑1001 is €212.04, of which €1,343.04 is tax.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"total amount on invoice INV‑1001 is €212.04\": the tool results give total = 1343.04 (get_invoice). 212.04 is the tax (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "digits swapped",
+   "change": "124.00 -> 120.40",
+   "answer": "The invoice INV‑1001 had a discount of **€120.40** applied to a **subtotal of €1,240.00** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of **€120.40\": the tool results give discount = 124 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "last digit off by one",
+   "change": "124.00 -> 124.01",
+   "answer": "The invoice INV‑1001 had a discount of **€124.01** applied to a **subtotal of €1,240.00** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of **€124.01\": the tool results give discount = 124 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "124.00 (discount) -> 8 (items)",
+   "answer": "The invoice INV‑1001 had a discount of **€8** applied to a **subtotal of €1,240.00** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of **€8\": the tool results give discount = 124 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "124.00 (discount) -> 1240 (subtotal)",
+   "answer": "The invoice INV‑1001 had a discount of **€1240** applied to a **subtotal of €1,240.00** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of **€1240\": the tool results give discount = 124 (get_invoice). 1240 is the subtotal (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "digits swapped",
+   "change": "1,240.00 -> 1,204.00",
+   "answer": "The invoice INV‑1001 had a discount of **€124.00** applied to a **subtotal of €1,204.00** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €1,204.00\": the tool results give subtotal = 1240 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "last digit off by one",
+   "change": "1,240.00 -> 1,240.01",
+   "answer": "The invoice INV‑1001 had a discount of **€124.00** applied to a **subtotal of €1,240.01** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €1,240.01\": the tool results give subtotal = 1240 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "1,240.00 (subtotal) -> 8 (items)",
+   "answer": "The invoice INV‑1001 had a discount of **€124.00** applied to a **subtotal of €8** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €8\": the tool results give subtotal = 1240 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "value of another field",
+   "change": "1,240.00 (subtotal) -> 124 (discount)",
+   "answer": "The invoice INV‑1001 had a discount of **€124.00** applied to a **subtotal of €124** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"subtotal of €124\": the tool results give subtotal = 1240 (get_invoice). 124 is the discount (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h05",
+   "kind": "two values swapped",
+   "change": "124.00 (discount) <-> 1,240.00 (subtotal)",
+   "answer": "The invoice INV‑1001 had a discount of **€1,240.00** applied to a **subtotal of €124.00** before the discount was deducted.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"discount of **€1,240.00\": the tool results give discount = 124 (get_invoice). 1,240.00 is the subtotal (get_invoice).",
+    "\"subtotal of €124.00\": the tool results give subtotal = 1240 (get_invoice). 124.00 is the discount (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "digits swapped",
+   "change": "9.90 -> 9.09",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.09**. Including that, the total amount due is **€468.65**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"shipping charge of **€9.09\": the tool results give shipping = 9.9 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "last digit off by one",
+   "change": "9.90 -> 9.91",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.91**. Including that, the total amount due is **€468.65**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"shipping charge of **€9.91\": the tool results give shipping = 9.9 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "9.90 (shipping) -> 3 (items)",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€3**. Including that, the total amount due is **€468.65**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"shipping charge of **€3\": the tool results give shipping = 9.9 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "9.90 (shipping) -> 385.5 (subtotal)",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€385.5**. Including that, the total amount due is **€468.65**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"shipping charge of **€385.5\": the tool results give shipping = 9.9 (get_invoice). 385.5 is the subtotal (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "digits swapped",
+   "change": "468.65 -> 468.56",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.90**. Including that, the total amount due is **€468.56**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"468.56\" is not in the tool results or the question. The closest values they give: 468.65 (get_invoice) or 385.5 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "last digit off by one",
+   "change": "468.65 -> 468.66",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.90**. Including that, the total amount due is **€468.66**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"468.66\" is not in the tool results or the question. The closest values they give: 468.65 (get_invoice) or 385.5 (get_invoice)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "468.65 (total) -> 3 (items)",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.90**. Including that, the total amount due is **€3**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h06",
+   "kind": "value of another field",
+   "change": "468.65 (total) -> 385.5 (subtotal)",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.90**. Including that, the total amount due is **€385.5**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "digits swapped",
+   "change": "2025 -> 2052",
+   "answer": "Nordwind reported a 2052 revenue of **$1,840.5 million** and a net income of **$221.4 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2052 revenue\": the tool results give revenue_musd = 1840.5 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "last digit off by one",
+   "change": "2025 -> 2026",
+   "answer": "Nordwind reported a 2026 revenue of **$1,840.5 million** and a net income of **$221.4 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2026 revenue\": the tool results give revenue_musd = 1840.5 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "value of another field",
+   "change": "2025 (year) -> 1840.5 (revenue_musd)",
+   "answer": "Nordwind reported a 1840.5 revenue of **$1,840.5 million** and a net income of **$221.4 million**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "value of another field",
+   "change": "2025 (year) -> 312.9 (operating_income_musd)",
+   "answer": "Nordwind reported a 312.9 revenue of **$1,840.5 million** and a net income of **$221.4 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"312.9 revenue\": the tool results give revenue_musd = 1840.5 (get_company_financials). 312.9 is the operating_income_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "digits swapped",
+   "change": "1,840.5 -> 1,845.0",
+   "answer": "Nordwind reported a 2025 revenue of **$1,845.0 million** and a net income of **$221.4 million**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,845.0 million\" is not in the tool results or the question. The closest values they give: 1840.5 (get_company_financials) or 2025 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "last digit off by one",
+   "change": "1,840.5 -> 1,840.6",
+   "answer": "Nordwind reported a 2025 revenue of **$1,840.6 million** and a net income of **$221.4 million**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,840.6 million\" is not in the tool results or the question. The closest values they give: 1840.5 (get_company_financials) or 2025 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "value of another field",
+   "change": "1,840.5 (revenue_musd) -> 2,025 (year)",
+   "answer": "Nordwind reported a 2025 revenue of **$2,025 million** and a net income of **$221.4 million**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "value of another field",
+   "change": "1,840.5 (revenue_musd) -> 312.9 (operating_income_musd)",
+   "answer": "Nordwind reported a 2025 revenue of **$312.9 million** and a net income of **$221.4 million**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "digits swapped",
+   "change": "221.4 -> 224.1",
+   "answer": "Nordwind reported a 2025 revenue of **$1,840.5 million** and a net income of **$224.1 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"net income of **$224.1 million\": the tool results give net_income_musd = 221.4 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "last digit off by one",
+   "change": "221.4 -> 221.5",
+   "answer": "Nordwind reported a 2025 revenue of **$1,840.5 million** and a net income of **$221.5 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"net income of **$221.5 million\": the tool results give net_income_musd = 221.4 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "value of another field",
+   "change": "221.4 (net_income_musd) -> 2025 (year)",
+   "answer": "Nordwind reported a 2025 revenue of **$1,840.5 million** and a net income of **$2025 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"net income of **$2025 million\": the tool results give net_income_musd = 221.4 (get_company_financials). 2025 million is the year (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "value of another field",
+   "change": "221.4 (net_income_musd) -> 1840.5 (revenue_musd)",
+   "answer": "Nordwind reported a 2025 revenue of **$1,840.5 million** and a net income of **$1840.5 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"net income of **$1840.5 million\": the tool results give net_income_musd = 221.4 (get_company_financials). 1840.5 million is the revenue_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "two values swapped",
+   "change": "2025 (year) <-> 1,840.5 (revenue_musd)",
+   "answer": "Nordwind reported a 1,840.5 revenue of **$2025 million** and a net income of **$221.4 million**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "two values swapped",
+   "change": "2025 (year) <-> 221.4 (net_income_musd)",
+   "answer": "Nordwind reported a 221.4 revenue of **$1,840.5 million** and a net income of **$2025 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"221.4 revenue\": the tool results give revenue_musd = 1840.5 (get_company_financials). 221.4 is the net_income_musd (get_company_financials).",
+    "\"net income of **$2025 million\": the tool results give net_income_musd = 221.4 (get_company_financials). 2025 million is the year (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h07",
+   "kind": "two values swapped",
+   "change": "1,840.5 (revenue_musd) <-> 221.4 (net_income_musd)",
+   "answer": "Nordwind reported a 2025 revenue of **$221.4 million** and a net income of **$1,840.5 million**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"net income of **$1,840.5 million\": the tool results give net_income_musd = 221.4 (get_company_financials). 1,840.5 million is the revenue_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "digits swapped",
+   "change": "2024 -> 2042",
+   "answer": "Nordwind’s operating margin in 2042 was **15.6 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2042\" is not in the tool results or the question. The closest values they give: 2024 (get_company_financials) or 1612.3 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "last digit off by one",
+   "change": "2024 -> 2025",
+   "answer": "Nordwind’s operating margin in 2025 was **15.6 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2025\" is not in the tool results or the question. The closest values they give: 2024 (get_company_financials) or 1612.3 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "2024 (year) -> 1612.3 (revenue_musd)",
+   "answer": "Nordwind’s operating margin in 1612.3 was **15.6 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 1612.3\": the tool results give operating_margin_pct = 15.6 (get_company_financials). 1612.3 is the revenue_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "2024 (year) -> 251.6 (operating_income_musd)",
+   "answer": "Nordwind’s operating margin in 251.6 was **15.6 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 251.6\": the tool results give operating_margin_pct = 15.6 (get_company_financials). 251.6 is the operating_income_musd (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "digits swapped",
+   "change": "15.6 -> 16.5",
+   "answer": "Nordwind’s operating margin in 2024 was **16.5 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 2024 was **16.5 %\": the tool results give operating_margin_pct = 15.6 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "last digit off by one",
+   "change": "15.6 -> 15.7",
+   "answer": "Nordwind’s operating margin in 2024 was **15.7 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 2024 was **15.7 %\": the tool results give operating_margin_pct = 15.6 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "fraction as percent",
+   "change": "15.6% -> 0.156%",
+   "answer": "Nordwind’s operating margin in 2024 was **0.156 %**, and the company employed **4,980** people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 2024 was **0.156 %\": the tool results give operating_margin_pct = 15.6 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "digits swapped",
+   "change": "4,980 -> 4,908",
+   "answer": "Nordwind’s operating margin in 2024 was **15.6 %**, and the company employed **4,908** people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,908\" is not in the tool results or the question. The closest values they give: 4980 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "last digit off by one",
+   "change": "4,980 -> 4,981",
+   "answer": "Nordwind’s operating margin in 2024 was **15.6 %**, and the company employed **4,981** people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,981\" is not in the tool results or the question. The closest values they give: 4980 (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "4,980 (employees) -> 2,024 (year)",
+   "answer": "Nordwind’s operating margin in 2024 was **15.6 %**, and the company employed **2,024** people.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "value of another field",
+   "change": "4,980 (employees) -> 1,612.3 (revenue_musd)",
+   "answer": "Nordwind’s operating margin in 2024 was **15.6 %**, and the company employed **1,612.3** people.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h09",
+   "kind": "two values swapped",
+   "change": "2024 (year) <-> 4,980 (employees)",
+   "answer": "Nordwind’s operating margin in 4,980 was **15.6 %**, and the company employed **2024** people.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"operating margin in 4,980\": the tool results give operating_margin_pct = 15.6 (get_company_financials). 4,980 is the employees (get_company_financials)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "digits swapped",
+   "change": "310 -> 301",
+   "answer": "A single serving of dal tadka contains roughly **301 kcal** and **14.2 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"301\" is not in the tool results or the question. The closest values they give: 310 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "last digit off by one",
+   "change": "310 -> 311",
+   "answer": "A single serving of dal tadka contains roughly **311 kcal** and **14.2 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"311\" is not in the tool results or the question. The closest values they give: 310 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "310 (calories_kcal) -> 14.2 (protein_g)",
+   "answer": "A single serving of dal tadka contains roughly **14.2 kcal** and **14.2 g of protein**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "310 (calories_kcal) -> 9.8 (fat_g)",
+   "answer": "A single serving of dal tadka contains roughly **9.8 kcal** and **14.2 g of protein**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "digits swapped",
+   "change": "14.2 -> 12.4",
+   "answer": "A single serving of dal tadka contains roughly **310 kcal** and **12.4 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12.4 g of protein\": the tool results give protein_g = 14.2 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "last digit off by one",
+   "change": "14.2 -> 14.3",
+   "answer": "A single serving of dal tadka contains roughly **310 kcal** and **14.3 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"14.3 g of protein\": the tool results give protein_g = 14.2 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "14.2 (protein_g) -> 310 (calories_kcal)",
+   "answer": "A single serving of dal tadka contains roughly **310 kcal** and **310 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"310 g of protein\": the tool results give protein_g = 14.2 (get_nutrition). 310 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "value of another field",
+   "change": "14.2 (protein_g) -> 9.8 (fat_g)",
+   "answer": "A single serving of dal tadka contains roughly **310 kcal** and **9.8 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"9.8 g of protein\": the tool results give protein_g = 14.2 (get_nutrition). 9.8 is the fat_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h10",
+   "kind": "two values swapped",
+   "change": "310 (calories_kcal) <-> 14.2 (protein_g)",
+   "answer": "A single serving of dal tadka contains roughly **14.2 kcal** and **310 g of protein**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"310 g of protein\": the tool results give protein_g = 14.2 (get_nutrition). 310 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "digits swapped",
+   "change": "32.5 -> 35.2",
+   "answer": "A single serving of margherita pizza contains about **35.2 g of fat** and **98 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"35.2 g of fat\": the tool results give fat_g = 32.5 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "last digit off by one",
+   "change": "32.5 -> 32.6",
+   "answer": "A single serving of margherita pizza contains about **32.6 g of fat** and **98 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"32.6 g of fat\": the tool results give fat_g = 32.5 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "32.5 (fat_g) -> 840 (calories_kcal)",
+   "answer": "A single serving of margherita pizza contains about **840 g of fat** and **98 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"840 g of fat\": the tool results give fat_g = 32.5 (get_nutrition). 840 is the calories_kcal (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "32.5 (fat_g) -> 34 (protein_g)",
+   "answer": "A single serving of margherita pizza contains about **34 g of fat** and **98 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"34 g of fat\": the tool results give fat_g = 32.5 (get_nutrition). 34 is the protein_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "digits swapped",
+   "change": "98 -> 89",
+   "answer": "A single serving of margherita pizza contains about **32.5 g of fat** and **89 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"89\" is not in the tool results or the question. The closest values they give: 98.0 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "last digit off by one",
+   "change": "98 -> 99",
+   "answer": "A single serving of margherita pizza contains about **32.5 g of fat** and **99 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"99\" is not in the tool results or the question. The closest values they give: 98.0 (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "98 (carbs_g) -> 840 (calories_kcal)",
+   "answer": "A single serving of margherita pizza contains about **32.5 g of fat** and **840 g of carbohydrates**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "value of another field",
+   "change": "98 (carbs_g) -> 34 (protein_g)",
+   "answer": "A single serving of margherita pizza contains about **32.5 g of fat** and **34 g of carbohydrates**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h11",
+   "kind": "two values swapped",
+   "change": "32.5 (fat_g) <-> 98 (carbs_g)",
+   "answer": "A single serving of margherita pizza contains about **98 g of fat** and **32.5 g of carbohydrates**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"98 g of fat\": the tool results give fat_g = 32.5 (get_nutrition). 98 is the carbs_g (get_nutrition)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "digits swapped",
+   "change": "8.1 -> 1.8",
+   "answer": "Dal tadka contains about 1.8 g of fiber per serving, whereas a margherita pizza has roughly 5.2 g. So dal tadka has more fiber per serving.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1.8 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "last digit off by one",
+   "change": "8.1 -> 8.2",
+   "answer": "Dal tadka contains about 8.2 g of fiber per serving, whereas a margherita pizza has roughly 5.2 g. So dal tadka has more fiber per serving.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"8.2 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "8.1 (fiber_g) -> 310 (calories_kcal)",
+   "answer": "Dal tadka contains about 310 g of fiber per serving, whereas a margherita pizza has roughly 5.2 g. So dal tadka has more fiber per serving.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"310 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2)). 310 is the calories_kcal (get_nutrition (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "8.1 (fiber_g) -> 14.2 (protein_g)",
+   "answer": "Dal tadka contains about 14.2 g of fiber per serving, whereas a margherita pizza has roughly 5.2 g. So dal tadka has more fiber per serving.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"14.2 g of fiber\": the tool results give fiber_g = 8.1 (get_nutrition (call 1)); fiber_g = 5.2 (get_nutrition (call 2)). 14.2 is the protein_g (get_nutrition (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "digits swapped",
+   "change": "5.2 -> 2.5",
+   "answer": "Dal tadka contains about 8.1 g of fiber per serving, whereas a margherita pizza has roughly 2.5 g. So dal tadka has more fiber per serving.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.5\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "last digit off by one",
+   "change": "5.2 -> 5.3",
+   "answer": "Dal tadka contains about 8.1 g of fiber per serving, whereas a margherita pizza has roughly 5.3 g. So dal tadka has more fiber per serving.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.3\" is not in the tool results or the question. The closest values they give: 5.2 (get_nutrition (call 2)) or 8.1 (get_nutrition (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "5.2 (fiber_g) -> 840 (calories_kcal)",
+   "answer": "Dal tadka contains about 8.1 g of fiber per serving, whereas a margherita pizza has roughly 840 g. So dal tadka has more fiber per serving.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h12",
+   "kind": "value of another field",
+   "change": "5.2 (fiber_g) -> 34 (protein_g)",
+   "answer": "Dal tadka contains about 8.1 g of fiber per serving, whereas a margherita pizza has roughly 34 g. So dal tadka has more fiber per serving.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "digits swapped",
+   "change": "22.4 -> 24.2",
+   "answer": "The LAB‑1 sensor reports a current temperature of **24.2 °C** and a humidity level of **41 %**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of **24.2\": the tool results give temperature_c = 22.4 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "last digit off by one",
+   "change": "22.4 -> 22.5",
+   "answer": "The LAB‑1 sensor reports a current temperature of **22.5 °C** and a humidity level of **41 %**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of **22.5\": the tool results give temperature_c = 22.4 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "value of another field",
+   "change": "22.4 (temperature_c) -> 41 (humidity_pct)",
+   "answer": "The LAB‑1 sensor reports a current temperature of **41 °C** and a humidity level of **41 %**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of **41\": the tool results give temperature_c = 22.4 (get_sensor). 41 is the humidity_pct (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "value of another field",
+   "change": "22.4 (temperature_c) -> 1012.6 (pressure_hpa)",
+   "answer": "The LAB‑1 sensor reports a current temperature of **1012.6 °C** and a humidity level of **41 %**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"temperature of **1012.6\": the tool results give temperature_c = 22.4 (get_sensor). 1012.6 is the pressure_hpa (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "digits swapped",
+   "change": "41  -> 14 ",
+   "answer": "The LAB‑1 sensor reports a current temperature of **22.4 °C** and a humidity level of **14 %**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"humidity level of **14 %\": the tool results give humidity_pct = 41 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "last digit off by one",
+   "change": "41  -> 42 ",
+   "answer": "The LAB‑1 sensor reports a current temperature of **22.4 °C** and a humidity level of **42 %**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"humidity level of **42 %\": the tool results give humidity_pct = 41 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h13",
+   "kind": "fraction as percent",
+   "change": "41 % -> 0.41%",
+   "answer": "The LAB‑1 sensor reports a current temperature of **22.4 °C** and a humidity level of **0.41%**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"humidity level of **0.41%\": the tool results give humidity_pct = 41 (get_sensor)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "digits swapped",
+   "change": "1012.6 -> 1016.2",
+   "answer": "LAB‑1 reports a pressure of **1016.2 hPa**, while LAB‑2 reports **1009.3 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure of **1016.2\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)).",
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "last digit off by one",
+   "change": "1012.6 -> 1012.7",
+   "answer": "LAB‑1 reports a pressure of **1012.7 hPa**, while LAB‑2 reports **1009.3 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure of **1012.7\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)).",
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1012.6 (pressure_hpa) -> 22.4 (temperature_c)",
+   "answer": "LAB‑1 reports a pressure of **22.4 hPa**, while LAB‑2 reports **1009.3 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure of **22.4\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)). 22.4 is the temperature_c (get_sensor (call 1)).",
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1012.6 (pressure_hpa) -> 41 (humidity_pct)",
+   "answer": "LAB‑1 reports a pressure of **41 hPa**, while LAB‑2 reports **1009.3 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"pressure of **41\": the tool results give pressure_hpa = 1012.6 (get_sensor (call 1)); pressure_hpa = 1009.3 (get_sensor (call 2)). 41 is the humidity_pct (get_sensor (call 1)).",
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "digits swapped",
+   "change": "1009.3 -> 1003.9",
+   "answer": "LAB‑1 reports a pressure of **1012.6 hPa**, while LAB‑2 reports **1003.9 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1003.9\" is not in the tool results or the question. The closest values they give: 1009.3 (get_sensor (call 2)) or 1012.6 (get_sensor (call 1)).",
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "last digit off by one",
+   "change": "1009.3 -> 1009.4",
+   "answer": "LAB‑1 reports a pressure of **1012.6 hPa**, while LAB‑2 reports **1009.4 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1009.4\" is not in the tool results or the question. The closest values they give: 1009.3 (get_sensor (call 2)) or 1012.6 (get_sensor (call 1)).",
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1009.3 (pressure_hpa) -> 19.8 (temperature_c)",
+   "answer": "LAB‑1 reports a pressure of **1012.6 hPa**, while LAB‑2 reports **19.8 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "value of another field",
+   "change": "1009.3 (pressure_hpa) -> 55 (humidity_pct)",
+   "answer": "LAB‑1 reports a pressure of **1012.6 hPa**, while LAB‑2 reports **55 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"3.3\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h15",
+   "kind": "last digit off by one",
+   "change": "3.3 -> 3.4",
+   "answer": "LAB‑1 reports a pressure of **1012.6 hPa**, while LAB‑2 reports **1009.3 hPa**. Thus LAB‑1’s air pressure is about **3.4 hPa higher** than LAB‑2’s.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.4\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "digits swapped",
+   "change": "3.5 -> 5.3",
+   "answer": "The shipping quote for a 5.3 kg parcel to India is **€24.50**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.3\" is not in the tool results or the question. The closest values they give: 6 (get_shipping_quote) or 3.5 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "last digit off by one",
+   "change": "3.5 -> 3.6",
+   "answer": "The shipping quote for a 3.6 kg parcel to India is **€24.50**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.6\" is not in the tool results or the question. The closest values they give: 3.5 (get_shipping_quote) or 6 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "3.5 (weight_kg) -> 24.5 (cost_eur)",
+   "answer": "The shipping quote for a 24.5 kg parcel to India is **€24.50**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24.5\": the tool results give weight_kg = 3.5 (get_shipping_quote). 24.5 is the cost_eur (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "3.5 (weight_kg) -> 6 (days_min)",
+   "answer": "The shipping quote for a 6 kg parcel to India is **€24.50**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"6\": the tool results give weight_kg = 3.5 (get_shipping_quote). 6 is the days_min (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "digits swapped",
+   "change": "24.50 -> 24.05",
+   "answer": "The shipping quote for a 3.5 kg parcel to India is **€24.05**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24.05\" is not in the tool results or the question. The closest values they give: 24.5 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "last digit off by one",
+   "change": "24.50 -> 24.51",
+   "answer": "The shipping quote for a 3.5 kg parcel to India is **€24.51**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24.51\" is not in the tool results or the question. The closest values they give: 24.5 (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "24.50 (cost_eur) -> 3.5 (weight_kg)",
+   "answer": "The shipping quote for a 3.5 kg parcel to India is **€3.5**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"3.5\": the tool results give cost_eur = 24.5 (get_shipping_quote). 3.5 is the weight_kg (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "value of another field",
+   "change": "24.50 (cost_eur) -> 6 (days_min)",
+   "answer": "The shipping quote for a 3.5 kg parcel to India is **€6**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"6\": the tool results give cost_eur = 24.5 (get_shipping_quote). 6 is the days_min (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h16",
+   "kind": "two values swapped",
+   "change": "3.5 (weight_kg) <-> 24.50 (cost_eur)",
+   "answer": "The shipping quote for a 24.50 kg parcel to India is **€3.5**. The estimated delivery window is **6 to 10 business days**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24.50\": the tool results give weight_kg = 3.5 (get_shipping_quote). 24.50 is the cost_eur (get_shipping_quote).",
+    "\"3.5\": the tool results give cost_eur = 24.5 (get_shipping_quote). 3.5 is the weight_kg (get_shipping_quote)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "digits swapped",
+   "change": "7.30 -> 7.03",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.03** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.50** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs about **€7.03\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "last digit off by one",
+   "change": "7.30 -> 7.31",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.31** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.50** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs about **€7.31\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "7.30 (cost_eur) -> 2 (weight_kg)",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€2** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.50** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs about **€2\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2)). 2 is the weight_kg (get_shipping_quote (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "7.30 (cost_eur) -> 1 (days_min)",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€1** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.50** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs about **€1\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2)). 1 is the days_min (get_shipping_quote (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "digits swapped",
+   "change": "14.50 -> 14.05",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.30** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.05** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs roughly **€14.05\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "last digit off by one",
+   "change": "14.50 -> 14.51",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.30** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.51** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs roughly **€14.51\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "14.50 (cost_eur) -> 2 (weight_kg)",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.30** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€2** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs roughly **€2\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2)). 2 is the weight_kg (get_shipping_quote (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h17",
+   "kind": "value of another field",
+   "change": "14.50 (cost_eur) -> 4 (days_min)",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.30** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€4** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"costs roughly **€4\": the tool results give cost_eur = 7.3 (get_shipping_quote (call 1)); cost_eur = 14.5 (get_shipping_quote (call 2)). 4 is the days_min (get_shipping_quote (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "digits swapped",
+   "change": "522 250 -> 522 205",
+   "answer": "Lyon has a population of about **522 205** people and covers an area of roughly **47.9 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about **522 205\": the tool results give population = 522250 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "last digit off by one",
+   "change": "522 250 -> 522 251",
+   "answer": "Lyon has a population of about **522 251** people and covers an area of roughly **47.9 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about **522 251\": the tool results give population = 522250 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "522 250 (population) -> 47.87 (area_km2)",
+   "answer": "Lyon has a population of about **47.87** people and covers an area of roughly **47.9 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about **47.87\": the tool results give population = 522250 (get_city_stats). 47.87 is the area_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "522 250 (population) -> 10 910 (density_per_km2)",
+   "answer": "Lyon has a population of about **10 910** people and covers an area of roughly **47.9 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about **10 910\": the tool results give population = 522250 (get_city_stats). 10 910 is the density_per_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "digits swapped",
+   "change": "47.9 -> 49.7",
+   "answer": "Lyon has a population of about **522 250** people and covers an area of roughly **49.7 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly **49.7\": the tool results give area_km2 = 47.87 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "last digit off by one",
+   "change": "47.9 -> 47.8",
+   "answer": "Lyon has a population of about **522 250** people and covers an area of roughly **47.8 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly **47.8\": the tool results give area_km2 = 47.87 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "47.9 (area_km2) -> 522250 (population)",
+   "answer": "Lyon has a population of about **522 250** people and covers an area of roughly **522250 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly **522250\": the tool results give area_km2 = 47.87 (get_city_stats). 522250 is the population (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "value of another field",
+   "change": "47.9 (area_km2) -> 10910 (density_per_km2)",
+   "answer": "Lyon has a population of about **522 250** people and covers an area of roughly **10910 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"area of roughly **10910\": the tool results give area_km2 = 47.87 (get_city_stats). 10910 is the density_per_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h18",
+   "kind": "two values swapped",
+   "change": "522 250 (population) <-> 47.9 (area_km2)",
+   "answer": "Lyon has a population of about **47.9** people and covers an area of roughly **522 250 km²**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about **47.9\": the tool results give population = 522250 (get_city_stats). 47.9 is the area_km2 (get_city_stats).",
+    "\"area of roughly **522 250\": the tool results give area_km2 = 47.87 (get_city_stats). 522 250 is the population (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "digits swapped",
+   "change": "10,910 -> 10,901",
+   "answer": "Lyon is more densely populated. Its density is about 10,901 people per km², whereas Pune’s density is roughly 9,432 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is about 10,901\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "last digit off by one",
+   "change": "10,910 -> 10,911",
+   "answer": "Lyon is more densely populated. Its density is about 10,911 people per km², whereas Pune’s density is roughly 9,432 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is about 10,911\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "10,910 (density_per_km2) -> 522,250 (population)",
+   "answer": "Lyon is more densely populated. Its density is about 522,250 people per km², whereas Pune’s density is roughly 9,432 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is about 522,250\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2)). 522,250 is the population (get_city_stats (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "10,910 (density_per_km2) -> 47.87 (area_km2)",
+   "answer": "Lyon is more densely populated. Its density is about 47.87 people per km², whereas Pune’s density is roughly 9,432 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is about 47.87\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2)). 47.87 is the area_km2 (get_city_stats (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "digits swapped",
+   "change": "9,432 -> 9,423",
+   "answer": "Lyon is more densely populated. Its density is about 10,910 people per km², whereas Pune’s density is roughly 9,423 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is roughly 9,423\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "last digit off by one",
+   "change": "9,432 -> 9,433",
+   "answer": "Lyon is more densely populated. Its density is about 10,910 people per km², whereas Pune’s density is roughly 9,433 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is roughly 9,433\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "9,432 (density_per_km2) -> 3,124,458 (population)",
+   "answer": "Lyon is more densely populated. Its density is about 10,910 people per km², whereas Pune’s density is roughly 3,124,458 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is roughly 3,124,458\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2)). 3,124,458 is the population (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h19",
+   "kind": "value of another field",
+   "change": "9,432 (density_per_km2) -> 331.26 (area_km2)",
+   "answer": "Lyon is more densely populated. Its density is about 10,910 people per km², whereas Pune’s density is roughly 331.26 people per km².",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"density is roughly 331.26\": the tool results give density_per_km2 = 10910 (get_city_stats (call 1)); density_per_km2 = 9432 (get_city_stats (call 2)). 331.26 is the area_km2 (get_city_stats (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "digits swapped",
+   "change": "3,124,458 -> 3,124,485",
+   "answer": "Pune has a population of about 3,124,485 people, and the median age of its residents is roughly 29.4 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 3,124,485\": the tool results give population = 3124458 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "last digit off by one",
+   "change": "3,124,458 -> 3,124,459",
+   "answer": "Pune has a population of about 3,124,459 people, and the median age of its residents is roughly 29.4 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 3,124,459\": the tool results give population = 3124458 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "3,124,458 (population) -> 331.26 (area_km2)",
+   "answer": "Pune has a population of about 331.26 people, and the median age of its residents is roughly 29.4 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 331.26\": the tool results give population = 3124458 (get_city_stats). 331.26 is the area_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "3,124,458 (population) -> 9,432 (density_per_km2)",
+   "answer": "Pune has a population of about 9,432 people, and the median age of its residents is roughly 29.4 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 9,432\": the tool results give population = 3124458 (get_city_stats). 9,432 is the density_per_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "digits swapped",
+   "change": "29.4 -> 24.9",
+   "answer": "Pune has a population of about 3,124,458 people, and the median age of its residents is roughly 24.9 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age of its residents is roughly 24.9\": the tool results give median_age = 29.4 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "last digit off by one",
+   "change": "29.4 -> 29.5",
+   "answer": "Pune has a population of about 3,124,458 people, and the median age of its residents is roughly 29.5 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age of its residents is roughly 29.5\": the tool results give median_age = 29.4 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "29.4 (median_age) -> 3124458 (population)",
+   "answer": "Pune has a population of about 3,124,458 people, and the median age of its residents is roughly 3124458 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age of its residents is roughly 3124458\": the tool results give median_age = 29.4 (get_city_stats). 3124458 is the population (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "value of another field",
+   "change": "29.4 (median_age) -> 331.26 (area_km2)",
+   "answer": "Pune has a population of about 3,124,458 people, and the median age of its residents is roughly 331.26 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"median age of its residents is roughly 331.26\": the tool results give median_age = 29.4 (get_city_stats). 331.26 is the area_km2 (get_city_stats)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h20",
+   "kind": "two values swapped",
+   "change": "3,124,458 (population) <-> 29.4 (median_age)",
+   "answer": "Pune has a population of about 29.4 people, and the median age of its residents is roughly 3,124,458 years.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"population of about 29.4\": the tool results give population = 3124458 (get_city_stats). 29.4 is the median_age (get_city_stats).",
+    "\"median age of its residents is roughly 3,124,458\": the tool results give median_age = 29.4 (get_city_stats). 3,124,458 is the population (get_city_stats)."
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h02",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h07",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h14",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h08",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h14",
+   "why": "traceground says problems"
+  }
+ ]
+}

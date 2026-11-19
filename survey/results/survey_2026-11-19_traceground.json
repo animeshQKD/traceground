@@ -1,0 +1,166 @@
+{
+ "date": "2026-11-19T09:59:01",
+ "python": "3.11.18",
+ "platform": "Windows-10-10.0.26300-SP0",
+ "cases_version": "2026-11-17a",
+ "files_version": "2026-11-17c",
+ "markers": "strip",
+ "runs": [
+  {
+   "tool": "traceground",
+   "version": "0.1.0",
+   "setup_s": 0.04,
+   "setup_error": "",
+   "results": [
+    {
+     "id": "n1",
+     "verdict": "flag",
+     "reason": "[problems] \"42.1 million\" is not in the sources or the question. The closest values they give: 41.2 million (S1).",
+     "ms": 0.68,
+     "warmup": true
+    },
+    {
+     "id": "n2",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 0.34,
+     "warmup": false
+    },
+    {
+     "id": "n3",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 0.34,
+     "warmup": false
+    },
+    {
+     "id": "v1",
+     "verdict": "flag",
+     "reason": "[problems] \"concurrence = 0.7\": the tool results give concurrence = 0.55 (compute_measures). 0.7 is the werner_weight (apply_global_noise).",
+     "ms": 1.54,
+     "warmup": false
+    },
+    {
+     "id": "v2",
+     "verdict": "flag",
+     "reason": "[problems] \"7 rebounds\": the tool results give rebounds = 11 (player_game_stats). 7 is the assists (player_game_stats). | \"11 assists\": the tool results give assists = 7 (player_game_stats). 11 is the rebounds (player_game_stats).",
+     "ms": 0.85,
+     "warmup": false
+    },
+    {
+     "id": "v3",
+     "verdict": "flag",
+     "reason": "[problems] \"4% chance of rain\": the tool results give rain_chance_pct = 70 (get_forecast). 4% is the low_c (get_forecast).",
+     "ms": 0.69,
+     "warmup": false
+    },
+    {
+     "id": "v4",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 0.74,
+     "warmup": false
+    },
+    {
+     "id": "a1",
+     "verdict": "flag",
+     "reason": "[problems] The question asks for 0.3, but apply_global_noise was called with param=0.03.",
+     "ms": 0.84,
+     "warmup": false
+    },
+    {
+     "id": "a2",
+     "verdict": "flag",
+     "reason": "[problems] The question asks for 5-year, but loan_cost was called with years=3.",
+     "ms": 0.79,
+     "warmup": false
+    },
+    {
+     "id": "a3",
+     "verdict": "flag",
+     "reason": "[problems] The question pairs 120 with USD and 80 with GBP, but the calls swap them: convert_currency(amount=120, from=\"GBP\", to=\"EUR\") and convert_currency(amount=80, from=\"USD\", to=\"EUR\").",
+     "ms": 0.97,
+     "warmup": false
+    },
+    {
+     "id": "a4",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 1.44,
+     "warmup": false
+    },
+    {
+     "id": "f1",
+     "verdict": "flag",
+     "reason": "[problems] get_forecast(city=\"Oslo\", day=\"tomorrow\") failed (\"Error: upstream service timed out\") and was not called again successfully, but the answer reads as if it had worked. | \"70%\" is not in the tool results or the question, and they give no value close to it.",
+     "ms": 0.38,
+     "warmup": false
+    },
+    {
+     "id": "f2",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 0.63,
+     "warmup": false
+    },
+    {
+     "id": "t1",
+     "verdict": "flag",
+     "reason": "[problems] The answer says \"I searched the web\", but no tool for a web search was called (calls: lookup_product).",
+     "ms": 0.68,
+     "warmup": false
+    },
+    {
+     "id": "q1",
+     "verdict": "flag",
+     "reason": "[problems] The quote is not in the sources. The closest wording, in S1: \"does not guarantee that the reconstructed matrix is positive\".",
+     "ms": 0.73,
+     "warmup": false
+    },
+    {
+     "id": "q2",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 0.3,
+     "warmup": false
+    },
+    {
+     "id": "q3",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 0.31,
+     "warmup": false
+    },
+    {
+     "id": "s1",
+     "verdict": "flag",
+     "reason": "[problems] These are words the model addressed to a checker, left in the final answer: \"Let me report the tool's numbers:\". | This is the model thinking aloud, left in the final answer: \"Wait, let me check:\".",
+     "ms": 0.89,
+     "warmup": false
+    },
+    {
+     "id": "c1",
+     "verdict": "flag",
+     "reason": "[problems] The answer says the sources do not give this, then gives it from them: \"The warranty lasts two years from the date of purchase\".",
+     "ms": 0.28,
+     "warmup": false
+    },
+    {
+     "id": "fp1",
+     "verdict": "pass",
+     "reason": "[ok]",
+     "ms": 1.13,
+     "warmup": false
+    }
+   ],
+   "summary": {
+    "flagged_errors": 12,
+    "errors_total": 13,
+    "false_alarms": 0,
+    "correct_total": 7,
+    "crashes": 0,
+    "median_ms": 0.73
+   }
+  }
+ ]
+}

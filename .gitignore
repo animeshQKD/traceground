@@ -1,0 +1,25 @@
+# secrets: keys go in .env locally, never in git
+.env
+.env.*
+!.env.example
+# RAGTruth (eval/ragtruth.py): downloaded data and review files with its texts stay local
+eval/data/
+# survey logs hold local paths; the results in survey/results/ are kept
+survey/survey_log*.txt
+logs/
+# Python and build output
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+*.zip
+# editors
+.idea/
+.vscode/
+.ipynb_checkpoints/

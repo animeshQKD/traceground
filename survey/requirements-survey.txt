@@ -1,0 +1,6 @@
+# Phase-0 survey only (its own conda environment, not the library's). Versions as on PyPI on 2026-11-17.
+groundlens==6.0.5
+longtracer==0.3.1
+ragground==0.2.2
+halluguard==0.3.1
+pytest

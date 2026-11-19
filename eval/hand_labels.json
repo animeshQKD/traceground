@@ -1,0 +1,29 @@
+{
+ "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md). mutate.py plants errors only in the other answers.",
+ "wrong": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "k03",
+   "why": "says ACME moved more because of its volume; by price GLOBX moved more",
+   "set": "dev"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h02",
+   "set": "heldout",
+   "why": "says AI-101 departs at 16:00 (no such value) and leaves out the 45-minute delay"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "h07",
+   "set": "heldout",
+   "why": "gives the revenue and net income in euros; the tool gives millions of US dollars"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "h08",
+   "set": "heldout",
+   "why": "says the growth is 14.4%; 228.2 / 1612.3 is 14.2%"
+  }
+ ]
+}

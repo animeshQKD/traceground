@@ -1,0 +1,708 @@
+{
+ "date": "2026-11-19T09:58:25",
+ "runs": [
+  "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-17_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How long is flight LH-400 and how far does it fly?",
+   "answer": "Flight LH‑400 travels about 6,200 km and takes roughly 535 minutes (about 8 hours 55 minutes).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.15,
+   "calls": [
+    "get_flight({\"flight_no\": \"LH-400\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How late is AI-101 and how many seats are still free?",
+   "answer": "AI‑101 departs at 16:00 (4 PM) and currently has 27 seats still free.",
+   "label": "wrong",
+   "label_reason": "missing or different values: 45",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "16",
+     "message": "\"16\" is not in the tool results or the question. The closest values they give: 27 (get_flight)."
+    }
+   ],
+   "ms": 0.97,
+   "calls": [
+    "get_flight({\"flight_no\": \"AI-101\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which ticket is cheaper, LH-400 or BA-117?",
+   "answer": "LH‑400 costs €689.0, while BA‑117 costs €812.5, so LH‑400 is the cheaper ticket.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.05,
+   "calls": [
+    "get_flight({\"flight_no\": \"LH-400\"})",
+    "get_flight({\"flight_no\": \"BA-117\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the total of invoice INV-1001, and how much of it is tax?",
+   "answer": "The invoice totals €1,343.04, of which €212.04 is tax.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.73,
+   "calls": [
+    "get_invoice({\"invoice_id\": \"INV-1001\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What discount was applied to INV-1001, and what was the subtotal before it?",
+   "answer": "The invoice shows a discount of €124.0, which was applied to a subtotal of €1,240.0.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.79,
+   "calls": [
+    "get_invoice({\"invoice_id\": \"INV-1001\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h06",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much shipping is charged on INV-1002, and what is its total?",
+   "answer": "The invoice INV‑1002 charges €9.90 for shipping, and its total amount is €468.65.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.74,
+   "calls": [
+    "get_invoice({\"invoice_id\": \"INV-1002\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h07",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What were Nordwind's revenue and net income in 2025?",
+   "answer": "Nordwind earned about €1.84 billion in revenue and €221.4 million in net income in 2025.",
+   "label": "wrong",
+   "label_reason": "missing or different values: 1840.5",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "1.84 billion in revenue",
+     "message": "\"1.84 billion in revenue\": the tool results give revenue_musd = 1840.5 (get_company_financials) in USD; the answer writes EUR, and no call converted it."
+    },
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "221.4 million in net income",
+     "message": "\"221.4 million in net income\": the tool results give net_income_musd = 221.4 (get_company_financials) in USD; the answer writes EUR, and no call converted it."
+    }
+   ],
+   "ms": 0.93,
+   "calls": [
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2025})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h08",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much did Nordwind's revenue grow from 2024 to 2025?",
+   "answer": "Nordwind’s revenue grew from $1,612.3 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.41,
+   "calls": [
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2024})",
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2025})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h09",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What was Nordwind's operating margin in 2024, and how many people did it employ?",
+   "answer": "Nordwind’s operating margin in 2024 was 15.6 % and it employed 4,980 people.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.91,
+   "calls": [
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2024})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h10",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many calories and how much protein are in a serving of dal tadka?",
+   "answer": "A serving of dal tadka contains about 310 kcal and 14.2 g of protein.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.7,
+   "calls": [
+    "get_nutrition({\"dish\": \"dal tadka\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h11",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much fat and how many carbs are in a serving of margherita pizza?",
+   "answer": "A serving of margherita pizza contains about **32.5 g of fat** and **98 g of carbs**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.74,
+   "calls": [
+    "get_nutrition({\"dish\": \"margherita pizza\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h12",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which has more fiber per serving, dal tadka or margherita pizza?",
+   "answer": "Dal tadka provides about 8.1 g of fiber per serving, while margherita pizza has about 5.2 g. So dal tadka has more fiber.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.22,
+   "calls": [
+    "get_nutrition({\"dish\": \"dal tadka\"})",
+    "get_nutrition({\"dish\": \"margherita pizza\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h13",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What are the temperature and humidity at sensor LAB-1?",
+   "answer": "Sensor LAB-1 reports a temperature of 22.4 °C and humidity of 41 %.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.72,
+   "calls": [
+    "get_sensor({\"sensor_id\": \"LAB-1\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h14",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Is the CO2 level at LAB-2 high, and how charged is its battery?",
+   "answer": "The LAB‑2 sensor reports a CO₂ concentration of 1,240 ppm, which is above typical indoor background levels (≈400‑600 ppm) and can be considered high. Its battery is low, at only 12 % charge.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "400",
+     "message": "\"400\" is not in the tool results or the question, and they give no value close to it."
+    },
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "600",
+     "message": "\"600\" is not in the tool results or the question. The closest values they give: 1009.3 (get_sensor)."
+    }
+   ],
+   "ms": 1.39,
+   "calls": [
+    "get_sensor({\"sensor_id\": \"LAB-2\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h15",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Compare the air pressure at LAB-1 and LAB-2.",
+   "answer": "LAB‑1’s pressure is 1012.6 hPa, while LAB‑2’s is 1009.3 hPa.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.0,
+   "calls": [
+    "get_sensor({\"sensor_id\": \"LAB-1\"})",
+    "get_sensor({\"sensor_id\": \"LAB-2\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h16",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much does it cost to ship a 3.5 kg parcel to India, and how long does it take?",
+   "answer": "Shipping a 3.5 kg parcel to India costs €24.5 and takes about 6 to 10 days.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.95,
+   "calls": [
+    "get_shipping_quote({\"country\": \"India\", \"weight_kg\": 3.5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h17",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Compare the cost of shipping a 2 kg parcel to Germany and to the United States.",
+   "answer": "Shipping a 2 kg parcel costs €7.3 to Germany and €14.5 to the United States.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.17,
+   "calls": [
+    "get_shipping_quote({\"country\": \"Germany\", \"weight_kg\": 2})",
+    "get_shipping_quote({\"country\": \"United States\", \"weight_kg\": 2})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h18",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What are the population and area of Lyon?",
+   "answer": "Lyon has a population of about 522,250 people and covers an area of roughly 47.9 km².",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.74,
+   "calls": [
+    "get_city_stats({\"city\": \"Lyon\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h19",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which is more densely populated, Lyon or Pune?",
+   "answer": "Lyon is more densely populated, with about 10,910 people per km² versus Pune’s roughly 9,432 people per km².",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.99,
+   "calls": [
+    "get_city_stats({\"city\": \"Lyon\"})",
+    "get_city_stats({\"city\": \"Pune\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "h20",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the median age in Pune, and how many people live there?",
+   "answer": "Pune’s median age is 29.4 years and its population is 3,124,458 people.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.72,
+   "calls": [
+    "get_city_stats({\"city\": \"Pune\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How long is flight LH-400 and how far does it fly?",
+   "answer": "Flight LH‑400 runs from Frankfurt (FRA) to New York JFK. It covers roughly 6,200 km and takes about 535 minutes (≈8 h 55 min) of flight time.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.22,
+   "calls": [
+    "get_flight({\"flight_no\": \"LH-400\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How late is AI-101 and how many seats are still free?",
+   "answer": "AI‑101 is scheduled to depart 45 minutes late, and there are 27 seats still available.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.77,
+   "calls": [
+    "get_flight({\"flight_no\": \"AI-101\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which ticket is cheaper, LH-400 or BA-117?",
+   "answer": "LH‑400 is cheaper. It costs €689.00, whereas BA‑117 costs €812.50.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.9,
+   "calls": [
+    "get_flight({\"flight_no\": \"LH-400\"})",
+    "get_flight({\"flight_no\": \"BA-117\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the total of invoice INV-1001, and how much of it is tax?",
+   "answer": "The total amount on invoice INV‑1001 is €1,343.04, of which €212.04 is tax.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.76,
+   "calls": [
+    "get_invoice({\"invoice_id\": \"INV-1001\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What discount was applied to INV-1001, and what was the subtotal before it?",
+   "answer": "The invoice INV‑1001 had a discount of **€124.00** applied to a **subtotal of €1,240.00** before the discount was deducted.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.83,
+   "calls": [
+    "get_invoice({\"invoice_id\": \"INV-1001\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h06",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much shipping is charged on INV-1002, and what is its total?",
+   "answer": "The invoice **INV‑1002** lists a shipping charge of **€9.90**. Including that, the total amount due is **€468.65**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.84,
+   "calls": [
+    "get_invoice({\"invoice_id\": \"INV-1002\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h07",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What were Nordwind's revenue and net income in 2025?",
+   "answer": "Nordwind reported a 2025 revenue of **$1,840.5 million** and a net income of **$221.4 million**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.87,
+   "calls": [
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2025})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h08",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much did Nordwind's revenue grow from 2024 to 2025?",
+   "answer": "Nordwind’s revenue rose from $1,612.3 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million, which is roughly a **14.4 %** year‑over‑year growth.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "14.4 %",
+     "message": "\"14.4 %\" is not in the tool results or the question. The closest values they give: 15.6 (get_company_financials (call 1)) or 17.0 (get_company_financials (call 2))."
+    }
+   ],
+   "ms": 1.65,
+   "calls": [
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2024})",
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2025})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h09",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What was Nordwind's operating margin in 2024, and how many people did it employ?",
+   "answer": "Nordwind’s operating margin in 2024 was **15.6 %**, and the company employed **4,980** people.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.37,
+   "calls": [
+    "get_company_financials({\"company\": \"Nordwind\", \"year\": 2024})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h10",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many calories and how much protein are in a serving of dal tadka?",
+   "answer": "A single serving of dal tadka contains roughly **310 kcal** and **14.2 g of protein**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.81,
+   "calls": [
+    "get_nutrition({\"dish\": \"dal tadka\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h11",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much fat and how many carbs are in a serving of margherita pizza?",
+   "answer": "A single serving of margherita pizza contains about **32.5 g of fat** and **98 g of carbohydrates**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.85,
+   "calls": [
+    "get_nutrition({\"dish\": \"margherita pizza\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h12",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which has more fiber per serving, dal tadka or margherita pizza?",
+   "answer": "Dal tadka contains about 8.1 g of fiber per serving, whereas a margherita pizza has roughly 5.2 g. So dal tadka has more fiber per serving.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.15,
+   "calls": [
+    "get_nutrition({\"dish\": \"dal tadka\"})",
+    "get_nutrition({\"dish\": \"margherita pizza\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h13",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What are the temperature and humidity at sensor LAB-1?",
+   "answer": "The LAB‑1 sensor reports a current temperature of **22.4 °C** and a humidity level of **41 %**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.75,
+   "calls": [
+    "get_sensor({\"sensor_id\": \"LAB-1\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h14",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Is the CO2 level at LAB-2 high, and how charged is its battery?",
+   "answer": "The CO₂ concentration at LAB‑2 is 1,240 ppm, which is above typical indoor comfort levels (usually < 800 ppm). The sensor’s battery is only at 12 % charge.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "800",
+     "message": "\"800\" is not in the tool results or the question. The closest values they give: 1009.3 (get_sensor) or 1240 (get_sensor)."
+    }
+   ],
+   "ms": 1.09,
+   "calls": [
+    "get_sensor({\"sensor_id\": \"LAB-2\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h15",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Compare the air pressure at LAB-1 and LAB-2.",
+   "answer": "LAB‑1 reports a pressure of **1012.6 hPa**, while LAB‑2 reports **1009.3 hPa**. Thus LAB‑1’s air pressure is about **3.3 hPa higher** than LAB‑2’s.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.18,
+   "calls": [
+    "get_sensor({\"sensor_id\": \"LAB-1\"})",
+    "get_sensor({\"sensor_id\": \"LAB-2\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h16",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much does it cost to ship a 3.5 kg parcel to India, and how long does it take?",
+   "answer": "The shipping quote for a 3.5 kg parcel to India is **€24.50**. The estimated delivery window is **6 to 10 business days**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.02,
+   "calls": [
+    "get_shipping_quote({\"country\": \"India\", \"weight_kg\": 3.5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h17",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Compare the cost of shipping a 2 kg parcel to Germany and to the United States.",
+   "answer": "Shipping a 2 kg parcel to Germany costs about **€7.30** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.50** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.03,
+   "calls": [
+    "get_shipping_quote({\"country\": \"Germany\", \"weight_kg\": 2})",
+    "get_shipping_quote({\"country\": \"United States\", \"weight_kg\": 2})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h18",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What are the population and area of Lyon?",
+   "answer": "Lyon has a population of about **522 250** people and covers an area of roughly **47.9 km²**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.72,
+   "calls": [
+    "get_city_stats({\"city\": \"Lyon\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h19",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which is more densely populated, Lyon or Pune?",
+   "answer": "Lyon is more densely populated. Its density is about 10,910 people per km², whereas Pune’s density is roughly 9,432 people per km².",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.09,
+   "calls": [
+    "get_city_stats({\"city\": \"Lyon\"})",
+    "get_city_stats({\"city\": \"Pune\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "h20",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the median age in Pune, and how many people live there?",
+   "answer": "Pune has a population of about 3,124,458 people, and the median age of its residents is roughly 29.4 years.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.79,
+   "calls": [
+    "get_city_stats({\"city\": \"Pune\"})"
+   ]
+  }
+ ]
+}

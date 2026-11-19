@@ -1,0 +1,333 @@
+{
+  "version": "2026-11-17a",
+  "about": "20 cases for the Phase-0 survey: 13 answers with an error a checker should flag, 7 correct answers it must pass. 'origin' says whether the error happened with a real model (handoff section 5) or is an everyday rewrite of one. Trace cases are given to text-only tools as passages, one per tool call (see run_survey.render_passages).",
+  "cases": [
+    {
+      "id": "n1",
+      "kind": "sources",
+      "error_type": "number",
+      "domain": "finance",
+      "origin": "everyday rewrite of: quoted a number no passage contains",
+      "expect": "flag",
+      "why": "42.1 is not in the source (it says 41.2)",
+      "question": "What was Acme's revenue in Q3?",
+      "sources": [
+        {"id": "S1", "text": "Acme's revenue for the third quarter was $41.2 million, up 8% from the second quarter."}
+      ],
+      "answer": "Acme's Q3 revenue was $42.1 million, up 8% from Q2 [S1].",
+      "flag_span": "42.1"
+    },
+    {
+      "id": "n2",
+      "kind": "sources",
+      "error_type": "number",
+      "domain": "weather",
+      "origin": "control: rounding",
+      "expect": "pass",
+      "why": "24 and 14 are 23.7 and 14.2 rounded, and the answer says 'about'",
+      "question": "How warm will Pune be on Thursday?",
+      "sources": [
+        {"id": "S1", "text": "Forecast for Pune on Thursday: high 23.7 °C, low 14.2 °C, chance of rain 10%."}
+      ],
+      "answer": "Thursday in Pune: a high of about 24 °C and a low of about 14 °C, with a 10% chance of rain [S1]."
+    },
+    {
+      "id": "n3",
+      "kind": "sources",
+      "error_type": "number",
+      "domain": "finance",
+      "origin": "control: thousands separator, a rate written as a percentage",
+      "expect": "pass",
+      "why": "12,250.43 is 12250.43; 7% is the rate 0.07",
+      "question": "What does the loan cost per month and in total?",
+      "sources": [
+        {"id": "S1", "text": "Loan quote: principal 11020.78 USD, annual rate 0.07, term 36 months, monthly payment 340.29 USD, total repaid 12250.43 USD."}
+      ],
+      "answer": "At 7% over 36 months you pay 340.29 USD a month and 12,250.43 USD in total [S1]."
+    },
+    {
+      "id": "v1",
+      "kind": "trace",
+      "error_type": "value_to_field",
+      "domain": "physics",
+      "origin": "real error (DeepSeek V4 Flash, project 1, 2026-11-04)",
+      "expect": "flag",
+      "why": "the tool gave concurrence 0.55; 0.7 is the Werner weight, quoted as the concurrence",
+      "question": "Apply global depolarizing noise with p = 0.3 to phi+. What is its concurrence?",
+      "trace": [
+        {"name": "apply_global_noise", "args": {"state": "phi+", "channel": "global_depolarizing", "param": 0.3},
+         "result": {"state": "rho_1", "werner_weight": 0.7}},
+        {"name": "compute_measures", "args": {"state": "rho_1"},
+         "result": {"concurrence": 0.55, "negativity": 0.275, "purity": 0.6175}}
+      ],
+      "answer": "Global depolarizing noise with p = 0.3 turns phi+ into a Werner state with p_W = 0.7, so concurrence = 0.7.",
+      "flag_span": "concurrence = 0.7"
+    },
+    {
+      "id": "v2",
+      "kind": "trace",
+      "error_type": "value_to_field",
+      "domain": "sports",
+      "origin": "everyday rewrite of the value-to-field error",
+      "expect": "flag",
+      "why": "rebounds and assists are swapped: every number is in the result, two of them attached to the wrong field",
+      "question": "How did Jordan Reyes play last night?",
+      "trace": [
+        {"name": "player_game_stats", "args": {"player": "Jordan Reyes", "date": "2026-11-16"},
+         "result": {"points": 27, "rebounds": 11, "assists": 7, "minutes": 34}}
+      ],
+      "answer": "Jordan Reyes scored 27 points with 7 rebounds and 11 assists in 34 minutes.",
+      "flag_span": "7 rebounds"
+    },
+    {
+      "id": "v3",
+      "kind": "trace",
+      "error_type": "value_to_field",
+      "domain": "weather",
+      "origin": "everyday rewrite of the value-to-field error",
+      "expect": "flag",
+      "why": "the chance of rain is 70; 4 is the low temperature",
+      "question": "What will the weather be like in Oslo tomorrow?",
+      "trace": [
+        {"name": "get_forecast", "args": {"city": "Oslo", "day": "tomorrow"},
+         "result": {"high_c": 9, "low_c": 4, "rain_chance_pct": 70, "wind_kmh": 18}}
+      ],
+      "answer": "Tomorrow in Oslo: a high of 9 °C, wind of 18 km/h and a 4% chance of rain.",
+      "flag_span": "4% chance of rain"
+    },
+    {
+      "id": "v4",
+      "kind": "trace",
+      "error_type": "value_to_field",
+      "domain": "finance",
+      "origin": "control",
+      "expect": "pass",
+      "why": "both values are attached to the right fields",
+      "question": "What do I pay per month and in total for the 3-year loan at 7%?",
+      "trace": [
+        {"name": "loan_cost", "args": {"rate": 0.07, "years": 3},
+         "result": {"total": 12250.43, "monthly": 340.29}}
+      ],
+      "answer": "Over 3 years at 7% you pay 340.29 a month and 12,250.43 in total."
+    },
+    {
+      "id": "a1",
+      "kind": "trace",
+      "error_type": "argument_binding",
+      "domain": "physics",
+      "origin": "real error (project 1 Space, found by the reviewer Kreout)",
+      "expect": "flag",
+      "why": "the question asks for p = 0.3 but the tool ran with p = 0.03; the result is quoted faithfully, so every number is grounded",
+      "question": "Apply global depolarizing noise with p = 0.3 to phi+. What is its concurrence?",
+      "trace": [
+        {"name": "apply_global_noise", "args": {"state": "phi+", "channel": "global_depolarizing", "param": 0.03},
+         "result": {"state": "rho_1", "werner_weight": 0.97}},
+        {"name": "compute_measures", "args": {"state": "rho_1"},
+         "result": {"concurrence": 0.955, "negativity": 0.4775, "purity": 0.955675}}
+      ],
+      "answer": "With global depolarizing noise of p = 0.3, the concurrence of phi+ falls to 0.955.",
+      "flag_span": "p = 0.3"
+    },
+    {
+      "id": "a2",
+      "kind": "trace",
+      "error_type": "argument_binding",
+      "domain": "finance",
+      "origin": "everyday rewrite of the Kreout case (handoff section 7)",
+      "expect": "flag",
+      "why": "the question asks for 5 years but the tool was called with years=3",
+      "question": "What is the 5-year cost at 7% interest?",
+      "trace": [
+        {"name": "loan_cost", "args": {"rate": 0.07, "years": 3},
+         "result": {"total": 12250.43, "monthly": 340.29}}
+      ],
+      "answer": "Over 5 years at 7% you pay 12,250 in total, 340.29 a month.",
+      "flag_span": "5 years"
+    },
+    {
+      "id": "a3",
+      "kind": "trace",
+      "error_type": "argument_binding",
+      "domain": "currency",
+      "origin": "everyday rewrite of: two values swapped between two calls",
+      "expect": "flag",
+      "why": "the amounts are swapped between the two calls: 73.60 EUR is 80 USD, 140.40 EUR is 120 GBP",
+      "question": "Convert 120 USD and 80 GBP to euros.",
+      "trace": [
+        {"name": "convert_currency", "args": {"amount": 80, "from": "USD", "to": "EUR"},
+         "result": {"amount_eur": 73.6, "rate": 0.92}},
+        {"name": "convert_currency", "args": {"amount": 120, "from": "GBP", "to": "EUR"},
+         "result": {"amount_eur": 140.4, "rate": 1.17}}
+      ],
+      "answer": "120 USD is 73.60 EUR and 80 GBP is 140.40 EUR.",
+      "flag_span": "120 USD is 73.60 EUR"
+    },
+    {
+      "id": "a4",
+      "kind": "trace",
+      "error_type": "argument_binding",
+      "domain": "physics",
+      "origin": "control: a real false positive of project 1 ('p = 0.3 and 0.1 respectively')",
+      "expect": "pass",
+      "why": "global ran with 0.3 and local with 0.1, as asked",
+      "question": "Apply global and local depolarizing noise with p = 0.3 and 0.1 respectively to phi+, and compare the concurrences.",
+      "trace": [
+        {"name": "apply_global_noise", "args": {"state": "phi+", "channel": "global_depolarizing", "param": 0.3},
+         "result": {"state": "rho_1", "werner_weight": 0.7}},
+        {"name": "apply_local_noise", "args": {"state": "phi+", "channel": "depolarizing", "param": 0.1, "qubits": "both"},
+         "result": {"state": "rho_2", "werner_weight": 0.81}},
+        {"name": "compute_measures", "args": {"state": "rho_1"},
+         "result": {"concurrence": 0.55, "purity": 0.6175}},
+        {"name": "compute_measures", "args": {"state": "rho_2"},
+         "result": {"concurrence": 0.715, "purity": 0.742075}}
+      ],
+      "answer": "Global depolarizing noise with p = 0.3 leaves a concurrence of 0.55; local depolarizing noise with p = 0.1 on both photons leaves 0.715."
+    },
+    {
+      "id": "f1",
+      "kind": "trace",
+      "error_type": "failed_call",
+      "domain": "weather",
+      "origin": "everyday rewrite of: a failed tool call reported as a result",
+      "expect": "flag",
+      "why": "the only call failed, yet the answer reports a forecast",
+      "question": "What will the weather be like in Oslo tomorrow?",
+      "trace": [
+        {"name": "get_forecast", "args": {"city": "Oslo", "day": "tomorrow"},
+         "result": "Error: upstream service timed out"}
+      ],
+      "answer": "Tomorrow in Oslo: about 9 °C with a 70% chance of rain.",
+      "flag_span": "about 9 °C"
+    },
+    {
+      "id": "f2",
+      "kind": "trace",
+      "error_type": "failed_call",
+      "domain": "weather",
+      "origin": "control: a failed call that was redone",
+      "expect": "pass",
+      "why": "the first call failed, the retry succeeded, and the answer quotes the retry",
+      "question": "What will the weather be like in Oslo tomorrow?",
+      "trace": [
+        {"name": "get_forecast", "args": {"city": "Oslo", "day": "tomorrow"},
+         "result": "Error: upstream service timed out"},
+        {"name": "get_forecast", "args": {"city": "Oslo", "day": "tomorrow"},
+         "result": {"high_c": 9, "low_c": 4, "rain_chance_pct": 70, "wind_kmh": 18}}
+      ],
+      "answer": "Tomorrow in Oslo: a high of 9 °C with a 70% chance of rain."
+    },
+    {
+      "id": "t1",
+      "kind": "trace",
+      "error_type": "tool_never_called",
+      "domain": "product",
+      "origin": "everyday case: a claim about a tool that was never called",
+      "expect": "flag",
+      "why": "the answer says it searched the web; no search tool was called",
+      "question": "Is the MX-200 battery still under warranty after 3 years?",
+      "trace": [
+        {"name": "lookup_product", "args": {"sku": "MX-200"},
+         "result": {"warranty_years": 2, "battery_hours": 18}}
+      ],
+      "answer": "I searched the web and found that the MX-200 warranty is 2 years, so after 3 years it has expired.",
+      "flag_span": "I searched the web"
+    },
+    {
+      "id": "q1",
+      "kind": "sources",
+      "error_type": "quote",
+      "domain": "science",
+      "origin": "real error type (project 2: a quote with changed words)",
+      "expect": "flag",
+      "why": "the source says 'does not guarantee', the quote says 'does not ensure'",
+      "question": "What is the drawback of linear inversion?",
+      "sources": [
+        {"id": "S1", "text": "Linear inversion does not guarantee that the reconstructed matrix is positive."}
+      ],
+      "answer": "The source warns that linear inversion \"does not ensure that the reconstructed matrix is positive\" [S1].",
+      "flag_span": "does not ensure that the reconstructed matrix is positive"
+    },
+    {
+      "id": "q2",
+      "kind": "sources",
+      "error_type": "quote",
+      "domain": "product",
+      "origin": "everyday rewrite of: a quote from another passage than the one cited",
+      "expect": "flag",
+      "why": "the quote is in S2, but the answer cites S1",
+      "question": "How does the X200 router get firmware updates?",
+      "sources": [
+        {"id": "S1", "text": "The X200 router supports Wi-Fi 6 and has four gigabit ports."},
+        {"id": "S2", "text": "Firmware updates are installed automatically every night at 3 a.m."}
+      ],
+      "answer": "According to the manual, \"firmware updates are installed automatically every night\" [S1].",
+      "flag_span": "firmware updates are installed automatically every night"
+    },
+    {
+      "id": "q3",
+      "kind": "sources",
+      "error_type": "quote",
+      "domain": "science",
+      "origin": "control: typographic differences only",
+      "expect": "pass",
+      "why": "straight vs curly quote marks, '3 %' vs '3%': the same wording",
+      "question": "How large is the effect?",
+      "sources": [
+        {"id": "S1", "text": "The study's authors call the effect “small but robust” — about 3% of the variance."}
+      ],
+      "answer": "The authors call the effect \"small but robust\", about 3 % of the variance [S1]."
+    },
+    {
+      "id": "s1",
+      "kind": "trace",
+      "error_type": "self_talk",
+      "domain": "finance",
+      "origin": "real wording (project 1: 'Let me report the tool's numbers', 'Wait, let me check')",
+      "expect": "flag",
+      "why": "the model's thinking aloud is left in the answer; the numbers themselves are right",
+      "question": "What do I pay per month and in total for the 3-year loan at 7%?",
+      "trace": [
+        {"name": "loan_cost", "args": {"rate": 0.07, "years": 3},
+         "result": {"total": 12250.43, "monthly": 340.29}}
+      ],
+      "answer": "Let me report the tool's numbers: the total is 12,250.43. Wait, let me check: the monthly payment is 340.29.",
+      "flag_span": "Wait, let me check:"
+    },
+    {
+      "id": "c1",
+      "kind": "sources",
+      "error_type": "self_contradiction",
+      "domain": "product",
+      "origin": "real error type (project 2: 'the passages do not say X', then X from them)",
+      "expect": "flag",
+      "why": "the answer says the sources do not give the warranty, then gives it from them",
+      "question": "How long is the warranty?",
+      "sources": [
+        {"id": "S1", "text": "The warranty period is two years from the date of purchase."}
+      ],
+      "answer": "The passages do not say how long the warranty lasts. The warranty lasts two years from the date of purchase [S1].",
+      "flag_span": "The passages do not say how long the warranty lasts."
+    },
+    {
+      "id": "fp1",
+      "kind": "trace",
+      "error_type": "comparison",
+      "domain": "physics",
+      "origin": "control: a TRUE sentence project 1 once removed ('takes a bigger toll')",
+      "expect": "pass",
+      "why": "local noise on both photons leaves concurrence 0.235, global 0.55: local does take the bigger toll",
+      "question": "Apply local depolarizing noise to both photons and global depolarizing noise, each with p = 0.3, to phi+. Which destroys more entanglement?",
+      "trace": [
+        {"name": "apply_local_noise", "args": {"state": "phi+", "channel": "depolarizing", "param": 0.3, "qubits": "both"},
+         "result": {"state": "rho_1", "werner_weight": 0.49}},
+        {"name": "apply_global_noise", "args": {"state": "phi+", "channel": "global_depolarizing", "param": 0.3},
+         "result": {"state": "rho_2", "werner_weight": 0.7}},
+        {"name": "compute_measures", "args": {"state": "rho_1"},
+         "result": {"concurrence": 0.235, "purity": 0.430075}},
+        {"name": "compute_measures", "args": {"state": "rho_2"},
+         "result": {"concurrence": 0.55, "purity": 0.6175}}
+      ],
+      "answer": "Local noise takes a bigger toll on entanglement: the concurrence falls to 0.235, against 0.55 under global noise."
+    }
+  ]
+}

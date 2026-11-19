@@ -1,0 +1,1443 @@
+{
+ "date": "2026-11-19T09:58:16",
+ "runs": [
+  "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-17_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the monthly payment on a 20,000 USD loan at 6% annual interest over 4 years?",
+   "answer": "The monthly payment is $469.70 (rounded to two cents).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.66,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.06, \"principal\": 20000, \"years\": 4})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "w04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What's tomorrow's weather in Reykjavik?",
+   "answer": "The request for tomorrow’s weather in Reykjavik could not be completed because the weather service timed out. I’m unable to provide the forecast at this time.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.61,
+   "calls": [
+    "get_weather({\"city\": \"Reykjavik\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much interest do I pay in total on a 15,000 loan at 7.5% over 5 years?",
+   "answer": "The total interest you’ll pay on a $15,000 loan at 7.5% over 5 years is **$3,034.15**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.33,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.075, \"principal\": 15000, \"years\": 5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Compare the total amount paid on a 10,000 loan at 5% over 3 years and over 5 years.",
+   "answer": "The 3‑year loan costs about $10,789.52 total, while the 5‑year loan costs about $11,322.74 total.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.67,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.05, \"principal\": 10000, \"years\": 3})",
+    "loan_cost({\"annual_rate\": 0.05, \"principal\": 10000, \"years\": 5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the 5-year cost at 7% interest on a 12,000 loan?",
+   "answer": "The 5‑year loan at 7 % interest on a €12,000 principal costs about €14,256.86 in total, which includes roughly €2,256.86 of interest, with a monthly payment of €237.61.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.54,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.07, \"principal\": 12000, \"years\": 5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "If I invest 5,000 at 4% compounded monthly for 10 years, how much will I have?",
+   "answer": "The investment will grow to about **$7,454.16**, meaning you’d earn roughly **$2,454.16** in interest over the 10‑year period.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.14,
+   "calls": [
+    "compound_interest({\"annual_rate\": 0.04, \"compounds_per_year\": 12, \"principal\": 5000, \"years\": 10})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f06",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much interest does 8,000 earn at 3.5% compounded quarterly over 6 years?",
+   "answer": "The investment would earn about **$1,860.41** in interest over 6 years.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.99,
+   "calls": [
+    "compound_interest({\"annual_rate\": 0.035, \"compounds_per_year\": 4, \"principal\": 8000, \"years\": 6})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f07",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What's the monthly payment for 18,000 at 0.5% annual interest over 3 years?",
+   "answer": "The monthly payment is $503.86 (rounded to two cents).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.97,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.005, \"principal\": 18000, \"years\": 3})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f08",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the total paid on a 9,500 loan at 12% over 2 years?",
+   "answer": "The total amount paid over the 2‑year term is $10,732.75.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.92,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.12, \"principal\": 9500, \"years\": 2})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "f09",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "For a 30,000 loan at 4.5%, what are the monthly payments over 3 years and over 6 years?",
+   "answer": "The monthly payment for a $30,000 loan at 4.5% is about $892.41 over 3 years (total paid $32,126.68, interest $2,126.68), and about $476.22 over 6 years (total paid $34,287.90, interest $4,287.90).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.14,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.045, \"principal\": 30000, \"years\": 3})",
+    "loan_cost({\"annual_rate\": 0.045, \"principal\": 30000, \"years\": 6})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "c01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Convert 120 USD and 80 GBP to euros.",
+   "answer": "120 USD converts to about 110.4 EUR, and 80 GBP converts to about 93.6 EUR.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.29,
+   "calls": [
+    "convert_currency({\"amount\": 120, \"from_currency\": \"USD\", \"to_currency\": \"EUR\"})",
+    "convert_currency({\"amount\": 80, \"from_currency\": \"GBP\", \"to_currency\": \"EUR\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "c02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many Japanese yen is 250 euros?",
+   "answer": "250 EUR is about 40,984 JPY.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.71,
+   "calls": [
+    "convert_currency({\"amount\": 250, \"from_currency\": \"EUR\", \"to_currency\": \"JPY\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "c03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is 1,500 INR in US dollars?",
+   "answer": "1,500 INR is about $17.77 USD.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.66,
+   "calls": [
+    "convert_currency({\"amount\": 1500, \"from_currency\": \"INR\", \"to_currency\": \"USD\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "c04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "I have 300 CHF and 200 GBP. How much is that in euros altogether?",
+   "answer": "The two amounts convert to about 315 EUR (from 300 CHF) and 234 EUR (from 200 GBP), giving a total of roughly 549 EUR.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.4,
+   "calls": [
+    "convert_currency({\"amount\": 300, \"from_currency\": \"CHF\", \"to_currency\": \"EUR\"})",
+    "convert_currency({\"amount\": 200, \"from_currency\": \"GBP\", \"to_currency\": \"EUR\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "c05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Convert 75 GBP to USD and 75 USD to GBP.",
+   "answer": "75 GBP converts to about 95.38 USD, and 75 USD converts to about 58.97 GBP.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.09,
+   "calls": [
+    "convert_currency({\"amount\": 75, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"})",
+    "convert_currency({\"amount\": 75, \"from_currency\": \"USD\", \"to_currency\": \"GBP\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "u01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many kilometres is a 26.2-mile marathon?",
+   "answer": "A marathon of 26.2 mi is about **42.16 km**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.4,
+   "calls": [
+    "convert_units({\"from_unit\": \"mi\", \"to_unit\": \"km\", \"value\": 26.2})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "u02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Convert 72 °F to Celsius.",
+   "answer": "72 °F is about 22.22 °C.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: convert_units",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.4,
+   "calls": [
+    "calculator({\"expression\": \"(72-32)*5/9\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "u03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "A parcel weighs 4.5 kg. What is that in pounds?",
+   "answer": "The parcel weighs about 9.92 pounds.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.36,
+   "calls": [
+    "convert_units({\"from_unit\": \"kg\", \"to_unit\": \"lb\", \"value\": 4.5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "u04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Convert 5 km to miles and 10 miles to km.",
+   "answer": "5 km is about 3.1069 mi, and 10 mi is about 16.0934 km.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.65,
+   "calls": [
+    "convert_units({\"from_unit\": \"km\", \"to_unit\": \"mi\", \"value\": 5})",
+    "convert_units({\"from_unit\": \"mi\", \"to_unit\": \"km\", \"value\": 10})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "u05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Convert 0.75 miles to metres.",
+   "answer": "0.75 miles is 1207.008 metres.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.35,
+   "calls": [
+    "convert_units({\"from_unit\": \"mi\", \"to_unit\": \"m\", \"value\": 0.75})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "w01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What will the weather be like in Oslo tomorrow?",
+   "answer": "Tomorrow in Oslo it will be cool with a high of about 9 °C, a low of 4 °C, a 70 % chance of light rain, and winds around 18 km/h.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.0,
+   "calls": [
+    "get_weather({\"city\": \"Oslo\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "w02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Compare tomorrow's highs in Paris and Rome.",
+   "answer": "Tomorrow’s high will be about 14 °C in Paris versus roughly 21 °C in Rome.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.97,
+   "calls": [
+    "get_weather({\"city\": \"Paris\", \"day\": \"tomorrow\"})",
+    "get_weather({\"city\": \"Rome\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "w03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Will it rain in London tomorrow, and how windy will it be?",
+   "answer": "Tomorrow in London there’s a 60 % chance of rain with showers, a high of about 12 °C, a low of 7 °C, and wind around 27 km/h.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.99,
+   "calls": [
+    "get_weather({\"city\": \"London\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "w05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How warm will it get in Mumbai tomorrow, in Fahrenheit?",
+   "answer": "Tomorrow in Mumbai the high temperature will be about 91.4 °F.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: convert_units",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.79,
+   "calls": [
+    "get_weather({\"city\": \"Mumbai\", \"day\": \"tomorrow\"})",
+    "calculator({\"expression\": \"(33*9/5)+32\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "w06",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What are tomorrow's high and low in Bengaluru?",
+   "answer": "Tomorrow in Bengaluru will be cloudy with a high of 28 °C and a low of 18 °C.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.69,
+   "calls": [
+    "get_weather({\"city\": \"Bengaluru\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much does the MX-200 cost and how heavy is it?",
+   "answer": "The MX‑200 costs **$249 USD** and weighs **1.35 kg**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.68,
+   "calls": [
+    "get_product({\"sku\": \"MX-200\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Is the MX-200 still under warranty after 3 years?",
+   "answer": "The MX‑200 comes with a 2‑year warranty, so after 3 years it is no longer under warranty.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.82,
+   "calls": [
+    "get_product({\"sku\": \"MX-200\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which lasts longer on a charge, the MX-200 or the LT-50?",
+   "answer": "The MX‑200 runs for about 18 hours on a charge, while the LT‑50 runs for about 30 hours, so the LT‑50 lasts longer.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.13,
+   "calls": [
+    "get_product({\"sku\": \"MX-200\"})",
+    "get_product({\"sku\": \"LT-50\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the price of product ZZ-999?",
+   "answer": "I’m unable to retrieve a price for product ZZ‑999—the system reports that this SKU is unknown.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.29,
+   "calls": [
+    "get_product({\"sku\": \"ZZ-999\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much would 3 LT-50 lamps cost?",
+   "answer": "Three LT‑50 lamps would cost $119.7.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.76,
+   "calls": [
+    "get_product({\"sku\": \"LT-50\"})",
+    "calculator({\"expression\": \"39.9*3\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p06",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much is the QX-9 in euros?",
+   "answer": "The QX‑9 costs about €165.14.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.68,
+   "calls": [
+    "get_product({\"sku\": \"QX-9\"})",
+    "convert_currency({\"amount\": 179.5, \"from_currency\": \"USD\", \"to_currency\": \"EUR\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "p07",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Is the LT-50 in stock, and how long is its warranty?",
+   "answer": "The LT‑50 lamp is not in stock (0 units) and it comes with a 1‑year warranty.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.72,
+   "calls": [
+    "get_product({\"sku\": \"LT-50\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "s01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How did Jordan Reyes play on 2026-11-16?",
+   "answer": "Jordan Reyes scored 27 points, grabbed 11 rebounds, dished out 7 assists, played 34 minutes, and shot 52.2% from the field on 2026‑11‑16.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.37,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Jordan Reyes\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "s02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What was Maya Chen's field-goal percentage on 2026-11-16?",
+   "answer": "Maya Chen shot 47.1% from the field on 2026‑11‑16.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.94,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Maya Chen\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "s03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Who scored more points on 2026-11-16, Jordan Reyes or Sam Okafor?",
+   "answer": "Sam Okafor scored more points (31) than Jordan Reyes (27) on 2026‑11‑16.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.43,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Jordan Reyes\"})",
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Sam Okafor\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "s04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many assists and rebounds did Maya Chen have on 2026-11-16?",
+   "answer": "Maya Chen recorded 9 assists and 4 rebounds on 2026‑11‑16.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.99,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Maya Chen\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "k01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is ACME's share price and how much did it change today?",
+   "answer": "ACME’s share price is $189.5, and it fell by 1.2 % today.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.65,
+   "calls": [
+    "get_stock_quote({\"symbol\": \"ACME\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "k02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What was GLOBX's trading range today?",
+   "answer": "GLOBX traded between $69.80 and $72.90 today.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.56,
+   "calls": [
+    "get_stock_quote({\"symbol\": \"GLOBX\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "k03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which moved more today, ACME or GLOBX?",
+   "answer": "ACME traded with a volume of 51.2 million shares versus GLOBX’s 8.3 million, so ACME moved more today.",
+   "label": "wrong",
+   "label_reason": "missing or different values: -1.2, 2.8",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.0,
+   "calls": [
+    "get_stock_quote({\"symbol\": \"ACME\"})",
+    "get_stock_quote({\"symbol\": \"GLOBX\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "x01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is 15% of 240?",
+   "answer": "15% of 240 is 36.0.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.36,
+   "calls": [
+    "calculator({\"expression\": \"0.15*240\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "x02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is (125.5 - 37.25) * 4?",
+   "answer": "The calculation yields **353.0**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.41,
+   "calls": [
+    "calculator({\"expression\": \"(125.5 - 37.25) * 4\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "x03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Split a 1,234.50 bill between 6 people.",
+   "answer": "Each person should pay $205.75.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.47,
+   "calls": [
+    "calculator({\"expression\": \"1234.50/6\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "n01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Search the web for the latest reviews of the MX-200 and summarize them.",
+   "answer": "I’m unable to browse the web, so I can’t retrieve or summarize the latest reviews of the MX‑200.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.2,
+   "calls": []
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-120b.jsonl",
+   "id": "n02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Check the database for the status of my order 12345.",
+   "answer": "I’m unable to look up order information, as I don’t have access to a database or tool for checking order statuses.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.23,
+   "calls": []
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the monthly payment on a 20,000 USD loan at 6% annual interest over 4 years?",
+   "answer": "The monthly payment on a $20,000 loan at 6 % annual interest over 4 years is **$469.70**. This results in a total paid of about **$22,545.63** and total interest of roughly **$2,545.63**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.17,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.06, \"principal\": 20000, \"years\": 4})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much interest do I pay in total on a 15,000 loan at 7.5% over 5 years?",
+   "answer": "You’ll pay about **€3,034.15** in interest over the five‑year term. The loan’s monthly payment is roughly €300.57, bringing the total amount paid to about €18,034.15.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.22,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.075, \"principal\": 15000, \"years\": 5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Compare the total amount paid on a 10,000 loan at 5% over 3 years and over 5 years.",
+   "answer": "For a €10,000 loan at 5 % annual interest, the total paid over 3 years is €10,789.52 (about €789.52 in interest), while over 5 years the total paid rises to €11,322.74 (about €1,322.74 in interest). The longer term adds roughly €533.22 in extra interest and €533.22 in total payments.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.28,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.05, \"principal\": 10000, \"years\": 3})",
+    "loan_cost({\"annual_rate\": 0.05, \"principal\": 10000, \"years\": 5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the 5-year cost at 7% interest on a 12,000 loan?",
+   "answer": "The 5‑year amortised loan of €12,000 at a 7 % annual interest rate works out to a monthly payment of **€237.61**. Over the 60 months you’ll pay a total of **€14,256.86**, of which **€2,256.86** is interest.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.38,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.07, \"principal\": 12000, \"years\": 5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "If I invest 5,000 at 4% compounded monthly for 10 years, how much will I have?",
+   "answer": "Investing €5,000 at a 4 % annual rate compounded monthly for 10 years will grow to about €7,454.16, meaning you’ll earn roughly €2,454.16 in interest.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.15,
+   "calls": [
+    "compound_interest({\"annual_rate\": 0.04, \"compounds_per_year\": 12, \"principal\": 5000, \"years\": 10})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f06",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much interest does 8,000 earn at 3.5% compounded quarterly over 6 years?",
+   "answer": "Using a 3.5 % annual rate compounded quarterly, an €8,000 deposit grows to about €9,860.41 over six years. That means the interest earned is roughly €1,860.41.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.1,
+   "calls": [
+    "compound_interest({\"annual_rate\": 0.035, \"compounds_per_year\": 4, \"principal\": 8000, \"years\": 6})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f07",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What's the monthly payment for 18,000 at 0.5% annual interest over 3 years?",
+   "answer": "The monthly payment on an €18,000 loan at a 0.5 % annual interest rate over 3 years is **€503.86**. Over the 36‑month term you’ll pay a total of **€18,139.09**, which includes **€139.09** in interest.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.44,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.005, \"principal\": 18000, \"years\": 3})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f08",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the total paid on a 9,500 loan at 12% over 2 years?",
+   "answer": "The monthly payment is about €447.20. Over the 24‑month term you’ll pay a total of **€10,732.75**, which includes **€1,232.75** in interest.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.42,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.12, \"principal\": 9500, \"years\": 2})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "f09",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "For a 30,000 loan at 4.5%, what are the monthly payments over 3 years and over 6 years?",
+   "answer": "For a €30,000 loan at 4.5 % annual interest, the amortised monthly payment is **€892.41** for a 3‑year term (36 months), resulting in a total paid of €32,126.68 and total interest of €2,126.68. If you extend the term to 6 years (72 months), the monthly payment drops to **€476.22**, with a total paid of €34,287.90 and total interest of €4,287.90.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.61,
+   "calls": [
+    "loan_cost({\"annual_rate\": 0.045, \"principal\": 30000, \"years\": 3})",
+    "loan_cost({\"annual_rate\": 0.045, \"principal\": 30000, \"years\": 6})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "c01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Convert 120 USD and 80 GBP to euros.",
+   "answer": "120 USD converts to about 110.40 EUR (using a rate of 0.92 EUR per USD), and 80 GBP converts to roughly 93.60 EUR (using a rate of 1.17 EUR per GBP).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.27,
+   "calls": [
+    "convert_currency({\"amount\": 120, \"from_currency\": \"USD\", \"to_currency\": \"EUR\"})",
+    "convert_currency({\"amount\": 80, \"from_currency\": \"GBP\", \"to_currency\": \"EUR\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "c02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many Japanese yen is 250 euros?",
+   "answer": "250 € is about 40 983.61 ¥ (using the current exchange rate of roughly 163.93 ¥ per €).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.67,
+   "calls": [
+    "convert_currency({\"amount\": 250, \"from_currency\": \"EUR\", \"to_currency\": \"JPY\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "c03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is 1,500 INR in US dollars?",
+   "answer": "1,500 INR is about $17.77 USD (using the current exchange rate of roughly 0.01185 USD per INR).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.69,
+   "calls": [
+    "convert_currency({\"amount\": 1500, \"from_currency\": \"INR\", \"to_currency\": \"USD\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "c04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "I have 300 CHF and 200 GBP. How much is that in euros altogether?",
+   "answer": "300 CHF converts to 315 EUR and 200 GBP converts to 234 EUR, so together you have 549 EUR.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.61,
+   "calls": [
+    "convert_currency({\"amount\": 300, \"from_currency\": \"CHF\", \"to_currency\": \"EUR\"})",
+    "convert_currency({\"amount\": 200, \"from_currency\": \"GBP\", \"to_currency\": \"EUR\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "c05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Convert 75 GBP to USD and 75 USD to GBP.",
+   "answer": "Using the current exchange rates, £75 converts to about $95.38 USD (rate ≈ 1.2717 USD/GBP). Conversely, $75 converts to roughly £58.97 GBP (rate ≈ 0.7863 GBP/USD).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.63,
+   "calls": [
+    "convert_currency({\"amount\": 75, \"from_currency\": \"GBP\", \"to_currency\": \"USD\"})",
+    "convert_currency({\"amount\": 75, \"from_currency\": \"USD\", \"to_currency\": \"GBP\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "u01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many kilometres is a 26.2-mile marathon?",
+   "answer": "A standard marathon of 26.2 miles is approximately 42.1648 kilometres.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.39,
+   "calls": [
+    "convert_units({\"from_unit\": \"mi\", \"to_unit\": \"km\", \"value\": 26.2})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "u02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Convert 72 °F to Celsius.",
+   "answer": "72 °F is equivalent to about 22.22 °C.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.33,
+   "calls": [
+    "convert_units({\"from_unit\": \"f\", \"to_unit\": \"c\", \"value\": 72})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "u03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "A parcel weighs 4.5 kg. What is that in pounds?",
+   "answer": "4.5 kg is approximately **9.9208 lb**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.36,
+   "calls": [
+    "convert_units({\"from_unit\": \"kg\", \"to_unit\": \"lb\", \"value\": 4.5})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "u04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Convert 5 km to miles and 10 miles to km.",
+   "answer": "5 km is approximately 3.11 miles, and 10 miles is about 16.09 km.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.54,
+   "calls": [
+    "convert_units({\"from_unit\": \"km\", \"to_unit\": \"mi\", \"value\": 5})",
+    "convert_units({\"from_unit\": \"mi\", \"to_unit\": \"km\", \"value\": 10})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "u05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Convert 0.75 miles to metres.",
+   "answer": "0.75 miles is equivalent to 1,207.008 metres.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.34,
+   "calls": [
+    "convert_units({\"from_unit\": \"mi\", \"to_unit\": \"m\", \"value\": 0.75})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "w01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What will the weather be like in Oslo tomorrow?",
+   "answer": "Tomorrow in Oslo the forecast calls for a cool day with a high of about 9 °C and a low around 4 °C. There’s a 70 % chance of rain, so expect light rain and a wind speed of roughly 18 km/h.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.07,
+   "calls": [
+    "get_weather({\"city\": \"Oslo\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "w02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Compare tomorrow's highs in Paris and Rome.",
+   "answer": "Tomorrow’s forecast shows Paris will reach a high of 14 °C, while Rome is expected to climb to 21 °C. Rome’s temperature will be 7 °C warmer than Paris’s.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.14,
+   "calls": [
+    "get_weather({\"city\": \"Paris\", \"day\": \"tomorrow\"})",
+    "get_weather({\"city\": \"Rome\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "w03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Will it rain in London tomorrow, and how windy will it be?",
+   "answer": "Tomorrow in London the forecast calls for showers with a 60 % chance of rain. The wind is expected to be fairly brisk, around 27 km/h.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.81,
+   "calls": [
+    "get_weather({\"city\": \"London\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "w04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What's tomorrow's weather in Reykjavik?",
+   "answer": "I’m sorry, but I couldn’t retrieve the weather forecast for Reykjavik tomorrow.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.26,
+   "calls": [
+    "get_weather({\"city\": \"Reykjavik\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "w05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How warm will it get in Mumbai tomorrow, in Fahrenheit?",
+   "answer": "Tomorrow’s high in Mumbai is expected to be about **91.4 °F**.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: convert_units",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.79,
+   "calls": [
+    "get_weather({\"city\": \"Mumbai\", \"day\": \"tomorrow\"})",
+    "calculator({\"expression\": \"33*9/5+32\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "w06",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What are tomorrow's high and low in Bengaluru?",
+   "answer": "Tomorrow in Bengaluru, the forecast predicts a high of 28 °C and a low of 18 °C, with a 30 % chance of rain and light winds around 11 km/h.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.99,
+   "calls": [
+    "get_weather({\"city\": \"Bengaluru\", \"day\": \"tomorrow\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much does the MX-200 cost and how heavy is it?",
+   "answer": "The MX‑200 speaker is priced at $249.00 USD and weighs 1.35 kg.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.69,
+   "calls": [
+    "get_product({\"sku\": \"MX-200\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Is the MX-200 still under warranty after 3 years?",
+   "answer": "The MX‑200 speaker comes with a 2‑year warranty, so after 3 years it is no longer covered.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.78,
+   "calls": [
+    "get_product({\"sku\": \"MX-200\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which lasts longer on a charge, the MX-200 or the LT-50?",
+   "answer": "The LT‑50 lamp has a longer battery life—30 hours versus the MX‑200 speaker’s 18 hours.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.98,
+   "calls": [
+    "get_product({\"sku\": \"MX-200\"})",
+    "get_product({\"sku\": \"LT-50\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the price of product ZZ-999?",
+   "answer": "I tried to look up the product, but the SKU “ZZ-999” isn’t in the database, so I can’t provide a price.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.31,
+   "calls": [
+    "get_product({\"sku\": \"ZZ-999\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much would 3 LT-50 lamps cost?",
+   "answer": "The three LT‑50 lamps would cost $119.70 in total.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "low",
+     "text": "119.70",
+     "message": "\"119.70\" is not in the tool results or the question; it is 39.9 (get_product) × 3 (the question), worked out in the answer rather than by a tool."
+    }
+   ],
+   "ms": 0.64,
+   "calls": [
+    "get_product({\"sku\": \"LT-50\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p06",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much is the QX-9 in euros?",
+   "answer": "The QX‑9 headphones cost €165.14.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.66,
+   "calls": [
+    "get_product({\"sku\": \"QX-9\"})",
+    "convert_currency({\"amount\": 179.5, \"from_currency\": \"USD\", \"to_currency\": \"EUR\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "p07",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Is the LT-50 in stock, and how long is its warranty?",
+   "answer": "The LT‑50 lamp is currently out of stock (in_stock = 0). It comes with a 1‑year warranty.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.71,
+   "calls": [
+    "get_product({\"sku\": \"LT-50\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "s01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How did Jordan Reyes play on 2026-11-16?",
+   "answer": "On November 16, 2026, Jordan Reyes delivered a strong performance, scoring 27 points, grabbing 11 rebounds, and dishing out 7 assists over 34 minutes. He shot 52.2 % from the field, contributing significantly to his team’s offensive output.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.59,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Jordan Reyes\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "s02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What was Maya Chen's field-goal percentage on 2026-11-16?",
+   "answer": "Maya Chen’s field‑goal percentage on 2026‑11‑16 was **47.1 %**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.97,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Maya Chen\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "s03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Who scored more points on 2026-11-16, Jordan Reyes or Sam Okafor?",
+   "answer": "On November 16, 2026 Sam Okafor scored 31 points, while Jordan Reyes scored 27, so Okafor had the higher point total.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.61,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Jordan Reyes\"})",
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Sam Okafor\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "s04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many assists and rebounds did Maya Chen have on 2026-11-16?",
+   "answer": "On November 16, 2026, Maya Chen recorded **9 assists** and **4 rebounds** in her game.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.02,
+   "calls": [
+    "get_player_stats({\"date\": \"2026-11-16\", \"player\": \"Maya Chen\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "k01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is ACME's share price and how much did it change today?",
+   "answer": "ACME’s share is trading at **$189.50** today, down **1.2 %** from the previous close.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.65,
+   "calls": [
+    "get_stock_quote({\"symbol\": \"ACME\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "k02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What was GLOBX's trading range today?",
+   "answer": "GLOBX’s trading range today was **$69.80 to $72.90**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.56,
+   "calls": [
+    "get_stock_quote({\"symbol\": \"GLOBX\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "k03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which moved more today, ACME or GLOBX?",
+   "answer": "GLOBX moved more today, with a 2.8 % gain versus ACME’s 1.2 % decline.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.81,
+   "calls": [
+    "get_stock_quote({\"symbol\": \"ACME\"})",
+    "get_stock_quote({\"symbol\": \"GLOBX\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "x01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is 15% of 240?",
+   "answer": "15% of 240 is 36.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.35,
+   "calls": [
+    "calculator({\"expression\": \"0.15*240\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "x02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is (125.5 - 37.25) * 4?",
+   "answer": "The result of \\((125.5 - 37.25) \\times 4\\) is **353.0**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.48,
+   "calls": [
+    "calculator({\"expression\": \"(125.5 - 37.25) * 4\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "x03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Split a 1,234.50 bill between 6 people.",
+   "answer": "Dividing a €1,234.50 bill evenly among six people means each person pays €205.75.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.47,
+   "calls": [
+    "calculator({\"expression\": \"1234.50/6\"})"
+   ]
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "n01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Search the web for the latest reviews of the MX-200 and summarize them.",
+   "answer": "I’m sorry, but I don’t have a tool that can browse the web for recent reviews. I can only provide information that’s already in my training data or that can be retrieved via the available APIs. If you have a specific source or a link you’d like me to analyze, feel free to share it!",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.45,
+   "calls": []
+  },
+  {
+   "run": "2026-11-17_groq_openai-gpt-oss-20b.jsonl",
+   "id": "n02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Check the database for the status of my order 12345.",
+   "answer": "I tried to look up the order using the product‑lookup tool, but it returned an “unknown sku” error, so I couldn’t retrieve the status from the database. If you have another reference number or can provide more details, I can try again.",
+   "label": "correct",
+   "label_reason": "says it failed or cannot",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.54,
+   "calls": [
+    "get_product({\"sku\": \"12345\"})"
+   ]
+  }
+ ]
+}

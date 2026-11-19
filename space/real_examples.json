@@ -1,0 +1,243 @@
+{
+ "about": "Unedited chats from the traceground evaluation (eval/, 2026-11-17): OpenAI's open-weight models gpt-oss-120b and gpt-oss-20b, served by Groq, answering held-out questions with the evaluation's made-up, deterministic test tools (eval/tools.py). Each chat is as recorded, system prompt included.",
+ "examples": [
+  {
+   "title": "Real: a correct answer (and what is not checked)",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question_id": "h17",
+   "run": "2026-11-17 (held-out questions)",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant with tools. Use the tools to get every number you report, and say so plainly if a tool fails or if you cannot do something with the tools you have. Answer in a short paragraph."
+    },
+    {
+     "role": "user",
+     "content": "Compare the cost of shipping a 2 kg parcel to Germany and to the United States."
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_ef6541cc-4e9c-40ac-902b-2f9a54b401fc",
+       "type": "function",
+       "function": {
+        "name": "get_shipping_quote",
+        "arguments": "{\"country\":\"Germany\",\"weight_kg\":2}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_ef6541cc-4e9c-40ac-902b-2f9a54b401fc",
+     "content": "{\"country\": \"DE\", \"weight_kg\": 2, \"cost_eur\": 7.3, \"days_min\": 1, \"days_max\": 2}"
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_224eae62-6d29-4b7c-9f44-010925694f2c",
+       "type": "function",
+       "function": {
+        "name": "get_shipping_quote",
+        "arguments": "{\"country\":\"United States\",\"weight_kg\":2}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_224eae62-6d29-4b7c-9f44-010925694f2c",
+     "content": "{\"country\": \"US\", \"weight_kg\": 2, \"cost_eur\": 14.5, \"days_min\": 4, \"days_max\": 7}"
+    },
+    {
+     "role": "assistant",
+     "content": "Shipping a 2 kg parcel to Germany costs about **€7.30** and takes 1–2 days, whereas sending the same parcel to the United States costs roughly **€14.50** and takes 4–7 days. Thus, the U.S. shipment is almost twice as expensive and takes roughly three to four times longer."
+    }
+   ]
+  },
+  {
+   "title": "Real: a departure time the tool never gave",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question_id": "h02",
+   "run": "2026-11-17 (held-out questions)",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant with tools. Use the tools to get every number you report, and say so plainly if a tool fails or if you cannot do something with the tools you have. Answer in a short paragraph."
+    },
+    {
+     "role": "user",
+     "content": "How late is AI-101 and how many seats are still free?"
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_f09d6e37-4548-44f0-a148-d77281302569",
+       "type": "function",
+       "function": {
+        "name": "get_flight",
+        "arguments": "{\"flight_no\":\"AI-101\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_f09d6e37-4548-44f0-a148-d77281302569",
+     "content": "{\"from\": \"DEL\", \"to\": \"JFK\", \"distance_km\": 11760, \"duration_min\": 960, \"delay_min\": 45, \"seats_left\": 27, \"price_eur\": 1045.0, \"flight_no\": \"AI-101\"}"
+    },
+    {
+     "role": "assistant",
+     "content": "AI‑101 departs at 16:00 (4 PM) and currently has 27 seats still free."
+    }
+   ]
+  },
+  {
+   "title": "Real: US dollars reported as euros",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question_id": "h07",
+   "run": "2026-11-17 (held-out questions)",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant with tools. Use the tools to get every number you report, and say so plainly if a tool fails or if you cannot do something with the tools you have. Answer in a short paragraph."
+    },
+    {
+     "role": "user",
+     "content": "What were Nordwind's revenue and net income in 2025?"
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_b803df87-3347-42dd-ba49-4cfcc9cd7b17",
+       "type": "function",
+       "function": {
+        "name": "get_company_financials",
+        "arguments": "{\"company\":\"Nordwind\",\"year\":2025}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_b803df87-3347-42dd-ba49-4cfcc9cd7b17",
+     "content": "{\"company\": \"Nordwind\", \"year\": 2025, \"revenue_musd\": 1840.5, \"operating_income_musd\": 312.9, \"net_income_musd\": 221.4, \"employees\": 5210, \"operating_margin_pct\": 17.0}"
+    },
+    {
+     "role": "assistant",
+     "content": "Nordwind earned about €1.84 billion in revenue and €221.4 million in net income in 2025."
+    }
+   ]
+  },
+  {
+   "title": "Real: a growth rate worked out wrong",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question_id": "h08",
+   "run": "2026-11-17 (held-out questions)",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant with tools. Use the tools to get every number you report, and say so plainly if a tool fails or if you cannot do something with the tools you have. Answer in a short paragraph."
+    },
+    {
+     "role": "user",
+     "content": "How much did Nordwind's revenue grow from 2024 to 2025?"
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_f25bbe5a-f68e-4669-8553-320021d34d46",
+       "type": "function",
+       "function": {
+        "name": "get_company_financials",
+        "arguments": "{\"company\":\"Nordwind\",\"year\":2024}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_f25bbe5a-f68e-4669-8553-320021d34d46",
+     "content": "{\"company\": \"Nordwind\", \"year\": 2024, \"revenue_musd\": 1612.3, \"operating_income_musd\": 251.6, \"net_income_musd\": 170.2, \"employees\": 4980, \"operating_margin_pct\": 15.6}"
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_61469e17-e198-42a3-a687-42f876d179e0",
+       "type": "function",
+       "function": {
+        "name": "get_company_financials",
+        "arguments": "{\"company\":\"Nordwind\",\"year\":2025}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_61469e17-e198-42a3-a687-42f876d179e0",
+     "content": "{\"company\": \"Nordwind\", \"year\": 2025, \"revenue_musd\": 1840.5, \"operating_income_musd\": 312.9, \"net_income_musd\": 221.4, \"employees\": 5210, \"operating_margin_pct\": 17.0}"
+    },
+    {
+     "role": "assistant",
+     "content": "Nordwind’s revenue rose from $1,612.3 million in 2024 to $1,840.5 million in 2025, an increase of about $228.2 million, which is roughly a **14.4 %** year‑over‑year growth."
+    }
+   ]
+  },
+  {
+   "title": "Real: numbers from the model's own knowledge",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question_id": "h14",
+   "run": "2026-11-17 (held-out questions)",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant with tools. Use the tools to get every number you report, and say so plainly if a tool fails or if you cannot do something with the tools you have. Answer in a short paragraph."
+    },
+    {
+     "role": "user",
+     "content": "Is the CO2 level at LAB-2 high, and how charged is its battery?"
+    },
+    {
+     "role": "assistant",
+     "content": null,
+     "tool_calls": [
+      {
+       "id": "fc_72defde4-c9bf-414a-8b7b-99acaecbddca",
+       "type": "function",
+       "function": {
+        "name": "get_sensor",
+        "arguments": "{\"sensor_id\":\"LAB-2\"}"
+       }
+      }
+     ]
+    },
+    {
+     "role": "tool",
+     "tool_call_id": "fc_72defde4-c9bf-414a-8b7b-99acaecbddca",
+     "content": "{\"temperature_c\": 19.8, \"humidity_pct\": 55, \"pressure_hpa\": 1009.3, \"co2_ppm\": 1240, \"battery_pct\": 12, \"sensor_id\": \"LAB-2\"}"
+    },
+    {
+     "role": "assistant",
+     "content": "The LAB‑2 sensor reports a CO₂ concentration of 1,240 ppm, which is above typical indoor background levels (≈400‑600 ppm) and can be considered high. Its battery is low, at only 12 % charge."
+    }
+   ]
+  }
+ ]
+}
