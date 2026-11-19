@@ -21,9 +21,16 @@ async def main(url: str) -> int:
             await session.initialize()
             tools = (await session.list_tools()).tools
             print("Tools:", ", ".join(t.name for t in tools))
+            # on a Space, Gradio puts the Space's name in front: traceground_traceground_check
+            names = [t.name for t in tools if t.name == "traceground_check" or t.name.endswith("_traceground_check")]
+            if not names:
+                print("No traceground_check tool on this server.")
+                return 1
             for answer, expected in (("Revenue was 5 million.", "problems"), ("Revenue was 4 million.", "ok")):
-                res = await session.call_tool("traceground_check", {"answer": answer,
-                                                                    "sources": "[S1] Revenue was 4 million."})
+                res = await session.call_tool(names[0], {"answer": answer, "sources": "[S1] Revenue was 4 million."})
+                if res.isError:
+                    print("The tool returned an error:", res.content[0].text if res.content else "")
+                    return 1
                 report = json.loads(res.content[0].text)
                 print(f"{answer!r}: {report['verdict']} ({report['summary']})")
                 if report["verdict"] != expected:

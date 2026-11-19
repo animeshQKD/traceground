@@ -211,7 +211,8 @@ hallucinations are claims in words, which it does not check. Details, and how to
 Try it online: **[huggingface.co/spaces/animesh1986/traceground](https://huggingface.co/spaces/animesh1986/traceground)**.
 Paste an answer with its sources, its tool calls (or a whole chat), or both, and the page marks every finding
 on the answer, shows the evidence for each, and greys out the sentences it has nothing to check in. The same
-check is an MCP tool, `traceground_check`, at https://animesh1986-traceground.hf.space/gradio_api/mcp/.
+check is an MCP tool at https://animesh1986-traceground.hf.space/gradio_api/mcp/ (on the Space it is named
+`traceground_traceground_check`: Gradio puts the Space's name in front).
 
 The page is `space/app.py`, and it runs on your own computer too, with no API key. From a copy of this
 repository:

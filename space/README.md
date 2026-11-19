@@ -46,8 +46,9 @@ bottom of the page) and for AI agents as an MCP tool. The tool takes the answer,
 or a whole chat, and the question, all as text, and returns the report as JSON. Its address (Streamable
 HTTP) is
 
-* on this Space: https://animesh1986-traceground.hf.space/gradio_api/mcp/
-* run locally: http://127.0.0.1:7860/gradio_api/mcp/
+* on this Space: https://animesh1986-traceground.hf.space/gradio_api/mcp/, where the tool is named
+  `traceground_traceground_check` (Gradio puts the Space's name in front of every tool on a Space)
+* run locally: http://127.0.0.1:7860/gradio_api/mcp/, where it is named `traceground_check`
 
 `mcp_check.py` in the repository connects to either as an MCP client and checks two answers:
 `python space/mcp_check.py https://animesh1986-traceground.hf.space/gradio_api/mcp/`.

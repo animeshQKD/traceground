@@ -10,6 +10,8 @@ All notable changes to traceground are listed here. Versions follow [Semantic Ve
   installs traceground 0.1.0 from PyPI and is also an MCP server. On the Space, the page says that what is
   pasted is checked on Hugging Face's server (locally it still says nothing leaves the computer), and the
   report files for the download buttons are deleted after an hour.
+- `space/mcp_check.py` finds the tool under the name Gradio gives it on a Space
+  (`traceground_traceground_check`); it used to look only for `traceground_check` and failed there.
 
 ## 0.1.0 (first release)
 
