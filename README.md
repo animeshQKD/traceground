@@ -208,10 +208,13 @@ hallucinations are claims in words, which it does not check. Details, and how to
 
 ## Demo
 
-`space/app.py` is a Gradio page for trying traceground in a browser: paste an answer with its sources, its
-tool calls (or a whole chat), or both, and the page marks every finding on the answer, shows the evidence
-for each, and greys out the sentences it has nothing to check in. It runs on your own computer and needs no
-API key. From a copy of this repository:
+Try it online: **[huggingface.co/spaces/animesh1986/traceground](https://huggingface.co/spaces/animesh1986/traceground)**.
+Paste an answer with its sources, its tool calls (or a whole chat), or both, and the page marks every finding
+on the answer, shows the evidence for each, and greys out the sentences it has nothing to check in. The same
+check is an MCP tool, `traceground_check`, at https://animesh1986-traceground.hf.space/gradio_api/mcp/.
+
+The page is `space/app.py`, and it runs on your own computer too, with no API key. From a copy of this
+repository:
 
 ```
 pip install traceground "gradio[mcp]==6.32.0"
@@ -225,7 +228,7 @@ http://127.0.0.1:7860/gradio_api/mcp/ while the page runs ([space/README.md](htt
 
 * Citations mode: marker styles, every marker checked, every factual sentence cited (optional).
 * An opt-in automatic fix where a fix is certain (a number cut short, thinking aloud removed).
-* The demo published as a Hugging Face Space, and LangGraph / LangChain helpers.
+* LangGraph / LangChain helpers.
 * Report-only stays the default; when a check is unsure, it says nothing.
 
 ## Install

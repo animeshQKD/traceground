@@ -2,6 +2,15 @@
 
 All notable changes to traceground are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Changed (repository only; the package is unchanged)
+
+- The demo is online as a Hugging Face Space, https://huggingface.co/spaces/animesh1986/traceground, which
+  installs traceground 0.1.0 from PyPI and is also an MCP server. On the Space, the page says that what is
+  pasted is checked on Hugging Face's server (locally it still says nothing leaves the computer), and the
+  report files for the download buttons are deleted after an hour.
+
 ## 0.1.0 (first release)
 
 The first version published on PyPI. Its checks are those of 0.1.0.dev12 below, unchanged; the version

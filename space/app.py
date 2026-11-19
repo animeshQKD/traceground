@@ -3,7 +3,8 @@ not support.
 
     python space/app.py          # then open http://127.0.0.1:7860
 
-Runs on this computer only; uses no language model and no API key. The logic is in demo_logic.py.
+Uses no language model and no API key. The logic is in demo_logic.py. On Hugging Face Spaces it runs as
+https://huggingface.co/spaces/animesh1986/traceground.
 The same check is an API endpoint (traceground_check) and an MCP tool, at http://127.0.0.1:7860/gradio_api/mcp/
 (needs gradio[mcp]; see README.md)."""
 import gradio as gr
@@ -65,9 +66,10 @@ def check(answer: str, question: str, sources: str, trace: str, small: bool, quo
 
 
 def build() -> gr.Blocks:
-    with gr.Blocks(title="traceground: check an AI answer against its evidence") as demo:
+    # delete_cache: Gradio's copies of the downloaded reports are removed after an hour
+    with gr.Blocks(title="traceground: check an AI answer against its evidence", delete_cache=(1800, 3600)) as demo:
         gr.Markdown("# traceground\nCheck an AI answer against the evidence it was given: documents, tool "
-                    "calls, or both. No language model is involved, and nothing you paste leaves this computer.")
+                    "calls, or both. No language model is involved. " + D.WHERE_SHORT)
         with gr.Accordion("What it checks, and how to use this page", open=False):
             gr.Markdown(D.ABOUT + "\n\n" + D.HOW_TO)
         with gr.Row():

@@ -6,7 +6,9 @@ import json
 import os
 import pprint
 import re
+import shutil
 import tempfile
+import time
 
 from traceground import __version__, check_answer, check_messages
 from traceground import numbers as _numbers
@@ -319,9 +321,29 @@ def code_for(kind: str, answer: str, question: str, sources: dict, trace: list, 
     return "\n".join(lines) + "\n"
 
 
+REPORTS = os.path.join(tempfile.gettempdir(), "traceground_reports")
+KEEP_SECONDS = 3600
+
+
+def _clean_reports(now: float = None) -> None:
+    """Delete report folders older than an hour, so a long-running page does not fill its disk."""
+    now = now or time.time()
+    try:
+        for name in os.listdir(REPORTS):
+            path = os.path.join(REPORTS, name)
+            if os.path.isdir(path) and now - os.path.getmtime(path) > KEEP_SECONDS:
+                shutil.rmtree(path, ignore_errors=True)
+    except OSError:
+        pass
+
+
 def report_files(result, folder: str = None) -> list:
-    """Write the report as JSON and as Markdown; returns the two paths."""
-    folder = folder or tempfile.mkdtemp(prefix="traceground_")
+    """Write the report as JSON and as Markdown; returns the two paths. Without a folder, a new one is made
+    under REPORTS, and folders there older than an hour are deleted."""
+    if folder is None:
+        os.makedirs(REPORTS, exist_ok=True)
+        _clean_reports()
+        folder = tempfile.mkdtemp(prefix="report_", dir=REPORTS)
     js = os.path.join(folder, "traceground_report.json")
     md = os.path.join(folder, "traceground_report.md")
     with open(js, "w", encoding="utf-8") as f:
@@ -485,9 +507,17 @@ def _load_real(path: str = os.path.join(os.path.dirname(os.path.abspath(__file__
 # real chats from the evaluation (real_examples.json): unedited, checked as they are
 REAL_ABOUT, REAL_EXAMPLES = _load_real()
 
+ON_SPACE = bool(os.environ.get("SPACE_ID"))        # set by Hugging Face Spaces
+WHERE = ("On this online demo, what you paste is checked on the Hugging Face server that runs the page; no "
+         "language model or API sees it, and the report files for the download buttons are deleted after an "
+         "hour. To keep everything on your own computer, run the page locally (see the GitHub repository)."
+         if ON_SPACE else "Nothing you paste leaves this computer.")
+WHERE_SHORT = ("What you paste is checked on this Space's server, not sent to any model."
+               if ON_SPACE else "Nothing you paste leaves this computer.")
+
 ABOUT = f"""**traceground {__version__}** lists every number, quote, value or tool argument in an AI answer
 that its sources or tool calls do not support. It uses no language model: the same input always gives the
-same report, in milliseconds, and nothing you paste leaves this computer.
+same report, in milliseconds. {WHERE}
 
 It checks: numbers (at the precision they are written in), quotes, values attached to the wrong field of a
 tool result, tool calls made with other values than the question asked, failed calls reported as success,

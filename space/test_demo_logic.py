@@ -252,3 +252,27 @@ def test_app_exposes_one_api_endpoint():
     import app
     names = [fn.api_name for fn in app.build().fns.values()]
     assert "traceground_check" in names and "check_page" in names
+
+
+def test_privacy_text_depends_on_where_the_page_runs(monkeypatch):
+    import importlib
+    monkeypatch.delenv("SPACE_ID", raising=False)
+    local = importlib.reload(D)
+    assert "Nothing you paste leaves this computer." in local.ABOUT
+    monkeypatch.setenv("SPACE_ID", "animesh1986/traceground")
+    space = importlib.reload(D)
+    assert "Hugging Face server" in space.ABOUT and "leaves this computer" not in space.ABOUT
+    monkeypatch.delenv("SPACE_ID")
+    importlib.reload(D)
+
+
+def test_old_report_folders_are_deleted(tmp_path, monkeypatch):
+    import os
+    import time
+    monkeypatch.setattr(D, "REPORTS", str(tmp_path))
+    old, new = tmp_path / "report_old", tmp_path / "report_new"
+    old.mkdir(), new.mkdir()
+    os.utime(old, (time.time() - 7200,) * 2)
+    ex = D.SOURCE_EXAMPLES[0]
+    js, md = D.run(ex["answer"], ex["question"], ex["sources"], "", files=True)["files"]
+    assert not old.exists() and new.exists() and js.startswith(str(tmp_path))
