@@ -9,6 +9,9 @@
 aloud, self-contradiction); `check_answer()`, `check_messages()`, the command line, and a Gradio demo
 that is also an MCP tool (`space/`). Rules and messages may still change between 0.x versions.
 
+**Read the write-up** on Hugging Face: [what a model-free check catches in real AI answers](https://huggingface.co/blog/animesh1986/traceground-what-a-model-free-check-catches-in-rea),
+with real errors from gpt-oss-120b and gpt-oss-20b, and the RAGTruth measurement.
+
 ## What it is for
 
 traceground takes an AI answer together with its sources or its tool-call trace, and lists every

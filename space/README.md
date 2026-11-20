@@ -24,6 +24,9 @@ Paste an AI answer with its sources, the tool calls the model made, or both, and
 value or tool argument they do not support. No language model and no API key: the check is
 deterministic and takes milliseconds.
 
+The write-up, with real examples and the measurement: [what a model-free check catches in real AI
+answers](https://huggingface.co/blog/animesh1986/traceground-what-a-model-free-check-catches-in-rea).
+
 This page runs [traceground](https://github.com/animeshQKD/traceground) 0.1.0, installed from
 [PyPI](https://pypi.org/project/traceground/). It shows a verdict, the answer with each finding marked (and
 the sentences with nothing to check in grey), each finding with the evidence it was checked against, the
