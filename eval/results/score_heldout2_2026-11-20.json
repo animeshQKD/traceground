@@ -1,0 +1,706 @@
+{
+ "date": "2026-11-20T10:32:11",
+ "runs": [
+  "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-20_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is Juniper Table's overall rating, and how many reviews does it have?",
+   "answer": "Juniper Table has an overall rating of 4.3 stars and 3 reviews.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "4.3 stars",
+     "message": "\"4.3 stars\": the tool results give stars = 5 (get_restaurant); stars = 4 (get_restaurant); stars = 3 (get_restaurant). 4.3 is the rating (get_restaurant)."
+    }
+   ],
+   "ms": 3.93,
+   "calls": [
+    "get_restaurant({\"name\": \"Juniper Table\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "When is Juniper Table open on Saturday and on Sunday?",
+   "answer": "I’m sorry, but I don’t have a tool that can look up the opening hours for Juniper Table, so I can’t provide that information.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: get_restaurant",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.38,
+   "calls": []
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What do reviewers of Harbor Noodle House say about the broth? Quote them.",
+   "answer": "Reviewers praise the broth as “rich and deeply savory, the best ramen in the city for under ten pounds,” while another notes it was “lukewarm and far too salty.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.78,
+   "calls": [
+    "get_restaurant({\"name\": \"Harbor Noodle House\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which is rated higher, Juniper Table or Harbor Noodle House?",
+   "answer": "Juniper Table is rated higher (4.3 vs 3.9 for Harbor Noodle House).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 3.67,
+   "calls": [
+    "get_restaurant({\"name\": \"Juniper Table\"})",
+    "get_restaurant({\"name\": \"Harbor Noodle House\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many stars did each recent review of Harbor Noodle House give?",
+   "answer": "The recent reviews gave 5 stars, 2 stars, 4 stars and 5 stars respectively.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.09,
+   "calls": [
+    "get_restaurant({\"name\": \"Harbor Noodle House\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g06",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "When do the doors open for Lantern Jazz Night, and when does the music start?",
+   "answer": "The doors open at 18:45 and the music starts at 19:30.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.32,
+   "calls": [
+    "get_event({\"event\": \"Lantern Jazz Night\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g07",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many tickets are left for the Rooftop Film Club, and what do they cost?",
+   "answer": "The Rooftop Film Club has 14 tickets left, each costing €12.5.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.18,
+   "calls": [
+    "get_event({\"event\": \"Rooftop Film Club\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g08",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How long does Lantern Jazz Night last?",
+   "answer": "The Lantern Jazz Night runs from 19:30 to 22:15, lasting 2 hours 45 minutes.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.39,
+   "calls": [
+    "get_event({\"event\": \"Lantern Jazz Night\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g09",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "When does train RX-12 leave and arrive, and is it running late?",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:52, and is currently delayed by 12 minutes.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.3,
+   "calls": [
+    "get_train({\"train_no\": \"RX-12\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g10",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which platform does RX-30 leave from, and how many stops does it make?",
+   "answer": "RX‑30 departs from Bristol and makes 6 stops.",
+   "label": "wrong",
+   "label_reason": "missing or different values: 11",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.87,
+   "calls": [
+    "get_train({\"train_no\": \"RX-30\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g11",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which is faster from Bristol to London, RX-12 or RX-30, and by how much?",
+   "answer": "RX‑12 takes about 1 hour 52 minutes (7:00 → 8:52) while RX‑30 takes about 2 hours 11 minutes (9:30 → 11:41), so RX‑12 is faster by roughly 19 minutes.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "19",
+     "message": "\"19\" is not in the tool results or the question. The closest values they give: 12 (get_train (call 1)) or 11 (get_train (call 2))."
+    }
+   ],
+   "ms": 2.99,
+   "calls": [
+    "get_train({\"train_no\": \"RX-12\"})",
+    "get_train({\"train_no\": \"RX-30\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g12",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Summarize news article N-201 in two sentences.",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.69,
+   "calls": [
+    "get_article({\"article_id\": \"N-201\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g13",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What did the mayor say in article N-201? Quote her exactly.",
+   "answer": "Mayor Ruth Okonjo said the library was “back where it belongs, at the heart of the riverside.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.97,
+   "calls": [
+    "get_article({\"article_id\": \"N-201\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g14",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "According to article N-202, how many households lost water, and what will the repairs cost?",
+   "answer": "The article says 4,800 households lost water, and the repairs are estimated to cost £2.3 million.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.98,
+   "calls": [
+    "get_article({\"article_id\": \"N-202\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g15",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "When was article N-202 published, and what did Westvale Water's spokesperson say?",
+   "answer": "The article N‑202 was published on 2026‑11‑09, and Westvale Water’s spokesperson Daniel Price said, “We are sorry for the disruption and will compensate every affected household.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.2,
+   "calls": [
+    "get_article({\"article_id\": \"N-202\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g16",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What does a night at Hotel Alder cost, and is breakfast included?",
+   "answer": "A night at Hotel Alder costs €142, and breakfast is **not** included (it can be added for an extra €16).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.27,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g17",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How far is Hotel Alder from the station and from the airport?",
+   "answer": "Hotel Alder is about 0.8 km from the nearest train station and roughly 13.5 km from the airport.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.2,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g18",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What are the check-in and check-out times at Hotel Alder?",
+   "answer": "Hotel Alder checks in at 15:00 and checks out at 11:00.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.22,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g19",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much would three nights at Hotel Alder cost with breakfast every morning?",
+   "answer": "Three nights at Hotel Alder with breakfast each morning would cost €474.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.27,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})",
+    "calculator({\"expression\": \"3*142+3*16\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+   "id": "g20",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Does Hotel Alder have a higher guest rating than Juniper Table's rating?",
+   "answer": "Hotel Alder’s guest rating is 4.6, while Juniper Table’s rating is 4.3, so Hotel Alder does have a higher guest rating.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.72,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})",
+    "get_restaurant({\"name\": \"Juniper Table\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is Juniper Table's overall rating, and how many reviews does it have?",
+   "answer": "Juniper Table has an overall rating of **4.3 stars** and has received **3 reviews**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "4.3 stars",
+     "message": "\"4.3 stars\": the tool results give stars = 5 (get_restaurant); stars = 4 (get_restaurant); stars = 3 (get_restaurant). 4.3 is the rating (get_restaurant)."
+    }
+   ],
+   "ms": 2.13,
+   "calls": [
+    "get_restaurant({\"name\": \"Juniper Table\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "When is Juniper Table open on Saturday and on Sunday?",
+   "answer": "I couldn’t find any event listing for “Juniper Table,” so I don’t have opening times for Saturday or Sunday. If you have a different name or more details, let me know and I’ll try again.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: get_restaurant",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.63,
+   "calls": [
+    "get_event({\"event\": \"Juniper Table\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What do reviewers of Harbor Noodle House say about the broth? Quote them.",
+   "answer": "Reviewers have mixed feelings about the broth at Harbor Noodle House:\n\n- “The broth is **rich and deeply savory, the best ramen in the city for under ten pounds**.” – 5 stars (2026‑08‑30)  \n- “The broth was **lukewarm and far too salty**.” – 2 stars (2026‑09‑21)",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 3.15,
+   "calls": [
+    "get_restaurant({\"name\": \"Harbor Noodle House\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which is rated higher, Juniper Table or Harbor Noodle House?",
+   "answer": "Juniper Table has a higher rating (4.3 stars) than Harbor Noodle House (3.9 stars).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "3.9 stars",
+     "message": "\"3.9 stars\": the tool results give stars = 5 (get_restaurant (call 1)); stars = 4 (get_restaurant (call 1)); stars = 3 (get_restaurant (call 1)); stars = 5 (get_restaurant (call 2)); stars = 2 (get_restaurant (call 2)); stars = 4 (get_restaurant (call 2)); stars = 5 (get_restaurant (call 2)). 3.9 is the rating (get_restaurant (call 2))."
+    }
+   ],
+   "ms": 3.87,
+   "calls": [
+    "get_restaurant({\"name\": \"Juniper Table\"})",
+    "get_restaurant({\"name\": \"Harbor Noodle House\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many stars did each recent review of Harbor Noodle House give?",
+   "answer": "The most recent reviews for Harbor Noodle House show the following star ratings:\n\n- 5 stars (2026‑08‑30)  \n- 2 stars (2026‑09‑21)  \n- 4 stars (2026‑10‑11)  \n- 5 stars (2026‑11‑02)",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 3.28,
+   "calls": [
+    "get_restaurant({\"name\": \"Harbor Noodle House\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g06",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "When do the doors open for Lantern Jazz Night, and when does the music start?",
+   "answer": "The doors for Lantern Jazz Night open at **18:45**, and the music starts at **19:30**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.37,
+   "calls": [
+    "get_event({\"event\": \"Lantern Jazz Night\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g07",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many tickets are left for the Rooftop Film Club, and what do they cost?",
+   "answer": "There are 14 tickets left for the Rooftop Film Club, and each ticket costs €12.50.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.07,
+   "calls": [
+    "get_event({\"event\": \"Rooftop Film Club\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g08",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How long does Lantern Jazz Night last?",
+   "answer": "Lantern Jazz Night runs from 19:30 to 22:15, so it lasts **2 hours and 45 minutes**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.31,
+   "calls": [
+    "get_event({\"event\": \"Lantern Jazz Night\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g09",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "When does train RX-12 leave and arrive, and is it running late?",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:52. It is running 12 minutes late.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.29,
+   "calls": [
+    "get_train({\"train_no\": \"RX-12\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g10",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which platform does RX-30 leave from, and how many stops does it make?",
+   "answer": "The RX‑30 departs from Bristol and makes 6 stops on its way to London.",
+   "label": "wrong",
+   "label_reason": "missing or different values: 11",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.92,
+   "calls": [
+    "get_train({\"train_no\": \"RX-30\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g11",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which is faster from Bristol to London, RX-12 or RX-30, and by how much?",
+   "answer": "RX‑12 is faster. It arrives at London at 08:52, whereas RX‑30 arrives at 11:41. The difference is 2 hours 49 minutes.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "49",
+     "message": "\"49\" is not in the tool results or the question. The closest values they give: 58 (get_train (call 1))."
+    }
+   ],
+   "ms": 1.9,
+   "calls": [
+    "get_train({\"train_no\": \"RX-12\"})",
+    "get_train({\"train_no\": \"RX-30\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g12",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Summarize news article N-201 in two sentences.",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.8 million, with the council covering £1.1 million and a national fund the remainder. Of the 22,000 books lost, 9,500 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.37,
+   "calls": [
+    "get_article({\"article_id\": \"N-201\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g13",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What did the mayor say in article N-201? Quote her exactly.",
+   "answer": "Mayor Ruth Okonjo said the library was “back where it belongs, at the heart of the riverside.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.92,
+   "calls": [
+    "get_article({\"article_id\": \"N-201\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g14",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "According to article N-202, how many households lost water, and what will the repairs cost?",
+   "answer": "The article says 4,800 households lost water, and the repairs are estimated to cost 2.3 million pounds.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.96,
+   "calls": [
+    "get_article({\"article_id\": \"N-202\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g15",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "When was article N-202 published, and what did Westvale Water's spokesperson say?",
+   "answer": "Article N‑202 was published on 2026‑11‑09. Westvale Water’s spokesperson, Daniel Price, said: “We are sorry for the disruption and will compensate every affected household.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.21,
+   "calls": [
+    "get_article({\"article_id\": \"N-202\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g16",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What does a night at Hotel Alder cost, and is breakfast included?",
+   "answer": "A night at Hotel Alder in Bristol costs **€142.00**. Breakfast is **not included**; it can be added for an extra €16.00.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.26,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g17",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How far is Hotel Alder from the station and from the airport?",
+   "answer": "I’m sorry, but I don’t have a tool that can calculate the distance between the hotel and the station or the airport. If you can provide the hotel’s address or coordinates, I could try to estimate the distance manually.",
+   "label": "wrong",
+   "label_reason": "missing or different values: 0.8, 13.5",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.53,
+   "calls": []
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g18",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What are the check-in and check-out times at Hotel Alder?",
+   "answer": "The check‑in time at Hotel Alder is **15:00** and the check‑out time is **11:00**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.29,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g19",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much would three nights at Hotel Alder cost with breakfast every morning?",
+   "answer": "Three nights at Hotel Alder would cost €426 for the rooms (3 × €142). Adding breakfast each morning (€16 per day) brings the total to €474.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "426 for the rooms",
+     "message": "\"426 for the rooms\": the tool results give rooms_free = 5 (get_hotel)."
+    },
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "rooms (3",
+     "message": "\"rooms (3\": the tool results give rooms_free = 5 (get_hotel)."
+    },
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "474",
+     "message": "\"474\" is not in the tool results or the question, and they give no value close to it."
+    }
+   ],
+   "ms": 1.93,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})"
+   ]
+  },
+  {
+   "run": "2026-11-20_groq_openai-gpt-oss-20b.jsonl",
+   "id": "g20",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Does Hotel Alder have a higher guest rating than Juniper Table's rating?",
+   "answer": "Hotel Alder’s guest rating of 4.6 is higher than Juniper Table’s rating of 4.3.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.64,
+   "calls": [
+    "get_hotel({\"name\": \"Hotel Alder\"})",
+    "get_restaurant({\"name\": \"Juniper Table\"})"
+   ]
+  }
+ ]
+}

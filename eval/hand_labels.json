@@ -1,5 +1,5 @@
 {
- "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md). mutate.py plants errors only in the other answers.",
+ "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md, review_heldout2_2026-11-20.md). mutate.py plants errors only in the other answers.",
  "wrong": [
   {
    "model": "openai/gpt-oss-120b",
@@ -24,6 +24,24 @@
    "id": "h08",
    "set": "heldout",
    "why": "says the growth is 14.4%; 228.2 / 1612.3 is 14.2%"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g11",
+   "set": "heldout2",
+   "why": "compares arrival times: says RX-12 is faster by 2 h 49 min; by journey time it is 19 min"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g17",
+   "set": "heldout2",
+   "why": "calls no tool and says it has no tool for the distances; get_hotel gives them"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g02",
+   "set": "heldout2",
+   "why": "calls no tool and says it has no tool for opening hours; get_restaurant gives them"
   }
  ]
 }

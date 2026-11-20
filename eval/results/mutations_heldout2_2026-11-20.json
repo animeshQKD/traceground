@@ -1,0 +1,1911 @@
+{
+ "date": "2026-11-20T10:32:11",
+ "runs": [
+  "2026-11-20_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-20_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "digits swapped",
+   "change": "4.3 -> 3.4",
+   "answer": "Juniper Table is rated higher (3.4 vs 3.9 for Harbor Noodle House).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.4\" is not in the tool results or the question. The closest values they give: 3 (get_restaurant (call 1)) or 3.9 (get_restaurant (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "last digit off by one",
+   "change": "4.3 -> 4.4",
+   "answer": "Juniper Table is rated higher (4.4 vs 3.9 for Harbor Noodle House).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.4\" is not in the tool results or the question. The closest values they give: 4.3 (get_restaurant (call 1)) or 4 (get_restaurant (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "value of another field",
+   "change": "4.3 (rating) -> 3 (review_count)",
+   "answer": "Juniper Table is rated higher (3 vs 3.9 for Harbor Noodle House).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "value of another field",
+   "change": "4.3 (rating) -> 2 (price_level)",
+   "answer": "Juniper Table is rated higher (2 vs 3.9 for Harbor Noodle House).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "digits swapped",
+   "change": "3.9 -> 9.3",
+   "answer": "Juniper Table is rated higher (4.3 vs 9.3 for Harbor Noodle House).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.3\" is not in the tool results or the question. The closest values they give: 9 (get_restaurant (call 1)) or 12 (get_restaurant (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "last digit off by one",
+   "change": "3.9 -> 3.8",
+   "answer": "Juniper Table is rated higher (4.3 vs 3.8 for Harbor Noodle House).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.8\" is not in the tool results or the question. The closest values they give: 3.9 (get_restaurant (call 2)) or 4 (get_restaurant (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "value of another field",
+   "change": "3.9 (rating) -> 4 (review_count)",
+   "answer": "Juniper Table is rated higher (4.3 vs 4 for Harbor Noodle House).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g04",
+   "kind": "value of another field",
+   "change": "3.9 (rating) -> 1 (price_level)",
+   "answer": "Juniper Table is rated higher (4.3 vs 1 for Harbor Noodle House).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "The doors open at 81:45 and the music starts at 19:30.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "The doors open at 19:45 and the music starts at 19:30.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:45\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "The doors open at 18:54 and the music starts at 19:30.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:54\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "The doors open at 18:46 and the music starts at 19:30.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:46\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "digits swapped",
+   "change": "19 -> 91",
+   "answer": "The doors open at 18:45 and the music starts at 91:30.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"91\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "19 -> 18",
+   "answer": "The doors open at 18:45 and the music starts at 18:30.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:30\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "The doors open at 18:45 and the music starts at 19:31.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "digits swapped",
+   "change": "14 -> 41",
+   "answer": "The Rooftop Film Club has 41 tickets left, each costing €12.5.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"41 tickets left\": the tool results give tickets_left = 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "last digit off by one",
+   "change": "14 -> 15",
+   "answer": "The Rooftop Film Club has 15 tickets left, each costing €12.5.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"15 tickets left\": the tool results give tickets_left = 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "value of another field",
+   "change": "14 (tickets_left) -> 12.5 (price_eur)",
+   "answer": "The Rooftop Film Club has 12.5 tickets left, each costing €12.5.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12.5 tickets left\": the tool results give tickets_left = 14 (get_event). 12.5 is the price_eur (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "digits swapped",
+   "change": "12.5 -> 15.2",
+   "answer": "The Rooftop Film Club has 14 tickets left, each costing €15.2.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"15.2\" is not in the tool results or the question. The closest values they give: 14 (get_event) or 17 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "last digit off by one",
+   "change": "12.5 -> 12.6",
+   "answer": "The Rooftop Film Club has 14 tickets left, each costing €12.6.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12.6\" is not in the tool results or the question. The closest values they give: 12.5 (get_event) or 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "value of another field",
+   "change": "12.5 (price_eur) -> 14 (tickets_left)",
+   "answer": "The Rooftop Film Club has 14 tickets left, each costing €14.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g07",
+   "kind": "two values swapped",
+   "change": "14 (tickets_left) <-> 12.5 (price_eur)",
+   "answer": "The Rooftop Film Club has 12.5 tickets left, each costing €14.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12.5 tickets left\": the tool results give tickets_left = 14 (get_event). 12.5 is the price_eur (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "digits swapped",
+   "change": "19 -> 91",
+   "answer": "The Lantern Jazz Night runs from 91:30 to 22:15, lasting 2 hours 45 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"91\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "19 -> 18",
+   "answer": "The Lantern Jazz Night runs from 18:30 to 22:15, lasting 2 hours 45 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:30\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "The Lantern Jazz Night runs from 19:31 to 22:15, lasting 2 hours 45 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "22 -> 23",
+   "answer": "The Lantern Jazz Night runs from 19:30 to 23:15, lasting 2 hours 45 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23:15\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "The Lantern Jazz Night runs from 19:30 to 22:51, lasting 2 hours 45 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22:51\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "The Lantern Jazz Night runs from 19:30 to 22:16, lasting 2 hours 45 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22:16\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "The Lantern Jazz Night runs from 19:30 to 22:15, lasting 2 hours 54 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"54\" is not in the tool results or the question. The closest values they give: 86 (get_event) or 28.0 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "The Lantern Jazz Night runs from 19:30 to 22:15, lasting 2 hours 46 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"46\" is not in the tool results or the question. The closest values they give: 28.0 (get_event) or 86 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g09",
+   "kind": "digits swapped",
+   "change": "52 -> 25",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:25, and is currently delayed by 12 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"08:25\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g09",
+   "kind": "last digit off by one",
+   "change": "52 -> 53",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:53, and is currently delayed by 12 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"08:53\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g09",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:52, and is currently delayed by 21 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 21\": the tool results give delay_min = 12 (get_train)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g09",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:52, and is currently delayed by 13 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 13\": the tool results give delay_min = 12 (get_train)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g09",
+   "kind": "value of another field",
+   "change": "12 (delay_min) -> 4 (platform)",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:52, and is currently delayed by 4 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 4\": the tool results give delay_min = 12 (get_train). 4 is the platform (get_train)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g09",
+   "kind": "value of another field",
+   "change": "12 (delay_min) -> 3 (stops)",
+   "answer": "Train RX‑12 departs at 07:00, arrives at 08:52, and is currently delayed by 3 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 3\": the tool results give delay_min = 12 (get_train). 3 is the stops (get_train)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "2025 -> 2052",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2052 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2052\" is not in the tool results or the question. The closest values they give: 2025 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "2025 -> 2026",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2026 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "1.8 -> 8.1",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £8.1 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"8.1 million\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "1.8 -> 1.9",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.9 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.9 million\" is not in the tool results or the question. The closest values they give: 1.8 million (get_article) or 1.1 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "1.1 -> 1.2",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.8 million—£1.2 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.2 million\" is not in the tool results or the question. The closest values they give: 1.1 million (get_article) or 1.8 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "22,000 -> 20,200",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 20,200 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"20,200\" is not in the tool results or the question. The closest values they give: 22,000 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "22,000 -> 22,001",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,001 books were lost, 9,500 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22,001\" is not in the tool results or the question. The closest values they give: 22,000 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "9,500 -> 9,050",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,050 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9,050\" is not in the tool results or the question. The closest values they give: 9,500 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "9,500 -> 9,501",
+   "answer": "Riverside Library reopened after a fourteen‑month closure caused by the August 2025 flood, with repairs costing £1.8 million—£1.1 million funded by the council and the remainder by a national fund. Although about 22,000 books were lost, 9,501 have been replaced, and the library will now operate six days a week with extended hours starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9,501\" is not in the tool results or the question. The closest values they give: 9,500 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g14",
+   "kind": "digits swapped",
+   "change": "4,800 -> 4,080",
+   "answer": "The article says 4,080 households lost water, and the repairs are estimated to cost £2.3 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,080\" is not in the tool results or the question. The closest values they give: 4,800 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g14",
+   "kind": "last digit off by one",
+   "change": "4,800 -> 4,801",
+   "answer": "The article says 4,801 households lost water, and the repairs are estimated to cost £2.3 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,801\" is not in the tool results or the question. The closest values they give: 4,800 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g14",
+   "kind": "digits swapped",
+   "change": "2.3 -> 3.2",
+   "answer": "The article says 4,800 households lost water, and the repairs are estimated to cost £3.2 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.2 million\" is not in the tool results or the question. The closest values they give: 2.3 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g14",
+   "kind": "last digit off by one",
+   "change": "2.3 -> 2.4",
+   "answer": "The article says 4,800 households lost water, and the repairs are estimated to cost £2.4 million.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.4 million\" is not in the tool results or the question. The closest values they give: 2.3 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "digits swapped",
+   "change": "142 -> 124",
+   "answer": "A night at Hotel Alder costs €124, and breakfast is **not** included (it can be added for an extra €16).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"124\" is not in the tool results or the question. The closest values they give: 142.0 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "last digit off by one",
+   "change": "142 -> 143",
+   "answer": "A night at Hotel Alder costs €143, and breakfast is **not** included (it can be added for an extra €16).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"143\" is not in the tool results or the question. The closest values they give: 142.0 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "142 (rate_eur) -> 16 (breakfast_eur)",
+   "answer": "A night at Hotel Alder costs €16, and breakfast is **not** included (it can be added for an extra €16).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "142 (rate_eur) -> 4.6 (guest_rating)",
+   "answer": "A night at Hotel Alder costs €4.6, and breakfast is **not** included (it can be added for an extra €16).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "digits swapped",
+   "change": "16 -> 61",
+   "answer": "A night at Hotel Alder costs €142, and breakfast is **not** included (it can be added for an extra €61).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"61\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "last digit off by one",
+   "change": "16 -> 17",
+   "answer": "A night at Hotel Alder costs €142, and breakfast is **not** included (it can be added for an extra €17).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"17\" is not in the tool results or the question. The closest values they give: 16.0 (get_hotel) or 15 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "16 (breakfast_eur) -> 142 (rate_eur)",
+   "answer": "A night at Hotel Alder costs €142, and breakfast is **not** included (it can be added for an extra €142).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "16 (breakfast_eur) -> 4.6 (guest_rating)",
+   "answer": "A night at Hotel Alder costs €142, and breakfast is **not** included (it can be added for an extra €4.6).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g16",
+   "kind": "two values swapped",
+   "change": "142 (rate_eur) <-> 16 (breakfast_eur)",
+   "answer": "A night at Hotel Alder costs €16, and breakfast is **not** included (it can be added for an extra €142).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "digits swapped",
+   "change": "0.8 -> 8.0",
+   "answer": "Hotel Alder is about 8.0 km from the nearest train station and roughly 13.5 km from the airport.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"8.0\" is not in the tool results or the question. The closest values they give: 11 (get_hotel) or 5 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "last digit off by one",
+   "change": "0.8 -> 0.9",
+   "answer": "Hotel Alder is about 0.9 km from the nearest train station and roughly 13.5 km from the airport.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.9\" is not in the tool results or the question. The closest values they give: 0.8 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "value of another field",
+   "change": "0.8 (station_km) -> 142 (rate_eur)",
+   "answer": "Hotel Alder is about 142 km from the nearest train station and roughly 13.5 km from the airport.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "value of another field",
+   "change": "0.8 (station_km) -> 16 (breakfast_eur)",
+   "answer": "Hotel Alder is about 16 km from the nearest train station and roughly 13.5 km from the airport.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "digits swapped",
+   "change": "13.5 -> 15.3",
+   "answer": "Hotel Alder is about 0.8 km from the nearest train station and roughly 15.3 km from the airport.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"15.3\" is not in the tool results or the question. The closest values they give: 15 (get_hotel) or 16.0 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "last digit off by one",
+   "change": "13.5 -> 13.6",
+   "answer": "Hotel Alder is about 0.8 km from the nearest train station and roughly 13.6 km from the airport.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"13.6\" is not in the tool results or the question. The closest values they give: 13.5 (get_hotel) or 15 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "value of another field",
+   "change": "13.5 (airport_km) -> 142 (rate_eur)",
+   "answer": "Hotel Alder is about 0.8 km from the nearest train station and roughly 142 km from the airport.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "value of another field",
+   "change": "13.5 (airport_km) -> 16 (breakfast_eur)",
+   "answer": "Hotel Alder is about 0.8 km from the nearest train station and roughly 16 km from the airport.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g17",
+   "kind": "two values swapped",
+   "change": "0.8 (station_km) <-> 13.5 (airport_km)",
+   "answer": "Hotel Alder is about 13.5 km from the nearest train station and roughly 0.8 km from the airport.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g18",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "Hotel Alder checks in at 51:00 and checks out at 11:00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"51\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g18",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "Hotel Alder checks in at 16:00 and checks out at 11:00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"16:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g18",
+   "kind": "last digit off by one",
+   "change": "11 -> 12",
+   "answer": "Hotel Alder checks in at 15:00 and checks out at 12:00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g19",
+   "kind": "digits swapped",
+   "change": "474 -> 447",
+   "answer": "Three nights at Hotel Alder with breakfast each morning would cost €447.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"447\" is not in the tool results or the question. The closest values they give: 474 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g19",
+   "kind": "last digit off by one",
+   "change": "474 -> 475",
+   "answer": "Three nights at Hotel Alder with breakfast each morning would cost €475.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"475\" is not in the tool results or the question. The closest values they give: 474 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "digits swapped",
+   "change": "4.6 -> 6.4",
+   "answer": "Hotel Alder’s guest rating is 6.4, while Juniper Table’s rating is 4.3, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"guest rating is 6.4\": the tool results give guest_rating = 4.6 (get_hotel); rating = 4.3 (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "last digit off by one",
+   "change": "4.6 -> 4.7",
+   "answer": "Hotel Alder’s guest rating is 4.7, while Juniper Table’s rating is 4.3, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"guest rating is 4.7\": the tool results give guest_rating = 4.6 (get_hotel); rating = 4.3 (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.6 (guest_rating) -> 142 (rate_eur)",
+   "answer": "Hotel Alder’s guest rating is 142, while Juniper Table’s rating is 4.3, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"guest rating is 142\": the tool results give guest_rating = 4.6 (get_hotel); rating = 4.3 (get_restaurant). 142 is the rate_eur (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.6 (guest_rating) -> 16 (breakfast_eur)",
+   "answer": "Hotel Alder’s guest rating is 16, while Juniper Table’s rating is 4.3, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"guest rating is 16\": the tool results give guest_rating = 4.6 (get_hotel); rating = 4.3 (get_restaurant). 16 is the breakfast_eur (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "digits swapped",
+   "change": "4.3 -> 3.4",
+   "answer": "Hotel Alder’s guest rating is 4.6, while Juniper Table’s rating is 3.4, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating is 3.4\": the tool results give rating = 4.3 (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "last digit off by one",
+   "change": "4.3 -> 4.4",
+   "answer": "Hotel Alder’s guest rating is 4.6, while Juniper Table’s rating is 4.4, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating is 4.4\": the tool results give rating = 4.3 (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.3 (rating) -> 3 (review_count)",
+   "answer": "Hotel Alder’s guest rating is 4.6, while Juniper Table’s rating is 3, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating is 3\": the tool results give rating = 4.3 (get_restaurant). 3 is the review_count (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.3 (rating) -> 2 (price_level)",
+   "answer": "Hotel Alder’s guest rating is 4.6, while Juniper Table’s rating is 2, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating is 2\": the tool results give rating = 4.3 (get_restaurant). 2 is the price_level (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g20",
+   "kind": "two values swapped",
+   "change": "4.6 (guest_rating) <-> 4.3 (rating)",
+   "answer": "Hotel Alder’s guest rating is 4.3, while Juniper Table’s rating is 4.6, so Hotel Alder does have a higher guest rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating is 4.6\": the tool results give rating = 4.3 (get_restaurant). 4.6 is the guest_rating (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "The doors for Lantern Jazz Night open at **81:45**, and the music starts at **19:30**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "The doors for Lantern Jazz Night open at **19:45**, and the music starts at **19:30**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:45\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "The doors for Lantern Jazz Night open at **18:54**, and the music starts at **19:30**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:54\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "The doors for Lantern Jazz Night open at **18:46**, and the music starts at **19:30**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:46\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "digits swapped",
+   "change": "19 -> 91",
+   "answer": "The doors for Lantern Jazz Night open at **18:45**, and the music starts at **91:30**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"91\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "19 -> 18",
+   "answer": "The doors for Lantern Jazz Night open at **18:45**, and the music starts at **18:30**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:30\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g06",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "The doors for Lantern Jazz Night open at **18:45**, and the music starts at **19:31**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "digits swapped",
+   "change": "14 -> 41",
+   "answer": "There are 41 tickets left for the Rooftop Film Club, and each ticket costs €12.50.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"41 tickets left\": the tool results give tickets_left = 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "last digit off by one",
+   "change": "14 -> 15",
+   "answer": "There are 15 tickets left for the Rooftop Film Club, and each ticket costs €12.50.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"15 tickets left\": the tool results give tickets_left = 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "value of another field",
+   "change": "14 (tickets_left) -> 12.5 (price_eur)",
+   "answer": "There are 12.5 tickets left for the Rooftop Film Club, and each ticket costs €12.50.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12.5 tickets left\": the tool results give tickets_left = 14 (get_event). 12.5 is the price_eur (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "digits swapped",
+   "change": "12.50 -> 12.05",
+   "answer": "There are 14 tickets left for the Rooftop Film Club, and each ticket costs €12.05.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12.05\" is not in the tool results or the question. The closest values they give: 12.5 (get_event) or 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "last digit off by one",
+   "change": "12.50 -> 12.51",
+   "answer": "There are 14 tickets left for the Rooftop Film Club, and each ticket costs €12.51.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12.51\" is not in the tool results or the question. The closest values they give: 12.5 (get_event) or 14 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "value of another field",
+   "change": "12.50 (price_eur) -> 14 (tickets_left)",
+   "answer": "There are 14 tickets left for the Rooftop Film Club, and each ticket costs €14.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g07",
+   "kind": "two values swapped",
+   "change": "14 (tickets_left) <-> 12.50 (price_eur)",
+   "answer": "There are 12.50 tickets left for the Rooftop Film Club, and each ticket costs €14.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12.50 tickets left\": the tool results give tickets_left = 14 (get_event). 12.50 is the price_eur (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "digits swapped",
+   "change": "19 -> 91",
+   "answer": "Lantern Jazz Night runs from 91:30 to 22:15, so it lasts **2 hours and 45 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"91\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "19 -> 18",
+   "answer": "Lantern Jazz Night runs from 18:30 to 22:15, so it lasts **2 hours and 45 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:30\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "Lantern Jazz Night runs from 19:31 to 22:15, so it lasts **2 hours and 45 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "22 -> 23",
+   "answer": "Lantern Jazz Night runs from 19:30 to 23:15, so it lasts **2 hours and 45 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23:15\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "Lantern Jazz Night runs from 19:30 to 22:51, so it lasts **2 hours and 45 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22:51\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "Lantern Jazz Night runs from 19:30 to 22:16, so it lasts **2 hours and 45 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22:16\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "Lantern Jazz Night runs from 19:30 to 22:15, so it lasts **2 hours and 54 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"54\" is not in the tool results or the question. The closest values they give: 86 (get_event) or 28.0 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g08",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "Lantern Jazz Night runs from 19:30 to 22:15, so it lasts **2 hours and 46 minutes**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"46\" is not in the tool results or the question. The closest values they give: 28.0 (get_event) or 86 (get_event)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g09",
+   "kind": "digits swapped",
+   "change": "52 -> 25",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:25. It is running 12 minutes late.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"08:25\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g09",
+   "kind": "last digit off by one",
+   "change": "52 -> 53",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:53. It is running 12 minutes late.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"08:53\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g09",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:52. It is running 21 minutes late.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"21\" is not in the tool results or the question. The closest values they give: 12 (get_train)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g09",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:52. It is running 13 minutes late.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"13\" is not in the tool results or the question. The closest values they give: 12 (get_train) or 7 (get_train)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g09",
+   "kind": "value of another field",
+   "change": "12 (delay_min) -> 4 (platform)",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:52. It is running 4 minutes late.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g09",
+   "kind": "value of another field",
+   "change": "12 (delay_min) -> 3 (stops)",
+   "answer": "Train RX‑12 departs Bristol at 07:00 and arrives in London at 08:52. It is running 3 minutes late.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "1.8 -> 8.1",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £8.1 million, with the council covering £1.1 million and a national fund the remainder. Of the 22,000 books lost, 9,500 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"8.1 million\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "1.8 -> 1.9",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.9 million, with the council covering £1.1 million and a national fund the remainder. Of the 22,000 books lost, 9,500 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.9 million\" is not in the tool results or the question. The closest values they give: 1.8 million (get_article) or 1.1 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "1.1 -> 1.2",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.8 million, with the council covering £1.2 million and a national fund the remainder. Of the 22,000 books lost, 9,500 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.2 million\" is not in the tool results or the question. The closest values they give: 1.1 million (get_article) or 1.8 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "22,000 -> 20,200",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.8 million, with the council covering £1.1 million and a national fund the remainder. Of the 20,200 books lost, 9,500 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"20,200\" is not in the tool results or the question. The closest values they give: 22,000 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "22,000 -> 22,001",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.8 million, with the council covering £1.1 million and a national fund the remainder. Of the 22,001 books lost, 9,500 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22,001\" is not in the tool results or the question. The closest values they give: 22,000 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "digits swapped",
+   "change": "9,500 -> 9,050",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.8 million, with the council covering £1.1 million and a national fund the remainder. Of the 22,000 books lost, 9,050 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9,050\" is not in the tool results or the question. The closest values they give: 9,500 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g12",
+   "kind": "last digit off by one",
+   "change": "9,500 -> 9,501",
+   "answer": "The Riverside Library reopened on Monday after fourteen months of flood repairs that cost £1.8 million, with the council covering £1.1 million and a national fund the remainder. Of the 22,000 books lost, 9,501 have been replaced, and the mayor announced extended opening hours from January, with the library now open six days a week.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9,501\" is not in the tool results or the question. The closest values they give: 9,500 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g14",
+   "kind": "digits swapped",
+   "change": "4,800 -> 4,080",
+   "answer": "The article says 4,080 households lost water, and the repairs are estimated to cost 2.3 million pounds.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,080\" is not in the tool results or the question. The closest values they give: 4,800 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g14",
+   "kind": "last digit off by one",
+   "change": "4,800 -> 4,801",
+   "answer": "The article says 4,801 households lost water, and the repairs are estimated to cost 2.3 million pounds.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4,801\" is not in the tool results or the question. The closest values they give: 4,800 (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g14",
+   "kind": "digits swapped",
+   "change": "2.3 -> 3.2",
+   "answer": "The article says 4,800 households lost water, and the repairs are estimated to cost 3.2 million pounds.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.2 million\" is not in the tool results or the question. The closest values they give: 2.3 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g14",
+   "kind": "last digit off by one",
+   "change": "2.3 -> 2.4",
+   "answer": "The article says 4,800 households lost water, and the repairs are estimated to cost 2.4 million pounds.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.4 million\" is not in the tool results or the question. The closest values they give: 2.3 million (get_article)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "digits swapped",
+   "change": "142.00 -> 140.20",
+   "answer": "A night at Hotel Alder in Bristol costs **€140.20**. Breakfast is **not included**; it can be added for an extra €16.00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"140.20\" is not in the tool results or the question. The closest values they give: 142.0 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "last digit off by one",
+   "change": "142.00 -> 142.01",
+   "answer": "A night at Hotel Alder in Bristol costs **€142.01**. Breakfast is **not included**; it can be added for an extra €16.00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"142.01\" is not in the tool results or the question. The closest values they give: 142.0 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "142.00 (rate_eur) -> 16 (breakfast_eur)",
+   "answer": "A night at Hotel Alder in Bristol costs **€16**. Breakfast is **not included**; it can be added for an extra €16.00.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "142.00 (rate_eur) -> 4.6 (guest_rating)",
+   "answer": "A night at Hotel Alder in Bristol costs **€4.6**. Breakfast is **not included**; it can be added for an extra €16.00.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "digits swapped",
+   "change": "16.00 -> 10.60",
+   "answer": "A night at Hotel Alder in Bristol costs **€142.00**. Breakfast is **not included**; it can be added for an extra €10.60.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"10.60\" is not in the tool results or the question. The closest values they give: 11 (get_hotel) or 13.5 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "last digit off by one",
+   "change": "16.00 -> 16.01",
+   "answer": "A night at Hotel Alder in Bristol costs **€142.00**. Breakfast is **not included**; it can be added for an extra €16.01.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"16.01\" is not in the tool results or the question. The closest values they give: 16.0 (get_hotel) or 15 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "16.00 (breakfast_eur) -> 142 (rate_eur)",
+   "answer": "A night at Hotel Alder in Bristol costs **€142.00**. Breakfast is **not included**; it can be added for an extra €142.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g16",
+   "kind": "value of another field",
+   "change": "16.00 (breakfast_eur) -> 4.6 (guest_rating)",
+   "answer": "A night at Hotel Alder in Bristol costs **€142.00**. Breakfast is **not included**; it can be added for an extra €4.6.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g18",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "The check‑in time at Hotel Alder is **51:00** and the check‑out time is **11:00**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"51\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g18",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "The check‑in time at Hotel Alder is **16:00** and the check‑out time is **11:00**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"16:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g18",
+   "kind": "last digit off by one",
+   "change": "11 -> 12",
+   "answer": "The check‑in time at Hotel Alder is **15:00** and the check‑out time is **12:00**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "digits swapped",
+   "change": "4.6 -> 6.4",
+   "answer": "Hotel Alder’s guest rating of 6.4 is higher than Juniper Table’s rating of 4.3.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.4\" is not in the tool results or the question. The closest values they give: 5 (get_hotel) or 4.6 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "last digit off by one",
+   "change": "4.6 -> 4.7",
+   "answer": "Hotel Alder’s guest rating of 4.7 is higher than Juniper Table’s rating of 4.3.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.7\" is not in the tool results or the question. The closest values they give: 4.6 (get_hotel) or 5 (get_hotel)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.6 (guest_rating) -> 142 (rate_eur)",
+   "answer": "Hotel Alder’s guest rating of 142 is higher than Juniper Table’s rating of 4.3.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.6 (guest_rating) -> 16 (breakfast_eur)",
+   "answer": "Hotel Alder’s guest rating of 16 is higher than Juniper Table’s rating of 4.3.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "digits swapped",
+   "change": "4.3 -> 3.4",
+   "answer": "Hotel Alder’s guest rating of 4.6 is higher than Juniper Table’s rating of 3.4.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 3.4\": the tool results give rating = 4.3 (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "last digit off by one",
+   "change": "4.3 -> 4.4",
+   "answer": "Hotel Alder’s guest rating of 4.6 is higher than Juniper Table’s rating of 4.4.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 4.4\": the tool results give rating = 4.3 (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.3 (rating) -> 3 (review_count)",
+   "answer": "Hotel Alder’s guest rating of 4.6 is higher than Juniper Table’s rating of 3.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 3\": the tool results give rating = 4.3 (get_restaurant). 3 is the review_count (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "value of another field",
+   "change": "4.3 (rating) -> 2 (price_level)",
+   "answer": "Hotel Alder’s guest rating of 4.6 is higher than Juniper Table’s rating of 2.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 2\": the tool results give rating = 4.3 (get_restaurant). 2 is the price_level (get_restaurant)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g20",
+   "kind": "two values swapped",
+   "change": "4.6 (guest_rating) <-> 4.3 (rating)",
+   "answer": "Hotel Alder’s guest rating of 4.3 is higher than Juniper Table’s rating of 4.6.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 4.6\": the tool results give rating = 4.3 (get_restaurant). 4.6 is the guest_rating (get_hotel)."
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g01",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g02",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "g11",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g01",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g04",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g11",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g17",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "g19",
+   "why": "traceground says problems"
+  }
+ ]
+}

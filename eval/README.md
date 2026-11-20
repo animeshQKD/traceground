@@ -92,6 +92,12 @@ python score.py --set heldout2
 python mutate.py --set heldout2
 ```
 
+Measured once with 0.1.1 on 2026-11-20 (`results/review_heldout2_2026-11-20.md`): false alarms on 5 of 34
+correct answers, 1 of 3 wrong answers caught (the other 2 said no tool existed, with nothing to check), and
+115 of 140 planted errors caught, a value of another field only 10 of 32. 0.1.0 on the same answers: 6 false
+alarms, the same planted errors. This set has now been read, so a change made for what it shows needs
+another fresh set.
+
 ## RAGTruth: real answers marked by people
 
 `ragtruth.py` runs traceground on [RAGTruth](https://github.com/ParticleMedia/RAGTruth) (Niu et al., ACL

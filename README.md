@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/traceground)](https://pypi.org/project/traceground/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/animeshQKD/traceground/blob/main/LICENSE)
 
-**Status: alpha (0.1.0).** It has the number and quote checks over sources; the tool-trace checks
+**Status: alpha (0.1.1).** It has the number and quote checks over sources; the tool-trace checks
 (value-to-field and argument binding, failed calls, tools never called); the wording checks (thinking
 aloud, self-contradiction); `check_answer()`, `check_messages()`, the command line, and a Gradio demo
 that is also an MCP tool (`space/`). Rules and messages may still change between 0.x versions.
@@ -199,15 +199,29 @@ PROBLEMS: 2 value-to-field bindings checked against 1 tool call: 1 claim about a
    This is the model thinking aloud, left in the final answer: "Wait, let me check:".
 ```
 
-## Measured on RAGTruth
+## Measured
 
-On the test split of [RAGTruth](https://github.com/ParticleMedia/RAGTruth), 2,675 real answers by six models
-with hallucinations marked by people, measured once with 0.1.0.dev12 (whose checks 0.1.0 keeps unchanged)
-after development on the train split:
-7 of traceground's 172 high-severity findings (4%) were false alarms, by hand review. It flagged 85 of the
-306 marked spans that contain a digit, and 8% to 16% of the answers with any marked span: most marked
-hallucinations are claims in words, which it does not check. Details, and how to rerun it, in
-[eval/README.md](https://github.com/animeshQKD/traceground/blob/main/eval/README.md).
+**On RAGTruth.** On the test split of [RAGTruth](https://github.com/ParticleMedia/RAGTruth), 2,675 real
+answers by six models with hallucinations marked by people, measured once with 0.1.0.dev12 (whose checks
+0.1.0 keeps unchanged) after development on the train split: 7 of traceground's 172 high-severity findings
+(4%) were false alarms, by hand review. It flagged 85 of the 306 marked spans that contain a digit, and 8%
+to 16% of the answers with any marked span: most marked hallucinations are claims in words, which it does
+not check. 0.1.1 fixes those 7 false alarms, so for 0.1.1 the test split is no longer unseen.
+
+**On fresh tool-calling chats (0.1.1).** 40 answers by gpt-oss-120b and gpt-oss-20b to 20 questions on five
+tools made for this test (restaurants with reviews, events, trains, hotels, news articles), written after
+the 0.1.1 changes and labelled by hand before traceground was run on them:
+
+* False alarms on 5 of the 34 correct answers (15%); three come from one cause, a rating said in stars
+  ("an overall rating of 4.3 stars") tied to the reviews' stars instead of the rating. 0.1.0 had 6.
+* Of the 3 wrong answers, it caught 1 (a speed comparison by arrival times, "faster by 2 hours 49
+  minutes"); the other 2 called no tool and said no tool existed, with no number or quote to check.
+* Planted errors: 115 of 140 caught (82%), but a value of another field only 10 of 32 (31%), against 60%
+  to 75% on the earlier sets.
+
+Details, and how to rerun both, in
+[eval/README.md](https://github.com/animeshQKD/traceground/blob/main/eval/README.md) and
+[eval/results/review_heldout2_2026-11-20.md](https://github.com/animeshQKD/traceground/blob/main/eval/results/review_heldout2_2026-11-20.md).
 
 ## Demo
 
@@ -230,6 +244,8 @@ http://127.0.0.1:7860/gradio_api/mcp/ while the page runs ([space/README.md](htt
 
 ## Planned next
 
+* 0.1.2: the false alarms and misses the fresh chats showed (a rating said in stars; a value of
+  another field given with a verb or unit, such as "costs €16"), measured on another fresh set.
 * Citations mode: marker styles, every marker checked, every factual sentence cited (optional).
 * An opt-in automatic fix where a fix is certain (a number cut short, thinking aloud removed).
 * LangGraph / LangChain helpers.

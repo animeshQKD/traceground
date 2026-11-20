@@ -2,7 +2,7 @@
 
 All notable changes to traceground are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
-## 0.1.1 (not yet released)
+## 0.1.1
 
 Fixes for the 7 false alarms found by hand among traceground's high findings on the RAGTruth test split
 (eval/results/ragtruth_review_2026-11-18.md), and for 7 more like them on the train split. Since the test
@@ -31,10 +31,18 @@ a marked span was lost.
 - "The closest values they give" offers only values of the same kind: a year for a year, a day of a month for
   a day, never a part of a date or time stamp ("03" of "17:03:39"), and not a price for a year.
 
+### Measured
+
+On the second held-out set (40 answers by gpt-oss-120b and gpt-oss-20b, labelled by hand before traceground
+was run; eval/results/review_heldout2_2026-11-20.md): false alarms on 5 of 34 correct answers (0.1.0: 6),
+1 of 3 wrong answers caught, and 115 of 140 planted errors caught, a value of another field only 10 of 32.
+Three of the false alarms have one cause, a rating said in stars ("4.3 stars") tied to the reviews' stars.
+
 ### Added (repository)
 
 - A second held-out set for the evaluation, `--set heldout2`: 20 questions on five new tools (restaurants
-  with reviews, events, trains, hotels, news articles).
+  with reviews, events, trains, hotels, news articles), its two runs, the scores and the hand review.
+- The demo on the Space installs traceground 0.1.1.
 
 ### Changed (repository, since 0.1.0)
 
