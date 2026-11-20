@@ -154,9 +154,14 @@ def _parse(m: re.Match, text: str) -> Number:
                   approx=bool(_APPROX.search(text[max(0, m.start() - 30):m.start()])))
 
 
+# what is left when a number glued to a unit was cut short: "29" of "29,200km", "3" of "3.5km"
+_CUT_FROM_GLUED = re.compile(r"(?:[,.]\d+)+[A-Za-z]")
+
+
 def find_numbers(text: str) -> list:
-    """Every number written in digits in `text`, with its span."""
-    return [_parse(m, text) for m in _NUM.finditer(text)]
+    """Every number written in digits in `text`, with its span. A number glued to a unit ("5km") is not
+    one, and neither is a part of one ("29" of "29,200km")."""
+    return [_parse(m, text) for m in _NUM.finditer(text) if not _CUT_FROM_GLUED.match(text, m.end())]
 
 
 # a rating scale, not a claim: "4.0 out of 5.0 stars", "8/10"
@@ -166,7 +171,7 @@ _SCALE = re.compile(r"(?i)\bout\s+of\s+(?:5|10|100)(?:\.0)?\b|(?<=\d)\s?/\s?(?:5
 # the answer counting itself: "Here is a summary in 150 words", "(98 words)", "Word count: 98", "a 98-word summary"
 _OWN_LENGTH = re.compile(
     r"(?i)\b(?:summary|summari[sz]ed|overview|answer|response|description|paragraph|version|reply|text|recap)\b"
-    r"[^.!?\n]{0,40}?\b(?:in|within|under|of|at|to)\s+(?:about\s+|around\s+|approximately\s+|exactly\s+|"
+    r"[^.!?\n]{0,80}?\b(?:in|within|under|of|at|to)\s+(?:about\s+|around\s+|approximately\s+|exactly\s+|"
     r"roughly\s+|just\s+|fewer\s+than\s+|less\s+than\s+|under\s+)?\d{1,4}(?:\s*[-\u2013]\s*\d{1,4})?\s+"
     r"(?:words?|sentences?|characters?|paragraphs?|bullet\s+points?|lines?)\b"
     r"|\(\s*\d{1,4}\s+words?\s*\)|\bword\s+count\s*:?\s*\d{1,4}"
@@ -313,8 +318,32 @@ def _cut_short(n: Number, evidence: list):
     return None
 
 
-def _nearest(n: Number, evidence: list, k: int = 2, within: float = 0.5) -> list:
-    """Up to k source numbers close to n (relative difference at most `within`), closest first."""
+_STAMP = re.compile(r"\d{4}-\d\d-\d\d(?:[ T]\d\d:\d\d(?::\d\d(?:\.\d+)?)?)?|(?<![\d.])\d{1,2}:\d\d(?::\d\d)?")
+_MONTH_BEFORE = re.compile(rf"(?i)\b{_MONTHS}\.?\s+$")
+_MONTH_AFTER = re.compile(rf"(?i)(?:st|nd|rd|th)?\s+(?:of\s+)?{_MONTHS}\b")
+
+
+def number_kind(text: str, start: int, end: int) -> str:
+    """What a number is, for offering a close value of the same kind: "stamp" (a part of a date or time
+    stamp, "2015-12-13 17:03:39"), "day" (of a month: "May 18", "22nd of May"), "year" (1800 to 2100, digits
+    only) or "other"."""
+    if any(m.start() <= start < m.end() for m in _STAMP.finditer(text, max(0, start - 20), min(len(text), end + 20))):
+        return "stamp"
+    if _MONTH_BEFORE.search(text[max(0, start - 12):start]) or _MONTH_AFTER.match(text, end):
+        return "day"
+    if re.fullmatch(r"\d{4}", text[start:end].strip()) and 1800 <= int(text[start:end]) <= 2100:
+        return "year"
+    return "other"
+
+
+def _nearest(n: Number, evidence: list, k: int = 2, within: float = 0.5, answer: str = "", texts=None) -> list:
+    """Up to k source numbers close to n (relative difference at most `within`), closest first. With the
+    answer and the texts, only numbers of the same kind (number_kind) are offered: a year is not close to a
+    price, and a part of a time stamp is never offered."""
+    kind = number_kind(answer, n.start, n.end) if answer and texts else None
+    if kind is not None:
+        evidence = [e for e in evidence if e.source in texts
+                    and number_kind(texts[e.source], e.start, e.end) == kind != "stamp"]
     pairs = [(c, False) for c, _t in n.candidates(percent_as_fraction=False)]
     if n.percent:
         pairs.append((n.value / 100, True))       # 70% as 0.70: compared only with decimals, not with "1"
@@ -465,7 +494,7 @@ def duration_parts(answer: str, values: list) -> list:
     return out
 
 
-_TIME_12 = re.compile(r"(?i)(?<![\d:.])(\d{1,2})(?::(\d{2}))?\s*([ap])(?:\.\s?m\.|\s?m\b)")    # 2 pm, 2:30 p.m.
+_TIME_12 = re.compile(r"(?i)(?<![\d:.])(\d{1,2})(?::(\d{1,2}))?\s*([ap])(?:\.\s?m\.|\s?m\b)")    # 2 pm, 2:30 p.m., 11:0 PM
 _TIME_24 = re.compile(r"(?<![\d:.])(\d{1,2}):(\d{1,2})(?![\d:])")
 _TIME_WORDS = {"noon": 720, "midday": 720, "midnight": 0}
 
@@ -574,7 +603,7 @@ def check_numbers(answer: str, sources: list, question: str = "", *, percent_as_
                 evidence=[{"source": e.source, "value": e.text, "context": _context(texts[e.source], e.start, e.end)}],
                 suggestion=_suggest(n, right)))
             continue
-        near = _nearest(n, evidence)
+        near = _nearest(n, evidence, answer=answer, texts=texts)
         if near:
             closest = " or ".join(f"{e.text} ({_where(e)})" for e in near)
             message = f"\"{shown}\" is not in {evidence_name}. The closest values they give: {closest}."

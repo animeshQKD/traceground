@@ -10,7 +10,7 @@
     result = check_answer(answer, question="...", trace=[{"name": "loan_cost", "args": {...}, "result": {...}}])
     result = check_messages(messages)
 
-In development (0.1.0.dev): numbers, quotes, value-to-field and argument binding, failed calls, tools
+Alpha: numbers, quotes, value-to-field and argument binding, failed calls, tools
 never called, thinking aloud and self-contradiction are implemented. See https://github.com/animeshQKD/traceground.
 """
 from importlib.metadata import PackageNotFoundError, version

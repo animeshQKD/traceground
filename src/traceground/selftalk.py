@@ -44,6 +44,8 @@ _STOP = {"the", "and", "for", "with", "that", "this", "these", "those", "from", 
          "has", "have", "had", "its", "their", "there", "they", "them", "any", "about", "into", "than", "then", "also",
          "only", "but", "your", "our", "can", "will", "would", "should", "could", "may", "might", "is", "be", "it",
          "don", "doesn", "didn", "isn", "aren", "wasn", "weren", "won", "dont", "doesnt", "didnt"}
+# words about the sources, not the topic: "Based on the given passages, ..." shares no topic with a denial
+_SOURCE_TALK = {stem(w) for w in ("given", "based", "provided", "mentioned", "stated", "according")}
 _NOUN_WORDS = {"passage", "paper", "source", "document", "doc", "context", "text", "article", "search", "result", "data",
                "record", "file", "manual", "report", "information", "mention", "detail"}
 
@@ -106,7 +108,7 @@ def check_self_contradiction(answer: str, sentence_spans: list, evidence: list, 
             t = answer[c:d]
             if _NO_ANSWER.search(_QUOTED.sub(" ", t)) or t.rstrip().endswith(("?", ":")):
                 continue        # a question or a heading ("follow these steps:") gives nothing yet
-            shared = [w for w in topic if w in set(_content(t))]
+            shared = [w for w in topic if w in set(_content(t)) and w not in _SOURCE_TALK]
             if len(shared) < 2 or len(shared) < 2 * len(topic) / 3:
                 continue
             words = [w for w in _content(t) if not re.fullmatch(r"s\d+", w)]

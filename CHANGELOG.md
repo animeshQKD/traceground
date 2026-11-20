@@ -2,9 +2,41 @@
 
 All notable changes to traceground are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 0.1.1 (not yet released)
 
-### Changed (repository only; the package is unchanged)
+Fixes for the 7 false alarms found by hand among traceground's high findings on the RAGTruth test split
+(eval/results/ragtruth_review_2026-11-18.md), and for 7 more like them on the train split. Since the test
+split was used to find them, it no longer measures 0.1.1 on unseen answers; a second held-out set,
+written after these changes and before any model answered it, does (eval/questions_heldout2.json). On the
+dev and held-out evaluations, the planted errors and the train split, nothing else changed: no finding on
+a marked span was lost.
+
+### Fixed
+
+- Times written with one-digit minutes, as Yelp data writes them ("11:0 PM" for 23:0), are read as times.
+- A number glued to a unit after a thousands separator or a decimal point is no longer cut short: "29,200km"
+  and "$81.6m" are not read as 29 and 81 (they are left unchecked, as "5km" already was), and a source's
+  "12.7cm" now supports an answer's "12.7 cm".
+- The answer giving its own length is found further from "summary" ("Here is a summary of the news article
+  about ... within 83 words").
+- Quotes: asterisks are ignored like other punctuation, so a censored word written another way ("s\*\*" for
+  "s---") matches; a quote one letter off from the source, in a word of five letters or more and not in a
+  digit ("in itself" for "in its self"), is reported as changed slightly (low), as one misspelt word was.
+- Self-contradiction: words about the sources ("Based on the given passages") no longer count as shared
+  topic words, so "the side effects are not mentioned" is not contradicted by a sentence on the benefits.
+- Value-to-field: a number equal to the length of a list named just before it ("Number of reviews: 3") is a
+  count; and a number said of one star field that another field holds, where one is a field of a list's
+  items and the other is not ("gave the business a 5-star rating" for one review's 5 stars), is not reported,
+  since the wording does not tell which is meant.
+- "The closest values they give" offers only values of the same kind: a year for a year, a day of a month for
+  a day, never a part of a date or time stamp ("03" of "17:03:39"), and not a price for a year.
+
+### Added (repository)
+
+- A second held-out set for the evaluation, `--set heldout2`: 20 questions on five new tools (restaurants
+  with reviews, events, trains, hotels, news articles).
+
+### Changed (repository, since 0.1.0)
 
 - The demo is online as a Hugging Face Space, https://huggingface.co/spaces/animesh1986/traceground, which
   installs traceground 0.1.0 from PyPI and is also an MCP server. On the Space, the page says that what is

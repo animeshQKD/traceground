@@ -340,3 +340,34 @@ def test_run_uses_the_heldout_folder(tmp_path, monkeypatch):
     path = run_eval.run("fake", "m", {"h01"}, 5, chat=lambda messages, tools: {"content": "No idea."},
                         question_set="heldout")
     assert path.parent == tmp_path / "heldout" and json.loads(path.read_text(encoding="utf-8"))["id"] == "h01"
+
+
+# ---------------------------------------------------------------- second held-out set
+HELDOUT2 = run_eval.load_questions("heldout2")
+
+
+def test_heldout2_questions_are_well_formed_and_separate():
+    ids = [q["id"] for q in HELDOUT2]
+    others = {q["id"] for q in QUESTIONS} | {q["id"] for q in HELDOUT}
+    assert len(ids) == len(set(ids)) == 20 and not set(ids) & others
+    for q in HELDOUT2:
+        assert q["kind"] == "value" and all(name in T.TOOLS for name, _a in q["calls"])
+        for name, args in q["calls"]:
+            assert "error" not in T.run_tool(name, args), (q["id"], name, args)
+
+
+def test_heldout2_tool_values():
+    assert score.expected_values(next(q for q in HELDOUT2 if q["id"] == "g19")) == [474.0]   # 3 * (142 + 16)
+    r = T.get_restaurant("Harbor Noodle House")
+    assert [x["stars"] for x in r["reviews"]] == [5, 2, 4, 5] and r["review_count"] == len(r["reviews"])
+    assert T.get_restaurant("Juniper Table")["review_count"] == len(T.get_restaurant("Juniper Table")["reviews"])
+    assert "error" in T.get_train("RX-99") and "error" in T.get_article("N-999") and "error" in T.get_hotel("x")
+    r["reviews"].clear()
+    assert len(T.get_restaurant("Harbor Noodle House")["reviews"]) == 4          # a copy, not the table itself
+
+
+def test_run_uses_the_heldout2_folder(tmp_path, monkeypatch):
+    monkeypatch.setitem(run_eval.SETS, "heldout2", (run_eval.SETS["heldout2"][0], tmp_path / "heldout2"))
+    path = run_eval.run("fake", "m", {"g01"}, 5, chat=lambda messages, tools: {"content": "No idea."},
+                        question_set="heldout2")
+    assert path.parent == tmp_path / "heldout2" and json.loads(path.read_text(encoding="utf-8"))["id"] == "g01"

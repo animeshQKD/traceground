@@ -77,6 +77,21 @@ python mutate.py --set heldout
 The same person wrote the questions and the checker, so the set is not blind to the field names; it is
 blind to how the models word their answers and to which planted errors get through.
 
+### The second held-out set
+
+`questions_heldout2.json` holds 20 questions on five tools that did not exist before 0.1.1 (restaurants with
+lists of reviews, events, trains, hotels, news articles): results with lists of reviews, times written as
+"9:0", and text to quote from. The questions were written on 2026-11-20, after the 0.1.1 changes were made
+and the code was frozen, and before any model answered them. Times, quotes and summaries have no listed
+values, so every answer is labelled by hand.
+
+```
+python run_eval.py --provider groq --set heldout2
+python run_eval.py --provider groq --model openai/gpt-oss-20b --set heldout2 --max-calls 200
+python score.py --set heldout2
+python mutate.py --set heldout2
+```
+
 ## RAGTruth: real answers marked by people
 
 `ragtruth.py` runs traceground on [RAGTruth](https://github.com/ParticleMedia/RAGTruth) (Niu et al., ACL
@@ -117,3 +132,7 @@ What this says, and what it does not:
   more noise: 379 answers flagged, 230 of them with no marked span (now 126 and 30), for about the same number
   of marked digit spans flagged (83 then, 85 now). Same answers, same counts (`ragtruth.py` run with the old
   code), but that measurement was blind and this one comes after work on the train split.
+* The 7 false alarms above were fixed in 0.1.1 (and 7 like them on the train split); on both splits, no
+  finding on a marked span changed. Since they were found by reading the test split, the split no longer
+  measures 0.1.1 on unseen answers: the table above is 0.1.0's, and the second held-out set is the unseen
+  measurement for 0.1.1.

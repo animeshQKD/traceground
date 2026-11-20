@@ -419,7 +419,8 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
     items = _items(answer)
     question_values = [(c, v) for c in calls for _k, v in _arg_values(c)]
     in_range = _ranges(items, answer, results)
-    counted = {w for w, _n in list_counts(calls)}
+    counts = list_counts(calls)
+    counted = {w for w, _n in counts}
     when_values = [float(v) for c in calls for obj in (c.args, c.result) if isinstance(obj, dict)
                    for k, v in obj.items() if k.lower() in _WHEN_KEYS and isinstance(v, (int, float))
                    and not isinstance(v, bool)]
@@ -449,6 +450,8 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
             continue
         if after_words and after_words[0][0] in counted:
             continue                # "based on 3 reviews": how many items a list has, not a field in it
+        if before_words and (before_words[0][0], n.value) in counts:
+            continue                # "Number of reviews: 3", and the list has 3 items
         bound = in_range.get(i) or after or _matching(before_words, results)
         unit = answer_unit(answer, n)
         if unit and unit[0] == "money":
@@ -520,6 +523,13 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
                 if kind == "tok" and tok[0].isalpha():
                     near.add(stem(tok))
         if any(set(f["words"]) < set(g["words"]) and set(g["words"]) - set(f["words"]) <= near and _hit(n, g)
+               for f in same_name for g in results):
+            continue
+        # "This customer gave the business a 5-star rating": one review's review_stars, said of the business
+        # (business_stars), or the other way round. When the field that holds the number and the field named
+        # share the word near the number ("star"), and one is a field of a list's items and the other is not,
+        # the wording does not tell which is meant
+        if any(_hit(n, g) and set(f["words"]) & set(g["words"]) & near and ("[" in f["path"]) != ("[" in g["path"])
                for f in same_name for g in results):
             continue
         start = min(n.start, min(a for _f, a, _b in bound))

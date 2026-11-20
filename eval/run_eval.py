@@ -6,6 +6,7 @@ each chat (OpenAI-style messages) for score.py.
     python run_eval.py --provider gemini --questions f01,w04
     python run_eval.py --provider groq --model openai/gpt-oss-20b
     python run_eval.py --provider groq --set heldout        # the 20 held-out questions, into runs/heldout/
+    python run_eval.py --provider groq --set heldout2       # the second held-out set, into runs/heldout2/
 
 Writes runs/<date>_<provider>_<model>.jsonl, one line per question. Run it again with the same
 provider and model on the same day to continue where it stopped: questions already answered are
@@ -33,6 +34,7 @@ MAX_ROUNDS = 6
 SETS = {   # question set -> (questions file, folder of its runs)
     "dev": (HERE / "questions.json", HERE / "runs"),
     "heldout": (HERE / "questions_heldout.json", HERE / "runs" / "heldout"),
+    "heldout2": (HERE / "questions_heldout2.json", HERE / "runs" / "heldout2"),
 }
 
 

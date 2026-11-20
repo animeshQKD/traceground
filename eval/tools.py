@@ -6,6 +6,7 @@ set" are used only by questions_heldout.json.
 TOOLS maps a name to (function, OpenAI tool schema); run_tool(name, args) returns the JSON-able result.
 """
 import ast
+import json
 import math
 import operator
 
@@ -258,6 +259,101 @@ def get_city_stats(city: str) -> dict:
             "density_per_km2": round(population / area), "median_age": age}
 
 
+# ---------------------------------------------------------------- second held-out set (questions_heldout2.json)
+# Written on 2026-11-20, after the 0.1.1 changes and before any model answered: results with lists of
+# reviews, times written as "9:0", and text to quote from. All made up.
+_RESTAURANTS = {
+    "juniper table": {
+        "name": "Juniper Table", "city": "Bristol", "rating": 4.3, "review_count": 3, "price_level": 2,
+        "hours": {"Monday": "closed", "Tuesday": "11:30-22:0", "Wednesday": "11:30-22:0", "Thursday": "11:30-22:0",
+                  "Friday": "11:30-23:30", "Saturday": "9:0-23:30", "Sunday": "9:0-16:0"},
+        "reviews": [
+            {"stars": 5, "date": "2026-09-14 19:42:10", "text": "The lamb was perfect and the staff remembered our names. "
+                                                            "We will be back for the brunch."},
+            {"stars": 4, "date": "2026-10-03 13:05:51", "text": "Lovely terrace, a bit slow on a busy Saturday. "
+                                                            "The lemon tart is worth the wait."},
+            {"stars": 3, "date": "2026-10-28 20:17:33", "text": "Good food but loud. We waited 40 minutes for a table "
+                                                            "even with a booking."}]},
+    "harbor noodle house": {
+        "name": "Harbor Noodle House", "city": "Bristol", "rating": 3.9, "review_count": 4, "price_level": 1,
+        "hours": {"Monday": "12:0-21:0", "Tuesday": "12:0-21:0", "Wednesday": "12:0-21:0", "Thursday": "12:0-21:0",
+                  "Friday": "12:0-22:30", "Saturday": "12:0-22:30", "Sunday": "closed"},
+        "reviews": [
+            {"stars": 5, "date": "2026-08-30 12:44:02", "text": "The broth is rich and deeply savory, the best ramen "
+                                                            "in the city for under ten pounds."},
+            {"stars": 2, "date": "2026-09-21 18:30:47", "text": "The broth was lukewarm and far too salty. Service "
+                                                            "was friendly though."},
+            {"stars": 4, "date": "2026-10-11 13:12:09", "text": "Generous portions and quick service at lunch."},
+            {"stars": 5, "date": "2026-11-02 19:58:26", "text": "Spicy miso noodles that warm you right up."}]},
+}
+
+
+def get_restaurant(name: str) -> dict:
+    r = _RESTAURANTS.get(str(name).lower().strip())
+    return json.loads(json.dumps(r)) if r else {"error": f"unknown restaurant: {name}"}
+
+
+_EVENTS = {
+    "lantern jazz night": {"event": "Lantern Jazz Night", "date": "2026-12-05", "venue": "Old Corn Exchange",
+                           "doors_open": "18:45", "start": "19:30", "end": "22:15", "tickets_left": 86,
+                           "price_eur": 28.0},
+    "rooftop film club": {"event": "Rooftop Film Club", "date": "2026-12-12", "venue": "Hotel Alder roof",
+                          "doors_open": "17:0", "start": "17:30", "end": "19:45", "tickets_left": 14,
+                          "price_eur": 12.5},
+}
+
+
+def get_event(event: str) -> dict:
+    e = _EVENTS.get(str(event).lower().strip())
+    return dict(e) if e else {"error": f"unknown event: {event}"}
+
+
+_TRAINS = {
+    "RX-12": {"train_no": "RX-12", "from": "Bristol", "to": "London", "departs": "7:0", "arrives": "8:52",
+              "delay_min": 12, "platform": 4, "stops": 3, "seats_free": 58},
+    "RX-30": {"train_no": "RX-30", "from": "Bristol", "to": "London", "departs": "9:30", "arrives": "11:41",
+              "delay_min": 0, "platform": 11, "stops": 6, "seats_free": 120},
+}
+
+
+def get_train(train_no: str) -> dict:
+    t = _TRAINS.get(str(train_no).upper().replace(" ", "-"))
+    return dict(t) if t else {"error": f"unknown train: {train_no}"}
+
+
+_HOTELS = {
+    "hotel alder": {"name": "Hotel Alder", "city": "Bristol", "rate_eur": 142.0, "breakfast_included": False,
+                    "breakfast_eur": 16.0, "guest_rating": 4.6, "rooms_free": 5, "station_km": 0.8,
+                    "airport_km": 13.5, "check_in": "15:0", "check_out": "11:0"},
+}
+
+
+def get_hotel(name: str) -> dict:
+    h = _HOTELS.get(str(name).lower().strip())
+    return dict(h) if h else {"error": f"unknown hotel: {name}"}
+
+
+_ARTICLES = {
+    "N-201": {"id": "N-201", "title": "Riverside Library reopens after flood repairs", "published": "2026-10-02",
+              "text": ("Riverside Library reopened on Monday, fourteen months after the flood of August 2025 closed it. "
+                       "The repairs cost 1.8 million pounds, of which the council paid 1.1 million and a national "
+                       "fund the rest. About 22,000 books were lost; 9,500 have been replaced so far. Mayor Ruth "
+                       "Okonjo said the library was \"back where it belongs, at the heart of the riverside\" and "
+                       "promised longer opening hours from January. The library now opens six days a week.")},
+    "N-202": {"id": "N-202", "title": "Water main burst leaves east side without water", "published": "2026-11-09",
+              "text": ("A burst water main left 4,800 households in the east of the city without running water for "
+                       "up to 31 hours this weekend. Westvale Water said the 60-year-old pipe split under the "
+                       "Mill Road junction early on Saturday. Repairs will cost an estimated 2.3 million pounds. "
+                       "\"We are sorry for the disruption and will compensate every affected household,\" said "
+                       "spokesperson Daniel Price. Bottled water was handed out at three points across the area.")},
+}
+
+
+def get_article(article_id: str) -> dict:
+    a = _ARTICLES.get(str(article_id).upper().replace(" ", "-"))
+    return dict(a) if a else {"error": f"unknown article: {article_id}"}
+
+
 # ---------------------------------------------------------------- schemas
 def _schema(name, description, props, required):
     return {"type": "function", "function": {"name": name, "description": description, "parameters": {
@@ -302,6 +398,16 @@ TOOLS = {
                            ["weight_kg", "country"])),
     "get_city_stats": (get_city_stats, _schema("get_city_stats", "Population, area, density and median age of a city.",
                        {"city": STR}, ["city"])),
+    "get_restaurant": (get_restaurant, _schema("get_restaurant", "Rating, number of reviews, price level, opening "
+                       "hours and recent reviews of a restaurant.", {"name": STR}, ["name"])),
+    "get_event": (get_event, _schema("get_event", "Date, venue, times, tickets left and price (EUR) of an event.",
+                  {"event": STR}, ["event"])),
+    "get_train": (get_train, _schema("get_train", "Departure and arrival times, delay, platform, stops and free seats "
+                  "of a train.", {"train_no": dict(STR, description="e.g. RX-12")}, ["train_no"])),
+    "get_hotel": (get_hotel, _schema("get_hotel", "Nightly rate (EUR), breakfast, guest rating, rooms free, distances "
+                  "and check-in and check-out times of a hotel.", {"name": STR}, ["name"])),
+    "get_article": (get_article, _schema("get_article", "A local news article by id: title, date and text.",
+                    {"article_id": dict(STR, description="e.g. N-201")}, ["article_id"])),
     "calculator": (calculator, _schema("calculator", "Evaluate an arithmetic expression, e.g. '0.15*240' or '(125.5-37.25)*4'.",
                    {"expression": STR}, ["expression"])),
 }

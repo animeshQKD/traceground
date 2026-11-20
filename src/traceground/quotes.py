@@ -24,7 +24,7 @@ _QUOTE = re.compile(r"[\"“”„«»]([^\"“”„«»\n]{3,600})[\"“”»�
 _ELLIPSIS = re.compile(r"\s*(?:\.\s?\.\s?\.|…|\[[^\[\]]*\])\s*")      # ... and [editorial insertions]
 _SMALL_WORDS = {"a", "an", "the", "of", "and", "or", "in", "on", "for", "to", "with", "at", "by", "from", "into", "onto", "is", "are",
                 "n", "this", "that", "these", "those", "my", "your", "his", "her", "its", "our", "their"}
-_PUNCT = re.compile(r"[,:;.!?()\[\]…\\]")     # and the backslash of a JSON escape (\\")
+_PUNCT = re.compile(r"[,:;.!?()\[\]…\\*]")     # the backslash of a JSON escape (\\"), and * (emphasis, s**t)
 _CODE = re.compile(r"```.*?(?:```|\Z)|`[^`\n]+`", re.S)
 FUZZY_WORD_LIMIT = 50_000            # sources longer than this (in words) get no "closest wording" search
 
@@ -105,6 +105,28 @@ def _small_change(quote: str, wording: str) -> bool:
         return False
     x, y = edits[0][0][0], edits[0][1][0]          # or singular and plural ("best gin" for "best gins")
     return x.rstrip("s") == y.rstrip("s") or (len(x) >= 5 and SequenceMatcher(None, x, y).ratio() >= 0.8)
+
+
+def _one_letter_off(quote: str, forms: list):
+    """The id of the first form (sid, quote form of a source) that has the quote with one letter added, left out or
+    changed, inside a word of five letters or more and not in a digit: "experience in itself" for the source's
+    "experience in its self". None if there is none."""
+    spans, qf = [], ""
+    for w in quote.split():
+        f = quote_form(w)
+        spans.append((len(qf), len(qf) + len(f), f))
+        qf += f
+    if len(qf) < 10:
+        return None
+    for i in range(len(qf) + 1):
+        word = next((f for a, b, f in spans if a <= i < b or (i == len(qf) and b == i)), "")
+        if len(word) < 5 or (i < len(qf) and qf[i].isdigit()):
+            continue
+        rx = re.compile(re.escape(qf[:i]) + r"(?:[^\d]?" + re.escape(qf[i + 1:]) + "|[^\\d]" + re.escape(qf[i:]) + ")")
+        for sid, form in forms:
+            if rx.search(form):
+                return sid
+    return None
 
 
 def _shared_words(a: str, b: str) -> int:
@@ -214,7 +236,15 @@ def check_quotes(answer: str, sources: list, question: str = "", *, min_words: i
         if loose and _shared_words(q, loose[1]) < 3:
             loose = None
         severity = "high"
-        if near and _small_change(q, near[1]):
+        letter = None if near and _small_change(q, near[1]) else _one_letter_off(
+            q, [(sid, forms[sid]) for sid, _t in pool] if sum(len(t) for _s, t in pool) < 20 * FUZZY_WORD_LIMIT else [])
+        if letter:
+            severity = "low"            # "experience in itself" for "experience in its self"
+            message = (f"The quote differs slightly from {_where(letter)} (one letter): "
+                       f"\"{near[1]}\"." if near and near[0] == letter else
+                       f"The quote differs slightly from {_where(letter)} (one letter).")
+            evidence_list = [{"source": letter, "value": near[1] if near and near[0] == letter else q, "context": ""}]
+        elif near and _small_change(q, near[1]):
             severity = "low"            # "dominant and subordinate" for "dominant and a subordinate"
             message = (f"The quote differs slightly from {_where(near[0])} (small words, punctuation or spelling): "
                        f"\"{near[1]}\".")
