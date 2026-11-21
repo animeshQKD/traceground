@@ -2,6 +2,47 @@
 
 All notable changes to traceground are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
+## 0.1.2 (not yet released)
+
+Fixes for the false alarms and misses found by hand on the second held-out set
+(eval/results/review_heldout2_2026-11-20.md), which was used to develop them and so no longer measures
+0.1.2 on unseen answers; a third held-out set, written after these changes and before any model answered
+it, does (eval/questions_heldout3.json). On the second set, false alarms on correct answers went from 5 to 1
+and a planted value of another field was caught 64% of the time instead of 31%. On the dev set, the first
+held-out set and RAGTruth (train and test), no high-severity finding changed; the planted errors caught
+stayed at 600 on the dev set and went from 262 to 263 on the first held-out set.
+
+### Fixed
+
+- A field named before the number wins over a list's field named after it: "an overall rating of 4.3
+  stars" is the rating, not the reviews' stars; and "an overall rating of 3 stars" is now compared with the
+  rating, even though one review gave 3 stars.
+- A list's field named for a number that the whole holds, with the list not mentioned near it, is not
+  compared: "Harbor Noodle House (3.9 stars)" for the restaurant's rating.
+- The difference of two durations the answer states, with a word such as "faster" or "difference", is
+  worked out in the answer ("1 hour 52 minutes ... 2 hours 11 minutes ... faster by 19 minutes"); the parts
+  of a duration are no longer added or subtracted as numbers of their own.
+- The result of a product the answer writes next to it ("€426 for the rooms (3 × €142)", "3 × €142 =
+  €426") is worked out in the answer, and neither it nor the multiplier is compared with a field.
+- Value-to-field: a number followed by "is higher than ..." is the field's value, not a worked-out
+  difference ("a guest rating of 142 is higher than ..." is now compared with the guest rating); of several
+  fields in the number's unit, the one whose word is in its clause is meant ("0.8 km from the train
+  station": station_km; "a night costs €142": the price field rate_eur, not breakfast_eur); keys such as
+  delay_min and duration_min are in minutes ("running 12 minutes late"), while days_min stays a minimum.
+
+### Not fixed
+
+- "Adding breakfast each morning (€16 per day) brings the total to €474": a two-step sum worked out without
+  the calculator is still reported as not in the tool results. Accepting it needs a count ("three nights")
+  taken from the question's words or from the answer's own products, and both let invented RAGTruth
+  numbers through as "worked out", so they were dropped.
+- "each costing €14" is still taken as worked out ("each"), so a wrong price there is missed.
+
+### Added (repository)
+
+- A third held-out set for the evaluation, `--set heldout3`: 20 questions on five new tools (a gym with
+  classes and reviews, flight times, flats to rent, a recipe with reviews, a company report).
+
 ## 0.1.1
 
 Fixes for the 7 false alarms found by hand among traceground's high findings on the RAGTruth test split

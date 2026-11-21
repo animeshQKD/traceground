@@ -371,3 +371,33 @@ def test_run_uses_the_heldout2_folder(tmp_path, monkeypatch):
     path = run_eval.run("fake", "m", {"g01"}, 5, chat=lambda messages, tools: {"content": "No idea."},
                         question_set="heldout2")
     assert path.parent == tmp_path / "heldout2" and json.loads(path.read_text(encoding="utf-8"))["id"] == "g01"
+
+
+# ---------------------------------------------------------------- third held-out set
+HELDOUT3 = run_eval.load_questions("heldout3")
+
+
+def test_heldout3_questions_are_well_formed_and_separate():
+    ids = [q["id"] for q in HELDOUT3]
+    others = {q["id"] for q in QUESTIONS} | {q["id"] for q in HELDOUT} | {q["id"] for q in HELDOUT2}
+    assert len(ids) == len(set(ids)) == 20 and not set(ids) & others
+    for q in HELDOUT3:
+        assert q["kind"] == "value" and all(name in T.TOOLS for name, _a in q["calls"])
+        for name, args in q["calls"]:
+            assert "error" not in T.run_tool(name, args), (q["id"], name, args)
+
+
+def test_heldout3_tool_values():
+    by_id = {q["id"]: q for q in HELDOUT3}
+    g = T.get_gym("Ironleaf Fitness")
+    assert score.expected_values(by_id["m02"]) == [3 * g["monthly_fee_eur"] + g["joining_fee_eur"]] == [142.0]
+    a, b = T.get_flight_times("LX-418"), T.get_flight_times("LX-422")
+    assert score.expected_values(by_id["m08"]) == [a["price_eur"] - b["price_eur"]] == [47.0]
+    assert score.expected_values(by_id["m09"]) == [b["duration_min"] - a["duration_min"]] == [15.0]
+    r = T.get_recipe("Lentil shepherd’s pie")
+    assert score.expected_values(by_id["m14"]) == [r["prep_min"] + r["cook_min"], r["servings"]] == [55.0, 4.0]
+    assert score.expected_values(by_id["m15"])[0] == r["cost_eur"] / r["servings"] == 2.45
+    assert g["review_count"] == len(g["reviews"]) and r["review_count"] == len(r["reviews"])
+    assert "error" in T.get_flight_times("LX-999") and "error" in T.get_flat("Z-1") and "error" in T.get_report("x")
+    g["classes"].clear()
+    assert len(T.get_gym("Ironleaf Fitness")["classes"]) == 3        # a copy, not the table itself

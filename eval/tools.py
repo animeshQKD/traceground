@@ -354,6 +354,88 @@ def get_article(article_id: str) -> dict:
     return dict(a) if a else {"error": f"unknown article: {article_id}"}
 
 
+# ---------------------------------------------------------------- third held-out set (questions_heldout3.json)
+# Written on 2026-11-21, after the 0.1.2 changes and before any model answered. All made up.
+_GYMS = {
+    "ironleaf fitness": {
+        "name": "Ironleaf Fitness", "city": "Leeds", "rating": 4.2, "review_count": 3, "monthly_fee_eur": 39.0,
+        "joining_fee_eur": 25.0, "centre_km": 2.4, "open": "6:0-22:0",
+        "classes": [{"name": "Spin", "start": "18:0", "duration_min": 45, "spots_left": 6},
+                    {"name": "Yoga", "start": "19:15", "duration_min": 60, "spots_left": 0},
+                    {"name": "HIIT", "start": "7:30", "duration_min": 30, "spots_left": 11}],
+        "reviews": [{"stars": 5, "text": "Clean, friendly and never too busy before work."},
+                    {"stars": 4, "text": "Good classes, but the showers run cold after eight."},
+                    {"stars": 3, "text": "Fine equipment; the music is far too loud."}]},
+}
+
+
+def get_gym(name: str) -> dict:
+    g = _GYMS.get(str(name).lower().strip())
+    return json.loads(json.dumps(g)) if g else {"error": f"unknown gym: {name}"}
+
+
+_FLIGHT_TIMES = {
+    "LX-418": {"flight_no": "LX-418", "from": "Leeds", "to": "Geneva", "departs": "14:35", "arrives": "17:50",
+               "duration_min": 135, "delay_min": 25, "gate": "B12", "price_eur": 189.0, "bags_included": 1,
+               "seats_left": 9},
+    "LX-422": {"flight_no": "LX-422", "from": "Leeds", "to": "Geneva", "departs": "19:10", "arrives": "22:40",
+               "duration_min": 150, "delay_min": 0, "gate": "B7", "price_eur": 142.0, "bags_included": 0,
+               "seats_left": 31},
+}
+
+
+def get_flight_times(flight_no: str) -> dict:
+    f = _FLIGHT_TIMES.get(str(flight_no).upper().replace(" ", "-"))
+    return dict(f) if f else {"error": f"unknown flight: {flight_no}"}
+
+
+_FLATS = {
+    "A-77": {"listing_id": "A-77", "city": "Leeds", "rent_eur": 1450.0, "deposit_eur": 2900.0, "size_m2": 68,
+             "rooms": 3, "floor": 4, "lift": True, "year_built": 1998, "metro_km": 0.4, "centre_km": 3.1,
+             "bills_included": False},
+    "B-12": {"listing_id": "B-12", "city": "Leeds", "rent_eur": 1180.0, "deposit_eur": 1180.0, "size_m2": 52,
+             "rooms": 2, "floor": 1, "lift": False, "year_built": 2011, "metro_km": 1.6, "centre_km": 1.9,
+             "bills_included": True},
+}
+
+
+def get_flat(listing_id: str) -> dict:
+    f = _FLATS.get(str(listing_id).upper().replace(" ", "-"))
+    return dict(f) if f else {"error": f"unknown listing: {listing_id}"}
+
+
+_RECIPES = {
+    "lentil shepherd's pie": {
+        "name": "Lentil shepherd's pie", "servings": 4, "prep_min": 20, "cook_min": 35, "calories": 540,
+        "cost_eur": 9.8, "rating": 4.7, "review_count": 4,
+        "reviews": [{"stars": 5, "text": "Hearty and cheap; my kids asked for seconds."},
+                    {"stars": 5, "text": "Better than the meat version, honestly."},
+                    {"stars": 4, "text": "Needed more salt, otherwise great."},
+                    {"stars": 5, "text": "Freezes well for a week of lunches."}]},
+}
+
+
+def get_recipe(name: str) -> dict:
+    r = _RECIPES.get(str(name).lower().strip().replace("’", "'"))
+    return json.loads(json.dumps(r)) if r else {"error": f"unknown recipe: {name}"}
+
+
+_REPORTS = {
+    "Q3-NORTHWIND": {"id": "Q3-NORTHWIND", "company": "Northwind Bikes", "quarter": "Q3 2026",
+                     "text": ("Northwind Bikes sold 12,400 bikes in the third quarter, up 8% on a year earlier. "
+                              "Revenue was 4.2 million euros and the operating margin fell to 6.5% from 7.1%, "
+                              "mainly because of higher aluminium prices. The company opened two shops, in Bergen "
+                              "and Ghent, and now has 17. Chief executive Mara Lindqvist said the quarter was "
+                              "\"steady rather than spectacular\" and that prices would rise by about 3% in "
+                              "January.")},
+}
+
+
+def get_report(report_id: str) -> dict:
+    r = _REPORTS.get(str(report_id).upper().replace(" ", "-"))
+    return dict(r) if r else {"error": f"unknown report: {report_id}"}
+
+
 # ---------------------------------------------------------------- schemas
 def _schema(name, description, props, required):
     return {"type": "function", "function": {"name": name, "description": description, "parameters": {
@@ -408,6 +490,18 @@ TOOLS = {
                   "and check-in and check-out times of a hotel.", {"name": STR}, ["name"])),
     "get_article": (get_article, _schema("get_article", "A local news article by id: title, date and text.",
                     {"article_id": dict(STR, description="e.g. N-201")}, ["article_id"])),
+    "get_gym": (get_gym, _schema("get_gym", "Rating, fees (EUR), distance from the centre, opening hours, classes "
+                "and recent reviews of a gym.", {"name": STR}, ["name"])),
+    "get_flight_times": (get_flight_times, _schema("get_flight_times", "Departure and arrival times, duration, delay, "
+                         "gate, price (EUR), bags and seats left of a flight.",
+                         {"flight_no": dict(STR, description="e.g. LX-418")}, ["flight_no"])),
+    "get_flat": (get_flat, _schema("get_flat", "Rent and deposit (EUR), size, rooms, floor, lift, year built, "
+                 "distances and bills of a flat to rent.", {"listing_id": dict(STR, description="e.g. A-77")},
+                 ["listing_id"])),
+    "get_recipe": (get_recipe, _schema("get_recipe", "Servings, times, calories, cost (EUR), rating and reviews of a "
+                   "recipe.", {"name": STR}, ["name"])),
+    "get_report": (get_report, _schema("get_report", "A company's quarterly report by id: company, quarter and text.",
+                   {"report_id": dict(STR, description="e.g. Q3-NORTHWIND")}, ["report_id"])),
     "calculator": (calculator, _schema("calculator", "Evaluate an arithmetic expression, e.g. '0.15*240' or '(125.5-37.25)*4'.",
                    {"expression": STR}, ["expression"])),
 }

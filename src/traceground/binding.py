@@ -19,12 +19,18 @@ When a binding is unsure, nothing is reported: no field word right next to the n
 such as "for" or "on" starts a new phrase), a number that matches any of the fields its words name, a sentence
 with "respectively", or a number written in another unit than the field's ("91.4 °F" for high_c).
 A unit can also name the field: "weighs 249 kg" is compared with the results' only kg field, and
-reported when 249 is another field of the same call. Also bound: a lone word that only one multi-word
+reported when 249 is another field of the same call; of several fields in that unit, the one whose word
+is in the number's clause ("0.8 km from the train station" for station_km; "a night costs €142" for the
+price field rate_eur), and minutes for keys such as delay_min ("running 12 minutes late").
+A field named before the number wins over a list's field named after it ("an overall rating of 4.3
+stars": rating, not the reviews' stars), and a list's field named for a number its whole holds, with the
+list not mentioned, is not compared ("Harbor Noodle House (3.9 stars)" for the restaurant's rating). Also bound: a lone word that only one multi-word
 field name has ("€789.52 in interest" for total_interest), the subject of "... is N" ("The total
 interest you'll pay on the loan is $3,034.15"), and the two ends of a range ("between $69.80 and
 $72.90" for day_low and day_high). A value another call worked out from the field (a calculator's
 39.9 * 3) is not compared with the field, nor is a number whose clause says it is worked out ("the
-difference in monthly payment is $166.03"). A field's exact value written in another currency, with no
+difference in monthly payment is $166.03", but not "a guest rating of 142 is higher than ..."), nor one
+the answer works out itself ("€426 for the rooms (3 × €142)"). A field's exact value written in another currency, with no
 call that converted it, is reported ("€221.4 million" for net_income_musd). Values are compared as
 magnitudes, like numbers ("down 1.2%" for a change of -1.2).
 """
@@ -209,6 +215,9 @@ def key_unit(key: str):
     last = parts[-1].lower()
     if last not in _UNITS and len(last) == 4 and last[0] in "mkb":       # musd, keur, bgbp: scale + currency
         last = last[1:]
+    # delay_min, duration_min: minutes; days_min, days_max: a minimum of days, not minutes
+    if last in ("min", "mins") and not any(p.lower() in _TIME_NOUNS for p in parts):
+        return ("time", "minute")
     return _UNITS.get(last)
 
 
@@ -246,8 +255,8 @@ def _computed_clause(items: list, i: int) -> bool:
         if kind == "tok" and stem(tok) in _COMPUTED:
             return True
     for kind, tok, _a, _b in items[i + 1:i + 4]:
-        if kind == "num" or (kind == "tok" and tok in ",;.!?\n"):
-            break
+        if kind == "num" or (kind == "tok" and (tok in ",;.!?\n" or tok.lower() in _COPULA)):
+            break           # "a guest rating of 142 is higher than ...": the comparison is of the field's value
         if tok.lower() in _COMPARATIVE:
             return True
     return False
@@ -410,7 +419,42 @@ def list_counts(calls: list) -> list:
     return out
 
 
-def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sentence_of=None) -> tuple:
+def _near_words(items: list, i: int) -> set:
+    """The words within six tokens before and three after item i, inside its sentence."""
+    near = set()
+    for step, stop in ((-1, max(-1, i - 7)), (1, min(len(items), i + 4))):
+        for kind, tok, _a, _b in (items[j] for j in range(i + step, stop, step)):
+            if kind == "tok" and tok in ".!?\n;":
+                break
+            if kind == "tok" and tok[0].isalpha():
+                near.add(stem(tok))
+    return near
+
+
+# words that stand for a price whichever field holds it: "a night costs €142" for rate_eur
+_PRICE_WORDS = {"cost", "costs", "costing", "price", "priced", "rate", "fee", "fare", "charge", "charged"}
+
+
+def _list_words(path: str) -> set:
+    """The words of the list a field belongs to: "reviews[0].stars" -> {"review"}; set() for a field not in a list."""
+    return {w for part in re.findall(r"([A-Za-z_]+)\[", path) for w in key_words(part)}
+
+
+def _segment_words(items: list, i: int, step: int) -> set:
+    """The words from item i to the next number (step 1) or the previous one (step -1), within its clause
+    (up to a comma, a full stop, "and", "but" ...)."""
+    out, j = set(), i + step
+    while 0 <= j < len(items):
+        kind, tok, _a, _b = items[j]
+        if kind == "num" or _is_stop(tok):
+            break
+        if tok[0].isalpha():
+            out.add(stem(tok))
+        j += step
+    return out
+
+
+def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sentence_of=None, worked_out=()) -> tuple:
     synonyms = field_synonyms or {}
     results = _fields(calls, synonyms, "result")
     args = _fields(calls, synonyms, "args")
@@ -434,6 +478,10 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
     for i, (kind, n, _a, _b) in enumerate(items):
         if kind != "num" or any(a <= n.start < b for a, b in skip):
             continue
+        # "€426 for the rooms (3 × €142)": a number the answer works out itself is not a field's value
+        if any(a <= n.start < b for a, b in worked_out):
+            continue
+
         # "4 Eggs & Pizza", "223 Anacapa St": the number with its next or previous word is text in a result
         # (a name, an address), not a value of a field
         nxt = re.match(r"[°'’]?\s+[A-Za-z][\w'’]*", answer[n.end:])
@@ -452,7 +500,17 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
             continue                # "based on 3 reviews": how many items a list has, not a field in it
         if before_words and (before_words[0][0], n.value) in counts:
             continue                # "Number of reviews: 3", and the list has 3 items
-        bound = in_range.get(i) or after or _matching(before_words, results)
+        named_before = _matching(before_words, results)
+        if after and i not in in_range and any(_hit(n, f) for f, _a, _b in named_before) \
+                and not any(_hit(n, f) for f, _a, _b in after):
+            continue                # "an overall rating of 4.3 stars": rating holds it; "stars" is what it counts
+        # "an overall rating of 3 stars": "stars" after the number is the reviews' stars, but the field named
+        # before it (rating, not in a list) is what the number is, when the reviews are not mentioned
+        if after and i not in in_range and all("[" in f["path"] for f, _a, _b in after) \
+                and any("[" not in f["path"] for f, _a, _b in named_before) \
+                and not any(_list_words(f["path"]) & _near_words(items, i) for f, _a, _b in after):
+            after = []
+        bound = in_range.get(i) or after or named_before
         unit = answer_unit(answer, n)
         if unit and unit[0] == "money":
             # "€221.4 million" for net_income_musd = 221.4: the right number in another currency, and no call
@@ -479,6 +537,16 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
                      if not (key_unit(f["key"]) and key_unit(f["key"])[0] == unit[0] and key_unit(f["key"]) != unit)]
         if not bound and unit:  # "weighs 249 kg": the only kg field of the results names the value
             same_unit = [f for f in results if key_unit(f["key"]) == unit]
+            if len({(id(f["call"]), f["key"]) for f in same_unit}) > 1:
+                # "0.8 km from the nearest train station": of station_km and airport_km, the one whose word
+                # comes after the number (before the next number), or else before it
+                for side in (_segment_words(items, i, 1), _segment_words(items, i, -1)):
+                    named = [f for f in same_unit if set(f["words"]) & side]
+                    if not named and unit[0] == "money" and side & _PRICE_WORDS:
+                        named = [f for f in same_unit if set(f["words"]) & _PRICE_WORDS]   # "costs €16": rate
+                    if named:
+                        same_unit = named
+                        break
             if len({(id(f["call"]), f["key"]) for f in same_unit}) == 1:
                 f = same_unit[0]
                 # only a value of another field of that same call is reported: "$1.35" when weight_kg is 1.35
@@ -515,13 +583,7 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
             continue
         # "One review gave it 1 star": a more specific field (review_stars) whose other words are close to the
         # number, and which holds it, is the one meant
-        near = set()
-        for step, stop in ((-1, max(-1, i - 7)), (1, min(len(items), i + 4))):
-            for kind, tok, _a, _b in (items[j] for j in range(i + step, stop, step)):
-                if kind == "tok" and tok in ".!?\n;":
-                    break
-                if kind == "tok" and tok[0].isalpha():
-                    near.add(stem(tok))
+        near = _near_words(items, i)
         if any(set(f["words"]) < set(g["words"]) and set(g["words"]) - set(f["words"]) <= near and _hit(n, g)
                for f in same_name for g in results):
             continue
@@ -531,6 +593,11 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
         # the wording does not tell which is meant
         if any(_hit(n, g) and set(f["words"]) & set(g["words"]) & near and ("[" in f["path"]) != ("[" in g["path"])
                for f in same_name for g in results):
+            continue
+        # "Harbor Noodle House (3.9 stars)": "stars" names the reviews' stars, but the restaurant's own rating
+        # (same call, not in a list) holds 3.9 and the reviews are not mentioned near the number
+        if any(_hit(n, g) and g["call"] is f["call"] and "[" in f["path"] and "[" not in g["path"]
+               and not _list_words(f["path"]) & near for f in same_name for g in results):
             continue
         start = min(n.start, min(a for _f, a, _b in bound))
         end = max(n.end, max(b for _f, _a, b in bound))

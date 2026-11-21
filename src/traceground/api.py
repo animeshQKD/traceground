@@ -81,9 +81,11 @@ def check_answer(answer, sources=None, question: str = "", trace=None, *, percen
     has_evidence = bool(srcs or calls or has_q)
     kinds = (["the sources"] if srcs else []) + (["the tool results"] if calls else []) + ["the question"]
     name = ", ".join(kinds[:-1]) + " or " + kinds[-1] if len(kinds) > 1 else kinds[0]
+    worked_out = []
     findings, stats = numbers.check_numbers(
         answer, evidence, question, percent_as_fraction=percent_as_fraction,
-        check_small_integers=check_small_integers, sentence_of=sentence_of, evidence_name=name)
+        check_small_integers=check_small_integers, sentence_of=sentence_of, evidence_name=name,
+        worked_out=worked_out)
     if check_quotes:
         q_findings, q_stats = quotes.check_quotes(answer, evidence, question, min_words=min_quote_words,
                                                   sentence_of=sentence_of)
@@ -99,8 +101,8 @@ def check_answer(answer, sources=None, question: str = "", trace=None, *, percen
                   "tool_calls_failed_unreported": 0, "tool_claims_unbacked": 0})
     if trace is not None:
         if calls and check_bindings:
-            v_findings, v_stats = binding.check_value_to_field(answer, calls, field_synonyms=field_synonyms,
-                                                               sentence_of=sentence_of)
+            v_findings, v_stats = binding.check_value_to_field(
+                answer, calls, field_synonyms=field_synonyms, sentence_of=sentence_of, worked_out=worked_out)
             bound = [(f.start, f.end) for f in v_findings]
             findings = [f for f in findings if not any(a < f.end and f.start < b for a, b in bound)] + v_findings
             a_findings, a_stats = binding.check_arguments(answer, question, calls, sentence_spans=spans,

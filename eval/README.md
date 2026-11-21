@@ -98,6 +98,20 @@ correct answers, 1 of 3 wrong answers caught (the other 2 said no tool existed, 
 alarms, the same planted errors. This set has now been read, so a change made for what it shows needs
 another fresh set.
 
+### The third held-out set
+
+`questions_heldout3.json` holds 20 questions on five more new tools (`get_gym`, `get_flight_times`,
+`get_flat`, `get_recipe`, `get_report`), written on 2026-11-21 after the 0.1.2 changes were made and the
+code was frozen, and before any model answered them. As with the second set, every answer is labelled by
+hand before traceground is run on it.
+
+```
+python run_eval.py --provider groq --set heldout3
+python run_eval.py --provider groq --model openai/gpt-oss-20b --set heldout3 --max-calls 200
+python score.py --set heldout3
+python mutate.py --set heldout3
+```
+
 ## RAGTruth: real answers marked by people
 
 `ragtruth.py` runs traceground on [RAGTruth](https://github.com/ParticleMedia/RAGTruth) (Niu et al., ACL
