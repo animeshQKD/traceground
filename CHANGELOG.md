@@ -2,7 +2,7 @@
 
 All notable changes to traceground are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
-## 0.1.2 (not yet released)
+## 0.1.2
 
 Fixes for the false alarms and misses found by hand on the second held-out set
 (eval/results/review_heldout2_2026-11-20.md), which was used to develop them and so no longer measures
@@ -38,10 +38,20 @@ stayed at 600 on the dev set and went from 262 to 263 on the first held-out set.
   numbers through as "worked out", so they were dropped.
 - "each costing €14" is still taken as worked out ("each"), so a wrong price there is missed.
 
+### Measured
+
+On the third held-out set (39 answers by gpt-oss-120b and gpt-oss-20b, labelled by hand before traceground
+was run; eval/results/review_heldout3_2026-11-21.md): false alarms on 7 of 34 correct answers (0.1.1: 9),
+2 of 3 wrong answers caught (0.1.1: the same), and 162 of 199 planted errors caught, a value of another
+field 28 of 56 (50%; 0.1.1: 40%). Five of the seven false alarms are arithmetic the answer does itself
+("€47 less", "a decline of 0.6 percentage points", "€39 × 3 + €25").
+
 ### Added (repository)
 
 - A third held-out set for the evaluation, `--set heldout3`: 20 questions on five new tools (a gym with
-  classes and reviews, flight times, flats to rent, a recipe with reviews, a company report).
+  classes and reviews, flight times, flats to rent, a recipe with reviews, a company report), its two runs,
+  the scores and the hand review.
+- The demo on the Space installs traceground 0.1.2.
 
 ## 0.1.1
 

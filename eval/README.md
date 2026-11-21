@@ -112,6 +112,11 @@ python score.py --set heldout3
 python mutate.py --set heldout3
 ```
 
+Measured once with 0.1.2 on 2026-11-21 (`results/review_heldout3_2026-11-21.md`): 39 answers (one question got
+no answer: the API rejected the model's tool call), false alarms on 7 of 34 correct answers (0.1.1 on the same
+answers: 9), 2 of 3 wrong answers caught (the third said it had no data, with nothing to check), and 162 of
+199 planted errors caught, a value of another field 28 of 56. This set has now been read too.
+
 ## RAGTruth: real answers marked by people
 
 `ragtruth.py` runs traceground on [RAGTruth](https://github.com/ParticleMedia/RAGTruth) (Niu et al., ACL

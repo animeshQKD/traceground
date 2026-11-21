@@ -1,5 +1,5 @@
 {
- "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md, review_heldout2_2026-11-20.md). mutate.py plants errors only in the other answers.",
+ "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md, review_heldout2_2026-11-20.md, review_heldout3_2026-11-21.md). mutate.py plants errors only in the other answers.",
  "wrong": [
   {
    "model": "openai/gpt-oss-120b",
@@ -42,6 +42,24 @@
    "id": "g02",
    "set": "heldout2",
    "why": "calls no tool and says it has no tool for opening hours; get_restaurant gives them"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m02",
+   "set": "heldout3",
+   "why": "says €147 in total for €39 x 3 (€117) plus €25; 117 + 25 = 142"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m05",
+   "set": "heldout3",
+   "why": "calls the wrong tool, then guesses the class ends around 19:00; get_gym gives 45 minutes, so 18:45"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m05",
+   "set": "heldout3",
+   "why": "calls no tool and says it has no data on class schedules; get_gym gives them"
   }
  ]
 }

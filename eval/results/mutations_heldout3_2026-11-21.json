@@ -1,0 +1,2742 @@
+{
+ "date": "2026-11-21T05:29:15",
+ "runs": [
+  "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-21_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "digits swapped",
+   "change": "4.2 -> 2.4",
+   "answer": "Ironleaf Fitness has a rating of 2.4 and its membership costs €39.00 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 2.4\": the tool results give rating = 4.2 (get_gym). 2.4 is the centre_km (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "last digit off by one",
+   "change": "4.2 -> 4.3",
+   "answer": "Ironleaf Fitness has a rating of 4.3 and its membership costs €39.00 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 4.3\": the tool results give rating = 4.2 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "4.2 (rating) -> 3 (review_count)",
+   "answer": "Ironleaf Fitness has a rating of 3 and its membership costs €39.00 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 3\": the tool results give rating = 4.2 (get_gym). 3 is the review_count (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "4.2 (rating) -> 39 (monthly_fee_eur)",
+   "answer": "Ironleaf Fitness has a rating of 39 and its membership costs €39.00 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 39\": the tool results give rating = 4.2 (get_gym). 39 is the monthly_fee_eur (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "digits swapped",
+   "change": "39.00 -> 30.90",
+   "answer": "Ironleaf Fitness has a rating of 4.2 and its membership costs €30.90 per month.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"30.90\" is not in the tool results or the question. The closest values they give: 30 (get_gym) or 25.0 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "last digit off by one",
+   "change": "39.00 -> 39.01",
+   "answer": "Ironleaf Fitness has a rating of 4.2 and its membership costs €39.01 per month.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"39.01\" is not in the tool results or the question. The closest values they give: 39.0 (get_gym) or 45 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "39.00 (monthly_fee_eur) -> 4.2 (rating)",
+   "answer": "Ironleaf Fitness has a rating of 4.2 and its membership costs €4.2 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"4.2\": the tool results give monthly_fee_eur = 39 (get_gym). 4.2 is the rating (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "39.00 (monthly_fee_eur) -> 3 (review_count)",
+   "answer": "Ironleaf Fitness has a rating of 4.2 and its membership costs €3 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"3\": the tool results give monthly_fee_eur = 39 (get_gym). 3 is the review_count (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m01",
+   "kind": "two values swapped",
+   "change": "4.2 (rating) <-> 39.00 (monthly_fee_eur)",
+   "answer": "Ironleaf Fitness has a rating of 39.00 and its membership costs €4.2 per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 39.00\": the tool results give rating = 4.2 (get_gym). 39.00 is the monthly_fee_eur (get_gym).",
+    "\"4.2\": the tool results give monthly_fee_eur = 39 (get_gym). 4.2 is the rating (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m03",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "Ironleaf Fitness currently has spots available in its Spin class (starts at 81:00) and its HIIT class (starts at 7:30); the Yoga class is full.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m03",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "Ironleaf Fitness currently has spots available in its Spin class (starts at 19:00) and its HIIT class (starts at 7:30); the Yoga class is full.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m03",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "Ironleaf Fitness currently has spots available in its Spin class (starts at 18:00) and its HIIT class (starts at 7:31); the Yoga class is full.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"7:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "digits swapped",
+   "change": "14 -> 41",
+   "answer": "Flight LX‑418 departs at 41:35 and arrives at 17:50, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"41\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "14 -> 15",
+   "answer": "Flight LX‑418 departs at 15:35 and arrives at 17:50, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"15:35\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "digits swapped",
+   "change": "35 -> 53",
+   "answer": "Flight LX‑418 departs at 14:53 and arrives at 17:50, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"14:53\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "35 -> 36",
+   "answer": "Flight LX‑418 departs at 14:36 and arrives at 17:50, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"14:36\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "digits swapped",
+   "change": "17 -> 71",
+   "answer": "Flight LX‑418 departs at 14:35 and arrives at 71:50, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"71\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "17 -> 18",
+   "answer": "Flight LX‑418 departs at 14:35 and arrives at 18:50, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:50\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "50 -> 51",
+   "answer": "Flight LX‑418 departs at 14:35 and arrives at 17:51, using gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"17:51\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m07",
+   "kind": "digits swapped",
+   "change": "25 -> 52",
+   "answer": "LX‑418 is delayed by 52 minutes and has 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 52\": the tool results give delay_min = 25 (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m07",
+   "kind": "last digit off by one",
+   "change": "25 -> 26",
+   "answer": "LX‑418 is delayed by 26 minutes and has 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 26\": the tool results give delay_min = 25 (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m07",
+   "kind": "value of another field",
+   "change": "25 (delay_min) -> 135 (duration_min)",
+   "answer": "LX‑418 is delayed by 135 minutes and has 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 135\": the tool results give delay_min = 25 (get_flight_times). 135 is the duration_min (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m07",
+   "kind": "value of another field",
+   "change": "25 (delay_min) -> 189 (price_eur)",
+   "answer": "LX‑418 is delayed by 189 minutes and has 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 189\": the tool results give delay_min = 25 (get_flight_times). 189 is the price_eur (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "digits swapped",
+   "change": "135 -> 153",
+   "answer": "LX‑418 lasts 153 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"153\" is not in the tool results or the question. The closest values they give: 150 (get_flight_times (call 2)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "last digit off by one",
+   "change": "135 -> 136",
+   "answer": "LX‑418 lasts 136 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"136\" is not in the tool results or the question. The closest values they give: 135 (get_flight_times (call 1)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "135 (duration_min) -> 25 (delay_min)",
+   "answer": "LX‑418 lasts 25 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "135 (duration_min) -> 189 (price_eur)",
+   "answer": "LX‑418 lasts 189 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "digits swapped",
+   "change": "150 -> 105",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 105 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"105\" is not in the tool results or the question. The closest values they give: 135 (get_flight_times (call 1)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "last digit off by one",
+   "change": "150 -> 151",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 151 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"151\" is not in the tool results or the question. The closest values they give: 150 (get_flight_times (call 2)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "150 (duration_min) -> 0 (delay_min)",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 0 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "150 (duration_min) -> 142 (price_eur)",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 142 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 51 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"51\" is not in the tool results or the question. The closest values they give: 31 (get_flight_times (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m09",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 16 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"16\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "digits swapped",
+   "change": "1,450 -> 1,405",
+   "answer": "The flat A‑77 costs €1,405 rent per month with a €2,900 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1,405 rent\": the tool results give rent_eur = 1450 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "last digit off by one",
+   "change": "1,450 -> 1,451",
+   "answer": "The flat A‑77 costs €1,451 rent per month with a €2,900 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1,451 rent\": the tool results give rent_eur = 1450 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "1,450 (rent_eur) -> 2,900 (deposit_eur)",
+   "answer": "The flat A‑77 costs €2,900 rent per month with a €2,900 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2,900 rent\": the tool results give rent_eur = 1450 (get_flat). 2,900 is the deposit_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "1,450 (rent_eur) -> 68 (size_m2)",
+   "answer": "The flat A‑77 costs €68 rent per month with a €2,900 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"68 rent\": the tool results give rent_eur = 1450 (get_flat). 68 is the size_m2 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "digits swapped",
+   "change": "2,900 -> 2,090",
+   "answer": "The flat A‑77 costs €1,450 rent per month with a €2,090 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2,090\" is not in the tool results or the question. The closest values they give: 2900.0 (get_flat) or 1450.0 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "last digit off by one",
+   "change": "2,900 -> 2,901",
+   "answer": "The flat A‑77 costs €1,450 rent per month with a €2,901 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2,901\" is not in the tool results or the question. The closest values they give: 2900.0 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "2,900 (deposit_eur) -> 1,450 (rent_eur)",
+   "answer": "The flat A‑77 costs €1,450 rent per month with a €1,450 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "2,900 (deposit_eur) -> 68 (size_m2)",
+   "answer": "The flat A‑77 costs €1,450 rent per month with a €68 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m10",
+   "kind": "two values swapped",
+   "change": "1,450 (rent_eur) <-> 2,900 (deposit_eur)",
+   "answer": "The flat A‑77 costs €2,900 rent per month with a €1,450 deposit, and the listing notes that bills are **not** included.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2,900 rent\": the tool results give rent_eur = 1450 (get_flat). 2,900 is the deposit_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m11",
+   "kind": "digits swapped",
+   "change": "52 -> 25",
+   "answer": "The flat B‑12 is 25 m², has 2 rooms, and is on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"25\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m11",
+   "kind": "last digit off by one",
+   "change": "52 -> 53",
+   "answer": "The flat B‑12 is 53 m², has 2 rooms, and is on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"53\" is not in the tool results or the question. The closest values they give: 52 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m11",
+   "kind": "value of another field",
+   "change": "52 (size_m2) -> 1180 (rent_eur)",
+   "answer": "The flat B‑12 is 1180 m², has 2 rooms, and is on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1180\": the tool results give size_m2 = 52 (get_flat). 1180 is the rent_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m11",
+   "kind": "value of another field",
+   "change": "52 (size_m2) -> 1180 (deposit_eur)",
+   "answer": "The flat B‑12 is 1180 m², has 2 rooms, and is on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1180\": the tool results give size_m2 = 52 (get_flat). 1180 is the rent_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "0.4 -> 4.0",
+   "answer": "Flat A‑77 is about 4.0 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "0.4 -> 0.5",
+   "answer": "Flat A‑77 is about 0.5 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.5\" is not in the tool results or the question. The closest values they give: 0.4 (get_flat (call 1)) or 1 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "0.4 (metro_km) -> 1450 (rent_eur)",
+   "answer": "Flat A‑77 is about 1450 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "0.4 (metro_km) -> 2900 (deposit_eur)",
+   "answer": "Flat A‑77 is about 2900 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "3.1 -> 1.3",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 1.3 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.3\" is not in the tool results or the question. The closest values they give: 1.6 (get_flat (call 2)) or 1 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "3.1 -> 3.2",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.2 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.2\" is not in the tool results or the question. The closest values they give: 3.1 (get_flat (call 1)) or 3 (get_flat (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "3.1 (centre_km) -> 1450 (rent_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 1450 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "3.1 (centre_km) -> 2900 (deposit_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 2900 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "1.6 -> 6.1",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 6.1 km from the metro and 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.1\" is not in the tool results or the question. The closest values they give: 4 (get_flat (call 1)) or 3.1 (get_flat (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "1.6 -> 1.7",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.7 km from the metro and 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.7\" is not in the tool results or the question. The closest values they give: 1.6 (get_flat (call 2)) or 1.9 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.6 (metro_km) -> 1180 (rent_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1180 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.6 (metro_km) -> 1180 (deposit_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1180 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "1.9 -> 9.1",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 9.1 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.1\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "1.9 -> 1.8",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.8 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.8\" is not in the tool results or the question. The closest values they give: 1.9 (get_flat (call 2)) or 2 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.9 (centre_km) -> 1180 (rent_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1180 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.9 (centre_km) -> 1180 (deposit_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1180 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "two values swapped",
+   "change": "0.4 (metro_km) <-> 3.1 (centre_km)",
+   "answer": "Flat A‑77 is about 3.1 km from the metro and 0.4 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "two values swapped",
+   "change": "0.4 (metro_km) <-> 1.9 (centre_km)",
+   "answer": "Flat A‑77 is about 1.9 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 0.4 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m12",
+   "kind": "two values swapped",
+   "change": "3.1 (centre_km) <-> 1.6 (metro_km)",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 1.6 km from the city centre, while flat B‑12 is roughly 3.1 km from the metro and 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m16",
+   "kind": "digits swapped",
+   "change": "4.7 -> 7.4",
+   "answer": "The lentil shepherd’s pie has a rating of 7.4 out of 5, based on 4 reviews, which gave it three 5‑star ratings and one 4‑star rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 7.4\": the tool results give rating = 4.7 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m16",
+   "kind": "last digit off by one",
+   "change": "4.7 -> 4.8",
+   "answer": "The lentil shepherd’s pie has a rating of 4.8 out of 5, based on 4 reviews, which gave it three 5‑star ratings and one 4‑star rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 4.8\": the tool results give rating = 4.7 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m16",
+   "kind": "value of another field",
+   "change": "4.7 (rating) -> 4 (servings)",
+   "answer": "The lentil shepherd’s pie has a rating of 4 out of 5, based on 4 reviews, which gave it three 5‑star ratings and one 4‑star rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 4\": the tool results give rating = 4.7 (get_recipe). 4 is the servings (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m16",
+   "kind": "value of another field",
+   "change": "4.7 (rating) -> 20 (prep_min)",
+   "answer": "The lentil shepherd’s pie has a rating of 20 out of 5, based on 4 reviews, which gave it three 5‑star ratings and one 4‑star rating.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 20\": the tool results give rating = 4.7 (get_recipe). 20 is the prep_min (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "12,400 -> 12,040",
+   "answer": "Northwind Bikes sold 12,040 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12,040\" is not in the tool results or the question. The closest values they give: 12,400 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "12,400 -> 12,401",
+   "answer": "Northwind Bikes sold 12,401 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12,401\" is not in the tool results or the question. The closest values they give: 12,400 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "2026 -> 2062",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2062, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2062\" is not in the tool results or the question. The closest values they give: 2026 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "2026 -> 2027",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2027, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2027\" is not in the tool results or the question. The closest values they give: 2026 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "4.2 -> 2.4",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €2.4 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.4 million\" is not in the tool results or the question. The closest values they give: 3% (get_report) or 4.2 million (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "4.2 -> 4.3",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.3 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.3 million\" is not in the tool results or the question. The closest values they give: 4.2 million (get_report) or 3% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "6.5 -> 5.6",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 5.6% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.6%\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "6.5 -> 6.6",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.6% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.6%\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "6.5% -> 0.065%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 0.065% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.065%\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "7.1 -> 1.7",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 1.7% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.7%\" is not in the tool results or the question. The closest values they give: 3% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "7.1 -> 7.2",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.2% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"7.2%\" is not in the tool results or the question. The closest values they give: 7.1% (get_report) or 6.5% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "7.1% -> 0.071%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 0.071% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.071%\" is not in the tool results or the question. The closest values they give: 7.1% (get_report) or 6.5% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "17 -> 71",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 71 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"71\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "17 -> 18",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 18 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18\" is not in the tool results or the question. The closest values they give: 17 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "3 -> 4",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 4% starting in January.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "3% -> 0.03%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 0.03% starting in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.03%\" is not in the tool results or the question. The closest values they give: 3% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "digits swapped",
+   "change": "12,400 -> 12,040",
+   "answer": "Northwind Bikes sold **12,040 bikes** in Q3 2026, and its operating margin **declined to 6.5 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12,040\" is not in the tool results or the question. The closest values they give: 12,400 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "last digit off by one",
+   "change": "12,400 -> 12,401",
+   "answer": "Northwind Bikes sold **12,401 bikes** in Q3 2026, and its operating margin **declined to 6.5 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12,401\" is not in the tool results or the question. The closest values they give: 12,400 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "digits swapped",
+   "change": "2026 -> 2062",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2062, and its operating margin **declined to 6.5 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2062\" is not in the tool results or the question. The closest values they give: 2026 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "last digit off by one",
+   "change": "2026 -> 2027",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2027, and its operating margin **declined to 6.5 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2027\" is not in the tool results or the question. The closest values they give: 2026 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "digits swapped",
+   "change": "6.5 -> 5.6",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 5.6 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.6 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "last digit off by one",
+   "change": "6.5 -> 6.6",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 6.6 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.6 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "fraction as percent",
+   "change": "6.5% -> 0.065%",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 0.065 % from 7.1 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.065 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "digits swapped",
+   "change": "7.1 -> 1.7",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 6.5 % from 1.7 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.7 %\" is not in the tool results or the question. The closest values they give: 3% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "last digit off by one",
+   "change": "7.1 -> 7.2",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 6.5 % from 7.2 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"7.2 %\" is not in the tool results or the question. The closest values they give: 7.1% (get_report) or 6.5% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m19",
+   "kind": "fraction as percent",
+   "change": "7.1% -> 0.071%",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 6.5 % from 0.071 %**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.071 %\" is not in the tool results or the question. The closest values they give: 7.1% (get_report) or 6.5% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "digits swapped",
+   "change": "17 -> 71",
+   "answer": "Northwind now has **71 shops**, and its profit for the quarter was **€273,000** (6.5 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"71\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "last digit off by one",
+   "change": "17 -> 18",
+   "answer": "Northwind now has **18 shops**, and its profit for the quarter was **€273,000** (6.5 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18\" is not in the tool results or the question. The closest values they give: 17 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "digits swapped",
+   "change": "273,000 -> 270,300",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€270,300** (6.5 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"270,300\" is not in the tool results or the question. The closest values they give: 273000.0 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "last digit off by one",
+   "change": "273,000 -> 273,001",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,001** (6.5 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"273,001\" is not in the tool results or the question. The closest values they give: 273000.0 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "digits swapped",
+   "change": "6.5 -> 5.6",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,000** (5.6 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.6 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 0.065 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "last digit off by one",
+   "change": "6.5 -> 6.6",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,000** (6.6 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.6 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 0.065 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "fraction as percent",
+   "change": "6.5% -> 0.065%",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,000** (0.065 % of €4.2 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.065 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 0.065 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "digits swapped",
+   "change": "4.2 -> 2.4",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,000** (6.5 % of €2.4 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.4 million\" is not in the tool results or the question. The closest values they give: 3% (get_report) or 4.2 million (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m20",
+   "kind": "last digit off by one",
+   "change": "4.2 -> 4.3",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,000** (6.5 % of €4.3 million revenue).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.3 million\" is not in the tool results or the question. The closest values they give: 4.2 million (get_report) or 4200000 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "digits swapped",
+   "change": "4.2 -> 2.4",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **2.4 stars** based on three reviews. The monthly membership fee is **€39.00** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **2.4\": the tool results give rating = 4.2 (get_gym). 2.4 is the centre_km (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "last digit off by one",
+   "change": "4.2 -> 4.3",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **4.3 stars** based on three reviews. The monthly membership fee is **€39.00** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **4.3\": the tool results give rating = 4.2 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "4.2 (rating) -> 3 (review_count)",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **3 stars** based on three reviews. The monthly membership fee is **€39.00** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **3\": the tool results give rating = 4.2 (get_gym). 3 is the review_count (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "4.2 (rating) -> 39 (monthly_fee_eur)",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **39 stars** based on three reviews. The monthly membership fee is **€39.00** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **39\": the tool results give rating = 4.2 (get_gym). 39 is the monthly_fee_eur (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "digits swapped",
+   "change": "39.00 -> 30.90",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **4.2 stars** based on three reviews. The monthly membership fee is **€30.90** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"monthly membership fee is **€30.90\": the tool results give monthly_fee_eur = 39 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "last digit off by one",
+   "change": "39.00 -> 39.01",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **4.2 stars** based on three reviews. The monthly membership fee is **€39.01** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"monthly membership fee is **€39.01\": the tool results give monthly_fee_eur = 39 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "39.00 (monthly_fee_eur) -> 4.2 (rating)",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **4.2 stars** based on three reviews. The monthly membership fee is **€4.2** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"monthly membership fee is **€4.2\": the tool results give monthly_fee_eur = 39 (get_gym). 4.2 is the rating (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m01",
+   "kind": "value of another field",
+   "change": "39.00 (monthly_fee_eur) -> 3 (review_count)",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **4.2 stars** based on three reviews. The monthly membership fee is **€3** per month.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"monthly membership fee is **€3\": the tool results give monthly_fee_eur = 39 (get_gym). 3 is the review_count (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m03",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "Ironleaf Fitness still has open spots in two classes:\n\n- **Spin** – starts at 81:00, 6 spots left.  \n- **HIIT** – starts at 07:30, 11 spots left.  \n\nThe Yoga class is full (0 spots left).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m03",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "Ironleaf Fitness still has open spots in two classes:\n\n- **Spin** – starts at 19:00, 6 spots left.  \n- **HIIT** – starts at 07:30, 11 spots left.  \n\nThe Yoga class is full (0 spots left).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m03",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "Ironleaf Fitness still has open spots in two classes:\n\n- **Spin** – starts at 18:00, 6 spots left.  \n- **HIIT** – starts at 07:31, 11 spots left.  \n\nThe Yoga class is full (0 spots left).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"07:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m03",
+   "kind": "last digit off by one",
+   "change": "11 -> 12",
+   "answer": "Ironleaf Fitness still has open spots in two classes:\n\n- **Spin** – starts at 18:00, 6 spots left.  \n- **HIIT** – starts at 07:30, 12 spots left.  \n\nThe Yoga class is full (0 spots left).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 spots left\": the tool results give spots_left = 6 (get_gym); spots_left = 0 (get_gym); spots_left = 11 (get_gym)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "digits swapped",
+   "change": "14 -> 41",
+   "answer": "Flight LX‑418 departs Leeds at 41:35 and arrives in Geneva at 17:50, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"41\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "14 -> 15",
+   "answer": "Flight LX‑418 departs Leeds at 15:35 and arrives in Geneva at 17:50, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"15:35\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "digits swapped",
+   "change": "35 -> 53",
+   "answer": "Flight LX‑418 departs Leeds at 14:53 and arrives in Geneva at 17:50, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"14:53\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "35 -> 36",
+   "answer": "Flight LX‑418 departs Leeds at 14:36 and arrives in Geneva at 17:50, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"14:36\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "digits swapped",
+   "change": "17 -> 71",
+   "answer": "Flight LX‑418 departs Leeds at 14:35 and arrives in Geneva at 71:50, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"71\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "17 -> 18",
+   "answer": "Flight LX‑418 departs Leeds at 14:35 and arrives in Geneva at 18:50, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:50\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m06",
+   "kind": "last digit off by one",
+   "change": "50 -> 51",
+   "answer": "Flight LX‑418 departs Leeds at 14:35 and arrives in Geneva at 17:51, departing from gate B12.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"17:51\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m07",
+   "kind": "digits swapped",
+   "change": "25 -> 52",
+   "answer": "Yes, flight LX‑418 is delayed by 52 minutes. There are 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 52\": the tool results give delay_min = 25 (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m07",
+   "kind": "last digit off by one",
+   "change": "25 -> 26",
+   "answer": "Yes, flight LX‑418 is delayed by 26 minutes. There are 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 26\": the tool results give delay_min = 25 (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m07",
+   "kind": "value of another field",
+   "change": "25 (delay_min) -> 135 (duration_min)",
+   "answer": "Yes, flight LX‑418 is delayed by 135 minutes. There are 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 135\": the tool results give delay_min = 25 (get_flight_times). 135 is the duration_min (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m07",
+   "kind": "value of another field",
+   "change": "25 (delay_min) -> 189 (price_eur)",
+   "answer": "Yes, flight LX‑418 is delayed by 189 minutes. There are 9 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"delayed by 189\": the tool results give delay_min = 25 (get_flight_times). 189 is the price_eur (get_flight_times)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "digits swapped",
+   "change": "135 -> 153",
+   "answer": "LX‑418 is the shorter flight. It flies for 153 minutes, whereas LX‑422 flies for 150 minutes – a difference of 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"153\" is not in the tool results or the question. The closest values they give: 150 (get_flight_times (call 2)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "last digit off by one",
+   "change": "135 -> 136",
+   "answer": "LX‑418 is the shorter flight. It flies for 136 minutes, whereas LX‑422 flies for 150 minutes – a difference of 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"136\" is not in the tool results or the question. The closest values they give: 135 (get_flight_times (call 1)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "135 (duration_min) -> 25 (delay_min)",
+   "answer": "LX‑418 is the shorter flight. It flies for 25 minutes, whereas LX‑422 flies for 150 minutes – a difference of 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "135 (duration_min) -> 189 (price_eur)",
+   "answer": "LX‑418 is the shorter flight. It flies for 189 minutes, whereas LX‑422 flies for 150 minutes – a difference of 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "digits swapped",
+   "change": "150 -> 105",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 105 minutes – a difference of 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"105\" is not in the tool results or the question. The closest values they give: 135 (get_flight_times (call 1)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "last digit off by one",
+   "change": "150 -> 151",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 151 minutes – a difference of 15 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"151\" is not in the tool results or the question. The closest values they give: 150 (get_flight_times (call 2)) or 142.0 (get_flight_times (call 2)).",
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "150 (duration_min) -> 0 (delay_min)",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 0 minutes – a difference of 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "value of another field",
+   "change": "150 (duration_min) -> 142 (price_eur)",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 142 minutes – a difference of 15 minutes.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"15\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 150 minutes – a difference of 51 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"51\" is not in the tool results or the question. The closest values they give: 31 (get_flight_times (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m09",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 150 minutes – a difference of 16 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"16\" is not in the tool results or the question. The closest values they give: 25 (get_flight_times (call 1)) or 9 (get_flight_times (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "digits swapped",
+   "change": "1,450 -> 1,405",
+   "answer": "Flat A‑77 rents €1,405 per month and requires a €2,900 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rents €1,405\": the tool results give rent_eur = 1450 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "last digit off by one",
+   "change": "1,450 -> 1,451",
+   "answer": "Flat A‑77 rents €1,451 per month and requires a €2,900 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rents €1,451\": the tool results give rent_eur = 1450 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "1,450 (rent_eur) -> 2,900 (deposit_eur)",
+   "answer": "Flat A‑77 rents €2,900 per month and requires a €2,900 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rents €2,900\": the tool results give rent_eur = 1450 (get_flat). 2,900 is the deposit_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "1,450 (rent_eur) -> 68 (size_m2)",
+   "answer": "Flat A‑77 rents €68 per month and requires a €2,900 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rents €68\": the tool results give rent_eur = 1450 (get_flat). 68 is the size_m2 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "digits swapped",
+   "change": "2,900 -> 2,090",
+   "answer": "Flat A‑77 rents €1,450 per month and requires a €2,090 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2,090\" is not in the tool results or the question. The closest values they give: 2900.0 (get_flat) or 1450.0 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "last digit off by one",
+   "change": "2,900 -> 2,901",
+   "answer": "Flat A‑77 rents €1,450 per month and requires a €2,901 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2,901\" is not in the tool results or the question. The closest values they give: 2900.0 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "2,900 (deposit_eur) -> 1,450 (rent_eur)",
+   "answer": "Flat A‑77 rents €1,450 per month and requires a €1,450 deposit. Bills are **not** included in the rent.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "value of another field",
+   "change": "2,900 (deposit_eur) -> 68 (size_m2)",
+   "answer": "Flat A‑77 rents €1,450 per month and requires a €68 deposit. Bills are **not** included in the rent.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m10",
+   "kind": "two values swapped",
+   "change": "1,450 (rent_eur) <-> 2,900 (deposit_eur)",
+   "answer": "Flat A‑77 rents €2,900 per month and requires a €1,450 deposit. Bills are **not** included in the rent.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rents €2,900\": the tool results give rent_eur = 1450 (get_flat). 2,900 is the deposit_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m11",
+   "kind": "digits swapped",
+   "change": "52 -> 25",
+   "answer": "Flat B‑12 is 25 m², has 2 rooms, and is located on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"25\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m11",
+   "kind": "last digit off by one",
+   "change": "52 -> 53",
+   "answer": "Flat B‑12 is 53 m², has 2 rooms, and is located on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"53\" is not in the tool results or the question. The closest values they give: 52 (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m11",
+   "kind": "value of another field",
+   "change": "52 (size_m2) -> 1180 (rent_eur)",
+   "answer": "Flat B‑12 is 1180 m², has 2 rooms, and is located on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1180\": the tool results give size_m2 = 52 (get_flat). 1180 is the rent_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m11",
+   "kind": "value of another field",
+   "change": "52 (size_m2) -> 1180 (deposit_eur)",
+   "answer": "Flat B‑12 is 1180 m², has 2 rooms, and is located on the 1st floor.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"1180\": the tool results give size_m2 = 52 (get_flat). 1180 is the rent_eur (get_flat)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "0.4 -> 4.0",
+   "answer": "Flat A‑77 is about 4.0 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "0.4 -> 0.5",
+   "answer": "Flat A‑77 is about 0.5 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.5\" is not in the tool results or the question. The closest values they give: 0.4 (get_flat (call 1)) or 1 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "0.4 (metro_km) -> 1450 (rent_eur)",
+   "answer": "Flat A‑77 is about 1450 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "0.4 (metro_km) -> 2900 (deposit_eur)",
+   "answer": "Flat A‑77 is about 2900 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "3.1 -> 1.3",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 1.3 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.3\" is not in the tool results or the question. The closest values they give: 1.6 (get_flat (call 2)) or 1 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "3.1 -> 3.2",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.2 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"3.2\" is not in the tool results or the question. The closest values they give: 3.1 (get_flat (call 1)) or 3 (get_flat (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "3.1 (centre_km) -> 1450 (rent_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 1450 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "3.1 (centre_km) -> 2900 (deposit_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 2900 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "1.6 -> 6.1",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 6.1 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.1\" is not in the tool results or the question. The closest values they give: 4 (get_flat (call 1)) or 3.1 (get_flat (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "1.6 -> 1.7",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.7 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.7\" is not in the tool results or the question. The closest values they give: 1.6 (get_flat (call 2)) or 1.9 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.6 (metro_km) -> 1180 (rent_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1180 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.6 (metro_km) -> 1180 (deposit_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1180 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "digits swapped",
+   "change": "1.9 -> 9.1",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 9.1 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.1\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "last digit off by one",
+   "change": "1.9 -> 1.8",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.8 km from the centre.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.8\" is not in the tool results or the question. The closest values they give: 1.9 (get_flat (call 2)) or 2 (get_flat (call 2))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.9 (centre_km) -> 1180 (rent_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1180 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "value of another field",
+   "change": "1.9 (centre_km) -> 1180 (deposit_eur)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1180 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "two values swapped",
+   "change": "0.4 (metro_km) <-> 3.1 (centre_km)",
+   "answer": "Flat A‑77 is about 3.1 km from the nearest metro stop and roughly 0.4 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m12",
+   "kind": "two values swapped",
+   "change": "1.6 (metro_km) <-> 1.9 (centre_km)",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.9 km from the metro and roughly 1.6 km from the centre.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "last digit off by one",
+   "change": "55 -> 56",
+   "answer": "The lentil shepherd’s pie takes a total of **56 minutes** (20 min prep + 35 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"56\" is not in the tool results or the question. The closest values they give: 35 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "last digit off by one",
+   "change": "20 -> 21",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (21 min prep + 35 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"21 min prep\": the tool results give prep_min = 20 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "value of another field",
+   "change": "20 (prep_min) -> 4 (servings)",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (4 min prep + 35 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"4 min prep\": the tool results give prep_min = 20 (get_recipe). 4 is the servings (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "value of another field",
+   "change": "20 (prep_min) -> 35 (cook_min)",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (35 min prep + 35 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"35 min prep\": the tool results give prep_min = 20 (get_recipe). 35 is the cook_min (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "digits swapped",
+   "change": "35 -> 53",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (20 min prep + 53 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"53 min cook\": the tool results give cook_min = 35 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "last digit off by one",
+   "change": "35 -> 36",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (20 min prep + 36 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"36 min cook\": the tool results give cook_min = 35 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "value of another field",
+   "change": "35 (cook_min) -> 4 (servings)",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (20 min prep + 4 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"4 min cook\": the tool results give cook_min = 35 (get_recipe). 4 is the servings (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "value of another field",
+   "change": "35 (cook_min) -> 20 (prep_min)",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (20 min prep + 20 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"55\" is not in the tool results or the question. The closest values they give: 35 (get_recipe).",
+    "\"20 min cook\": the tool results give cook_min = 35 (get_recipe). 20 is the prep_min (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m14",
+   "kind": "two values swapped",
+   "change": "20 (prep_min) <-> 35 (cook_min)",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (35 min prep + 20 min cook) and serves **4 people**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"35 min prep\": the tool results give prep_min = 20 (get_recipe). 35 is the cook_min (get_recipe).",
+    "\"20 min cook\": the tool results give cook_min = 35 (get_recipe). 20 is the prep_min (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m16",
+   "kind": "digits swapped",
+   "change": "4.7 -> 7.4",
+   "answer": "The lentil shepherd’s pie has an overall rating of **7.4 stars** based on **4 reviews**. The individual reviews gave **five stars** for three of them and **four stars** for the remaining one.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **7.4\": the tool results give rating = 4.7 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m16",
+   "kind": "last digit off by one",
+   "change": "4.7 -> 4.8",
+   "answer": "The lentil shepherd’s pie has an overall rating of **4.8 stars** based on **4 reviews**. The individual reviews gave **five stars** for three of them and **four stars** for the remaining one.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **4.8\": the tool results give rating = 4.7 (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m16",
+   "kind": "value of another field",
+   "change": "4.7 (rating) -> 4 (servings)",
+   "answer": "The lentil shepherd’s pie has an overall rating of **4 stars** based on **4 reviews**. The individual reviews gave **five stars** for three of them and **four stars** for the remaining one.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **4\": the tool results give rating = 4.7 (get_recipe). 4 is the servings (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m16",
+   "kind": "value of another field",
+   "change": "4.7 (rating) -> 20 (prep_min)",
+   "answer": "The lentil shepherd’s pie has an overall rating of **20 stars** based on **4 reviews**. The individual reviews gave **five stars** for three of them and **four stars** for the remaining one.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **20\": the tool results give rating = 4.7 (get_recipe). 20 is the prep_min (get_recipe)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "12,400 -> 12,040",
+   "answer": "Northwind Bikes sold 12,040 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12,040\" is not in the tool results or the question. The closest values they give: 12,400 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "12,400 -> 12,401",
+   "answer": "Northwind Bikes sold 12,401 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12,401\" is not in the tool results or the question. The closest values they give: 12,400 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "2026 -> 2062",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2062, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2062\" is not in the tool results or the question. The closest values they give: 2026 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "2026 -> 2027",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2027, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2027\" is not in the tool results or the question. The closest values they give: 2026 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "8  -> 9 ",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 9 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9 %\" is not in the tool results or the question. The closest values they give: 8% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "8 % -> 0.08%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 0.08% year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.08%\" is not in the tool results or the question. The closest values they give: 8% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "4.2 -> 2.4",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €2.4 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2.4 million\" is not in the tool results or the question. The closest values they give: 3% (get_report) or 4.2 million (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "4.2 -> 4.3",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.3 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.3 million\" is not in the tool results or the question. The closest values they give: 4.2 million (get_report) or 3% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "6.5 -> 5.6",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 5.6 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.6 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "6.5 -> 6.6",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.6 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"6.6 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "6.5% -> 0.065%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 0.065 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.065 %\" is not in the tool results or the question. The closest values they give: 6.5% (get_report) or 7.1% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "7.1 -> 1.7",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 1.7 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.7 %\" is not in the tool results or the question. The closest values they give: 3% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "7.1 -> 7.2",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.2 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"7.2 %\" is not in the tool results or the question. The closest values they give: 7.1% (get_report) or 6.5% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "7.1% -> 0.071%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 0.071 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.071 %\" is not in the tool results or the question. The closest values they give: 7.1% (get_report) or 6.5% (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "digits swapped",
+   "change": "17 -> 71",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 71 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"71\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "17 -> 18",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 18 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18\" is not in the tool results or the question. The closest values they give: 17 (get_report)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "last digit off by one",
+   "change": "3  -> 4 ",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 4 % price rise in January.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m17",
+   "kind": "fraction as percent",
+   "change": "3 % -> 0.03%",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 0.03% price rise in January.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.03%\" is not in the tool results or the question. The closest values they give: 3% (get_report)."
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m02",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m05",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m08",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m13",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m14",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "m15",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m02",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m05",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m08",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m15",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m19",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "m20",
+   "why": "traceground says problems"
+  }
+ ]
+}

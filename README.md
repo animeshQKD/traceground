@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/traceground)](https://pypi.org/project/traceground/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/animeshQKD/traceground/blob/main/LICENSE)
 
-**Status: alpha (0.1.1).** It has the number and quote checks over sources; the tool-trace checks
+**Status: alpha (0.1.2).** It has the number and quote checks over sources; the tool-trace checks
 (value-to-field and argument binding, failed calls, tools never called); the wording checks (thinking
 aloud, self-contradiction); `check_answer()`, `check_messages()`, the command line, and a Gradio demo
 that is also an MCP tool (`space/`). Rules and messages may still change between 0.x versions.
@@ -208,20 +208,25 @@ answers by six models with hallucinations marked by people, measured once with 0
 to 16% of the answers with any marked span: most marked hallucinations are claims in words, which it does
 not check. 0.1.1 fixes those 7 false alarms, so for 0.1.1 the test split is no longer unseen.
 
-**On fresh tool-calling chats (0.1.1).** 40 answers by gpt-oss-120b and gpt-oss-20b to 20 questions on five
-tools made for this test (restaurants with reviews, events, trains, hotels, news articles), written after
-the 0.1.1 changes and labelled by hand before traceground was run on them:
+**On fresh tool-calling chats (0.1.2).** 39 answers by gpt-oss-120b and gpt-oss-20b to 20 questions on five
+tools made for this test (a gym with classes and reviews, flight times, flats to rent, a recipe with
+reviews, a company report), written after the 0.1.2 changes and labelled by hand before traceground was run
+on them (one question got no answer: the API rejected the model's tool call):
 
-* False alarms on 5 of the 34 correct answers (15%); three come from one cause, a rating said in stars
-  ("an overall rating of 4.3 stars") tied to the reviews' stars instead of the rating. 0.1.0 had 6.
-* Of the 3 wrong answers, it caught 1 (a speed comparison by arrival times, "faster by 2 hours 49
-  minutes"); the other 2 called no tool and said no tool existed, with no number or quote to check.
-* Planted errors: 115 of 140 caught (82%), but a value of another field only 10 of 32 (31%), against 60%
-  to 75% on the earlier sets.
+* False alarms on 7 of the 34 correct answers (21%; 0.1.1 had 9). Five are arithmetic the answer does
+  itself, in words the rules do not know ("€47 less", "a decline of 0.6 percentage points") or in a working
+  they do not cover ("€39 × 3 + €25").
+* Of the 3 wrong answers, it caught 2 (a wrong total, "€147" for 117 + 25, and a guessed time, "around
+  19:00"); the third called no tool and said it had no data, with no number or quote to check.
+* Planted errors: 162 of 199 caught (81%); a value of another field 28 of 56 (50%; 0.1.1: 40%).
 
-Details, and how to rerun both, in
+0.1.1 measured on the set before (2026-11-20): false alarms on 5 of 34 correct answers, 1 of 3 wrong answers
+caught, a planted value of another field 31%. 0.1.2's changes were made on that set, which therefore no
+longer measures it.
+
+Details, and how to rerun them, in
 [eval/README.md](https://github.com/animeshQKD/traceground/blob/main/eval/README.md) and
-[eval/results/review_heldout2_2026-11-20.md](https://github.com/animeshQKD/traceground/blob/main/eval/results/review_heldout2_2026-11-20.md).
+[eval/results/review_heldout3_2026-11-21.md](https://github.com/animeshQKD/traceground/blob/main/eval/results/review_heldout3_2026-11-21.md).
 
 ## Demo
 
@@ -244,8 +249,9 @@ http://127.0.0.1:7860/gradio_api/mcp/ while the page runs ([space/README.md](htt
 
 ## Planned next
 
-* 0.1.2: the false alarms and misses the fresh chats showed (a rating said in stars; a value of
-  another field given with a verb or unit, such as "costs €16"), measured on another fresh set.
+* 0.1.3: the false alarms and misses the third set of fresh chats showed (arithmetic in words such as
+  "€47 less"; a shown working such as "€39 × 3 + €25"; the same field in two calls), measured on another
+  fresh set.
 * Citations mode: marker styles, every marker checked, every factual sentence cited (optional).
 * An opt-in automatic fix where a fix is certain (a number cut short, thinking aloud removed).
 * LangGraph / LangChain helpers.

@@ -1,0 +1,756 @@
+{
+ "date": "2026-11-21T05:29:16",
+ "runs": [
+  "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-21_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m01",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is Ironleaf Fitness's rating, and what does membership cost per month?",
+   "answer": "Ironleaf Fitness has a rating of 4.2 and its membership costs €39.00 per month.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 4.34,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m02",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How much would the first three months at Ironleaf Fitness cost, including the joining fee?",
+   "answer": "The total cost for the first three months at Ironleaf Fitness is €142 (€39 × 3 months + €25 joining fee).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "142",
+     "message": "\"142\" is not in the tool results or the question, and they give no value close to it."
+    }
+   ],
+   "ms": 2.68,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m03",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which classes at Ironleaf Fitness still have spots, and when do they start?",
+   "answer": "Ironleaf Fitness currently has spots available in its Spin class (starts at 18:00) and its HIIT class (starts at 7:30); the Yoga class is full.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.31,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m04",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What do Ironleaf Fitness's reviewers complain about? Quote them.",
+   "answer": "Reviewers note a few issues: one says the “showers run cold after eight,” and another complains that “the music is far too loud.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.09,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m05",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "If I join the 18:00 spin class at Ironleaf Fitness, when does it finish?",
+   "answer": "I’m sorry—I don’t have any data on Ironleaf Fitness’s class schedules, so I can’t tell you when the 18:00 spin class ends.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: get_gym",
+   "flagged": false,
+   "findings": [],
+   "ms": 0.53,
+   "calls": []
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m06",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "When does flight LX-418 leave and land, and from which gate?",
+   "answer": "Flight LX‑418 departs at 14:35 and arrives at 17:50, using gate B12.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.22,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m07",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Is LX-418 delayed, and how many seats are left?",
+   "answer": "LX‑418 is delayed by 25 minutes and has 9 seats left.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.06,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m08",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which is cheaper, LX-418 or LX-422, and by how much? Do they include a bag?",
+   "answer": "LX‑418 costs €189 and includes one bag, while LX‑422 costs €142 and does not include a bag. LX‑418 is €47 more expensive than LX‑422.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "47",
+     "message": "\"47\" is not in the tool results or the question. The closest values they give: 31 (get_flight_times (call 2)) or 25 (get_flight_times (call 1))."
+    }
+   ],
+   "ms": 2.32,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})",
+    "get_flight_times({\"flight_no\": \"LX-422\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m09",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Which of LX-418 and LX-422 is the shorter flight, and by how many minutes?",
+   "answer": "LX‑418 lasts 135 minutes, while LX‑422 lasts 150 minutes, so LX‑418 is the shorter flight by 15 minutes.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.81,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})",
+    "get_flight_times({\"flight_no\": \"LX-422\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m10",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What are the rent and the deposit for flat A-77, and are bills included?",
+   "answer": "The flat A‑77 costs €1,450 rent per month with a €2,900 deposit, and the listing notes that bills are **not** included.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.41,
+   "calls": [
+    "get_flat({\"listing_id\": \"A-77\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m11",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How big is flat B-12, how many rooms does it have, and which floor is it on?",
+   "answer": "The flat B‑12 is 52 m², has 2 rooms, and is on the 1st floor.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.17,
+   "calls": [
+    "get_flat({\"listing_id\": \"B-12\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m12",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How far are flats A-77 and B-12 from the metro and from the centre?",
+   "answer": "Flat A‑77 is about 0.4 km from the metro and 3.1 km from the city centre, while flat B‑12 is roughly 1.6 km from the metro and 1.9 km from the centre.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 3.23,
+   "calls": [
+    "get_flat({\"listing_id\": \"A-77\"})",
+    "get_flat({\"listing_id\": \"B-12\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m13",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What is the rent per square metre of flat A-77?",
+   "answer": "The rent is about €21.32 per square metre.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "rent is about €21.32",
+     "message": "\"rent is about €21.32\": the tool results give rent_eur = 1450 (get_flat)."
+    }
+   ],
+   "ms": 1.84,
+   "calls": [
+    "get_flat({\"listing_id\": \"A-77\"})",
+    "calculator({\"expression\": \"1450/68\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m14",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How long does the lentil shepherd's pie take altogether, and how many does it serve?",
+   "answer": "The lentil shepherd’s pie takes a total of 55 minutes (20 minutes prep + 35 minutes cook) and serves 4 people.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "prep + 35",
+     "message": "\"prep + 35\": the tool results give prep_min = 20 (get_recipe). 35 is the cook_min (get_recipe)."
+    }
+   ],
+   "ms": 2.99,
+   "calls": [
+    "get_recipe({\"name\": \"Lentil Shepherd's Pie\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m15",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What does the lentil shepherd's pie cost per serving, and how many calories is that?",
+   "answer": "The lentil shepherd’s pie costs about €2.45 per serving and provides roughly 540 calories per serving.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "value-to-field",
+     "severity": "high",
+     "text": "2.45 per serving",
+     "message": "\"2.45 per serving\": the tool results give servings = 4 (get_recipe)."
+    }
+   ],
+   "ms": 1.86,
+   "calls": [
+    "get_recipe({\"name\": \"lentil shepherd's pie\"})",
+    "calculator({\"expression\": \"9.8/4\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m16",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How is the lentil shepherd's pie rated, and what stars did its reviews give?",
+   "answer": "The lentil shepherd’s pie has a rating of 4.7 out of 5, based on 4 reviews, which gave it three 5‑star ratings and one 4‑star rating.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.74,
+   "calls": [
+    "get_recipe({\"name\": \"lentil shepherd's pie\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m17",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "Summarize report Q3-NORTHWIND in two sentences.",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, generating €4.2 million in revenue but seeing its operating margin dip to 6.5% from 7.1% due to higher aluminium costs, while opening new stores in Bergen and Ghent to bring its total to 17 locations. CEO Mara Lindqvist described the quarter as “steady rather than spectacular” and announced a planned price increase of about 3% starting in January.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.73,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m18",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "What did Northwind's chief executive say about the quarter, according to report Q3-NORTHWIND? Quote her.",
+   "answer": "Northwind’s chief executive, Mara Lindqvist, said the quarter was “steady rather than spectacular.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.03,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m19",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "According to report Q3-NORTHWIND, how many bikes did Northwind sell, and how did its margin change?",
+   "answer": "Northwind Bikes sold **12,400 bikes** in Q3 2026, and its operating margin **declined to 6.5 % from 7.1 %**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.22,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+   "id": "m20",
+   "model": "openai/gpt-oss-120b",
+   "provider": "groq",
+   "question": "How many shops does Northwind have after the quarter in report Q3-NORTHWIND, and what were its profits?",
+   "answer": "Northwind now has **17 shops**, and its profit for the quarter was **€273,000** (6.5 % of €4.2 million revenue).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.28,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})",
+    "calculator({\"expression\": \"0.065*4200000\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m01",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is Ironleaf Fitness's rating, and what does membership cost per month?",
+   "answer": "Ironleaf Fitness in Leeds has a rating of **4.2 stars** based on three reviews. The monthly membership fee is **€39.00** per month.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.08,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m02",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How much would the first three months at Ironleaf Fitness cost, including the joining fee?",
+   "answer": "The first three months at Ironleaf Fitness would cost €147.00 in total, which includes €39.00 per month for three months (€117.00) plus a €25.00 joining fee.",
+   "label": "wrong",
+   "label_reason": "missing or different values: 142",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "147.00",
+     "message": "\"147.00\" is not in the tool results or the question, and they give no value close to it."
+    },
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "117.00",
+     "message": "\"117.00\" is not in the tool results or the question. The closest values they give: 60 (get_gym)."
+    }
+   ],
+   "ms": 2.9,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m03",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which classes at Ironleaf Fitness still have spots, and when do they start?",
+   "answer": "Ironleaf Fitness still has open spots in two classes:\n\n- **Spin** – starts at 18:00, 6 spots left.  \n- **HIIT** – starts at 07:30, 11 spots left.  \n\nThe Yoga class is full (0 spots left).",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.55,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m04",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What do Ironleaf Fitness's reviewers complain about? Quote them.",
+   "answer": "Ironleaf Fitness’s reviewers point out a few drawbacks. One reviewer says, “Good classes, but the showers run cold after eight.” Another notes, “Fine equipment; the music is far too loud.” These comments highlight issues with shower temperature and gym noise.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.48,
+   "calls": [
+    "get_gym({\"name\": \"Ironleaf Fitness\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m05",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "If I join the 18:00 spin class at Ironleaf Fitness, when does it finish?",
+   "answer": "I’m not able to find a specific schedule for the 18:00 spin class at Ironleaf Fitness, but most spin sessions run for about an hour. So it would normally finish around 19:00. If you need the exact end time, I’d recommend checking the club’s timetable or contacting them directly.",
+   "label": "review",
+   "label_reason": "values right but a call is missing: get_gym",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "failed-call",
+     "severity": "high",
+     "text": "I’m not able to find a specific schedule for the 18:00 spin class at Ironleaf Fitness, but most spin sessions run for about an hour.",
+     "message": "get_event(event=\"Ironleaf Fitness 18:00 spin class\") failed (\"{'error': 'unknown event: Ironleaf Fitness 18:00 spin class'}\") and was not called again successfully, but the answer reads as if it had worked."
+    },
+    {
+     "check": "failed-call",
+     "severity": "high",
+     "text": "I’m not able to find a specific schedule for the 18:00 spin class at Ironleaf Fitness, but most spin sessions run for about an hour.",
+     "message": "get_event(event=\"Ironleaf Fitness spin class\") failed (\"{'error': 'unknown event: Ironleaf Fitness spin class'}\") and was not called again successfully, but the answer reads as if it had worked."
+    },
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "19:00",
+     "message": "\"19:00\" is not a time given in the tool results or the question."
+    }
+   ],
+   "ms": 1.7,
+   "calls": [
+    "get_event({\"event\": \"Ironleaf Fitness 18:00 spin class\"})",
+    "get_event({\"event\": \"Ironleaf Fitness spin class\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m06",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "When does flight LX-418 leave and land, and from which gate?",
+   "answer": "Flight LX‑418 departs Leeds at 14:35 and arrives in Geneva at 17:50, departing from gate B12.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.29,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m07",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Is LX-418 delayed, and how many seats are left?",
+   "answer": "Yes, flight LX‑418 is delayed by 25 minutes. There are 9 seats left.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.12,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m08",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which is cheaper, LX-418 or LX-422, and by how much? Do they include a bag?",
+   "answer": "LX‑422 is cheaper. It costs €142 versus €189 for LX‑418, so it’s €47 less. LX‑418 includes one bag, while LX‑422 does not include any bags.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "47",
+     "message": "\"47\" is not in the tool results or the question. The closest values they give: 31 (get_flight_times (call 2)) or 25 (get_flight_times (call 1))."
+    }
+   ],
+   "ms": 2.09,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})",
+    "get_flight_times({\"flight_no\": \"LX-422\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m09",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Which of LX-418 and LX-422 is the shorter flight, and by how many minutes?",
+   "answer": "LX‑418 is the shorter flight. It flies for 135 minutes, whereas LX‑422 flies for 150 minutes – a difference of 15 minutes.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.96,
+   "calls": [
+    "get_flight_times({\"flight_no\": \"LX-418\"})",
+    "get_flight_times({\"flight_no\": \"LX-422\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m10",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What are the rent and the deposit for flat A-77, and are bills included?",
+   "answer": "Flat A‑77 rents €1,450 per month and requires a €2,900 deposit. Bills are **not** included in the rent.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.35,
+   "calls": [
+    "get_flat({\"listing_id\": \"A-77\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m11",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How big is flat B-12, how many rooms does it have, and which floor is it on?",
+   "answer": "Flat B‑12 is 52 m², has 2 rooms, and is located on the 1st floor.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.38,
+   "calls": [
+    "get_flat({\"listing_id\": \"B-12\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m12",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How far are flats A-77 and B-12 from the metro and from the centre?",
+   "answer": "Flat A‑77 is about 0.4 km from the nearest metro stop and roughly 3.1 km from the city centre.  \nFlat B‑12 is about 1.6 km from the metro and roughly 1.9 km from the centre.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 2.25,
+   "calls": [
+    "get_flat({\"listing_id\": \"A-77\"})",
+    "get_flat({\"listing_id\": \"B-12\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m13",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What is the rent per square metre of flat A-77?",
+   "answer": "",
+   "label": "no answer",
+   "label_reason": "HTTP 400 from groq: {\"error\":{\"message\":\"Tool call validation failed: tool call validation failed: attempted to call tool 'calculator\\u003c|channel|\\u003ecommentary' which was not in request.tools\",\"type\":\"invalid_request_error\",\"code\":\"tool_use_failed\",\"failed_generation\":\"{\\\"name\\\": \\\"calculator\\u",
+   "flagged": null,
+   "findings": [],
+   "ms": null,
+   "calls": []
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m14",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How long does the lentil shepherd's pie take altogether, and how many does it serve?",
+   "answer": "The lentil shepherd’s pie takes a total of **55 minutes** (20 min prep + 35 min cook) and serves **4 people**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.82,
+   "calls": [
+    "get_recipe({\"name\": \"lentil shepherd's pie\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m15",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What does the lentil shepherd's pie cost per serving, and how many calories is that?",
+   "answer": "The lentil shepherd’s pie comes in a 4‑serving batch.  \n- **Cost per serving:** €9.80 ÷ 4 ≈ **€2.45**.  \n- **Calories per serving:** 540 kcal ÷ 4 ≈ **135 kcal**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "2.45",
+     "message": "\"2.45\" is not in the tool results or the question. The closest values they give: 4 (get_recipe) or 4.7 (get_recipe)."
+    },
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "135",
+     "message": "\"135\" is not in the tool results or the question, and they give no value close to it."
+    }
+   ],
+   "ms": 2.21,
+   "calls": [
+    "get_recipe({\"name\": \"lentil shepherd's pie\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m16",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How is the lentil shepherd's pie rated, and what stars did its reviews give?",
+   "answer": "The lentil shepherd’s pie has an overall rating of **4.7 stars** based on **4 reviews**. The individual reviews gave **five stars** for three of them and **four stars** for the remaining one.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.76,
+   "calls": [
+    "get_recipe({\"name\": \"lentil shepherd's pie\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m17",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "Summarize report Q3-NORTHWIND in two sentences.",
+   "answer": "Northwind Bikes sold 12,400 bikes in Q3 2026, an 8 % year‑over‑year increase, generating €4.2 million in revenue but seeing its operating margin drop to 6.5 % from 7.1 % due to higher aluminium costs. The company opened two new shops, now operating 17 stores, and CEO Mara Lindqvist noted the quarter was “steady rather than spectacular” while anticipating a 3 % price rise in January.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.91,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m18",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "What did Northwind's chief executive say about the quarter, according to report Q3-NORTHWIND? Quote her.",
+   "answer": "Chief executive Mara Lindqvist said the quarter was “steady rather than spectacular.”",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": false,
+   "findings": [],
+   "ms": 1.51,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m19",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "According to report Q3-NORTHWIND, how many bikes did Northwind sell, and how did its margin change?",
+   "answer": "According to the Q3‑NORTHWIND report, Northwind Bikes sold **12,400 bikes** in the third quarter. Its operating margin **fell from 7.1 % to 6.5 %**, a decline of 0.6 percentage points, largely due to higher aluminium prices.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "0.6",
+     "message": "\"0.6\" is not in the tool results or the question, and they give no value close to it."
+    }
+   ],
+   "ms": 1.51,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  },
+  {
+   "run": "2026-11-21_groq_openai-gpt-oss-20b.jsonl",
+   "id": "m20",
+   "model": "openai/gpt-oss-20b",
+   "provider": "groq",
+   "question": "How many shops does Northwind have after the quarter in report Q3-NORTHWIND, and what were its profits?",
+   "answer": "Northwind Bikes now has **17 shops** after the third‑quarter period.  \nWith a revenue of €4.2 million and an operating margin of 6.5 %, the quarter’s operating profit was about **€273 000**.",
+   "label": "correct",
+   "label_reason": "",
+   "flagged": true,
+   "findings": [
+    {
+     "check": "number",
+     "severity": "high",
+     "text": "273 000",
+     "message": "\"273 000\" is not in the tool results or the question, and they give no value close to it."
+    }
+   ],
+   "ms": 1.68,
+   "calls": [
+    "get_report({\"report_id\": \"Q3-NORTHWIND\"})"
+   ]
+  }
+ ]
+}
