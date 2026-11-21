@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "traceground"
-version = "0.1.2"
+version = "0.2.0"
 description = "Checks an AI answer against its sources or its tool-call trace: every number, quote, value and argument the evidence doesn't support. No model needed."
 readme = "README.md"
 license = "MIT"
@@ -14,7 +14,7 @@ requires-python = ">=3.10"
 dependencies = []          # the core uses the standard library only
 keywords = ["llm", "agents", "rag", "hallucination", "grounding", "evaluation", "guardrails", "tool-calling"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",

@@ -4,10 +4,11 @@
 [![PyPI](https://img.shields.io/pypi/v/traceground)](https://pypi.org/project/traceground/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/animeshQKD/traceground/blob/main/LICENSE)
 
-**Status: alpha (0.1.2).** It has the number and quote checks over sources; the tool-trace checks
-(value-to-field and argument binding, failed calls, tools never called); the wording checks (thinking
-aloud, self-contradiction); `check_answer()`, `check_messages()`, the command line, and a Gradio demo
-that is also an MCP tool (`space/`). Rules and messages may still change between 0.x versions.
+**Status: beta (0.2.0), the last planned release.** It has the number and quote checks over sources; the
+tool-trace checks (value-to-field and argument binding, failed calls, tools never called); the wording
+checks (thinking aloud, self-contradiction); `check_answer()`, `check_messages()`, the command line, and a
+Gradio demo that is also an MCP tool (`space/`). What it does not do is listed under Known limits below,
+and how often it is wrong under Measured.
 
 **Read the write-up** on Hugging Face: [what a model-free check catches in real AI answers](https://huggingface.co/blog/animesh1986/traceground-what-a-model-free-check-catches-in-rea),
 with real errors from gpt-oss-120b and gpt-oss-20b, and the RAGTruth measurement.
@@ -74,15 +75,19 @@ unless the source writes it as a percentage or under a key such as change_pct.
 
 A number the answer computes from numbers it states, which the sources support, is accepted when its
 sentence says it is computed: "315 EUR and 234 EUR, a total of 549 EUR" (a sum or difference of two
-of them, with a word such as "total", "together", "extra", "warmer"), or "3 lamps at 39.90 each cost
-119.70" (a stated number times a count from the question, with "each", "per", "times"). It must round
-to the written number at the precision it is written in: "a total of 550 EUR" is reported. A source number times a count from the question
+of them, with a word such as "total", "together", "extra", "warmer", "less", "a decline of"), "3 lamps
+at 39.90 each cost 119.70" (a stated number times a count from the question, with "each", "per",
+"times"), "fell from 7.1% to 6.5%, a decline of 0.6 percentage points", the difference of two durations
+the answer states ("1 hour 52 minutes ... 2 hours 11 minutes ... faster by 19 minutes"), or the result of
+a working the answer writes next to it ("€142 (€39 × 3 months + €25 joining fee)", "€9.80 ÷ 4 ≈ €2.45"),
+when at least one of its numbers is in the sources and the others are too or are whole counts. It must
+round to the written number at the precision it is written in: "a total of 550 EUR" is reported. A source number times a count from the question
 ("3 lamps" at 39.90 each is 119.70) is reported as minor: right, but worked out in the answer rather
 than by a tool. Thin and narrow no-break spaces work as thousands separators ("40 983.61").
 
-Not yet: signs are not compared, units are converted only in a pair written together ("5 km (3.1
-miles)"), and a value computed from numbers the answer does not state (a sum of two source values that
-the answer leaves out) is reported as unsupported.
+Signs are not compared, units are converted only in a pair written together ("5 km (3.1 miles)"), and a
+value computed from numbers the answer does not state, or in more than one step without showing the
+working ("6.5% of €4.2 million is €273,000"), is reported as unsupported.
 
 ## The quote check (implemented)
 
@@ -161,6 +166,14 @@ word only one multi-word field name has ("€789.52 in interest" for total_inter
 and $72.90" for day_low and day_high). The right value in another currency is reported when no call
 converted it ("€221.4 million" when the tool gives net_income_musd = 221.4).
 
+When several fields could be meant, the wording decides: a field named before the number wins over a
+list's field named after it ("an overall rating of 4.3 stars" is the rating, not the reviews' stars); of
+two fields in the number's unit, the one whose word is in its clause ("0.8 km from the train station" for
+station_km, "a night costs €142" for the price, "running 12 minutes late" for delay_min); and of the same
+field in two calls, the call whose item the answer names last before the number ("flat B-12 is 1.6 km from
+the metro"). A value a calculator worked out from the field, a number the answer works out itself, and the
+parts of a duration ("2 hours 11 minutes") are not compared with a field.
+
 Both checks stay silent when a binding is unsure: no field word right next to the number (a
 preposition such as "for" or "on" starts a new phrase: "the monthly payment for a $30,000 loan"), a number in
 another unit than the field ("91.4 °F" for high_c), a clause that says the number is worked out ("the
@@ -206,27 +219,33 @@ answers by six models with hallucinations marked by people, measured once with 0
 0.1.0 keeps unchanged) after development on the train split: 7 of traceground's 172 high-severity findings
 (4%) were false alarms, by hand review. It flagged 85 of the 306 marked spans that contain a digit, and 8%
 to 16% of the answers with any marked span: most marked hallucinations are claims in words, which it does
-not check. 0.1.1 fixes those 7 false alarms, so for 0.1.1 the test split is no longer unseen.
+not check. Later versions fix those 7 false alarms, so the test split no longer measures them unseen.
 
-**On fresh tool-calling chats (0.1.2).** 39 answers by gpt-oss-120b and gpt-oss-20b to 20 questions on five
-tools made for this test (a gym with classes and reviews, flight times, flats to rent, a recipe with
-reviews, a company report), written after the 0.1.2 changes and labelled by hand before traceground was run
-on them (one question got no answer: the API rejected the model's tool call):
+**On the final test (0.2.0).** 79 answers by gpt-oss-120b and gpt-oss-20b to 40 questions on eight tools
+made for this test (a bookshop, car rental, a concert, a bus route, a museum, phone plans, a course, a
+press release), written after the 0.2.0 code was frozen and labelled by hand before traceground was run on
+them, with the results fixed in advance to be published as they came out (one question got no answer: the
+API rejected the model's tool call twice):
 
-* False alarms on 7 of the 34 correct answers (21%; 0.1.1 had 9). Five are arithmetic the answer does
-  itself, in words the rules do not know ("€47 less", "a decline of 0.6 percentage points") or in a working
-  they do not cover ("€39 × 3 + €25").
-* Of the 3 wrong answers, it caught 2 (a wrong total, "€147" for 117 + 25, and a guessed time, "around
-  19:00"); the third called no tool and said it had no data, with no number or quote to check.
-* Planted errors: 162 of 199 caught (81%); a value of another field 28 of 56 (50%; 0.1.1: 40%).
+* **False alarms on 20 of the 62 correct answers (32%)**, the same 20 as 0.1.2. Fifteen are arithmetic the
+  answer does itself in a form the rules do not read ("10 weeks at 3 hours per week, 30 hours", "twice the
+  €2.40 fare", "€21.60 after the 10% discount"); 17 of the 40 questions asked for a computed number. The
+  others: a clock time plus a duration ("the 8:00 bus ... 8:41"), with a bug that reads the question's
+  "8:00" as an argument "00"; a price compared with a percentage field; "2 hours and 15 minutes".
+* **Of the 8 wrong answers, it caught 2** (a wrong discount, "€21" for €21.60, and an invented reason after a
+  failed call, "Casa da Luz is a restaurant"). Four called no tool and said no tool or data existed, and two
+  misspelt a name: nothing a number or quote check sees.
+* Planted errors: 249 of 282 caught (88%); a value of another field 47 of 70 (67%).
 
-0.1.1 measured on the set before (2026-11-20): false alarms on 5 of 34 correct answers, 1 of 3 wrong answers
-caught, a planted value of another field 31%. 0.1.2's changes were made on that set, which therefore no
-longer measures it.
+So: numbers copied from tool results are checked reliably; numbers an answer works out itself are often
+reported even when right, unless the answer shows the working or says it in words the rules know.
+
+On the earlier fresh sets, each measured once before the next version was developed on it: 0.1.1 had false
+alarms on 5 of 34 correct answers (2026-11-20), 0.1.2 on 7 of 34 (2026-11-21).
 
 Details, and how to rerun them, in
 [eval/README.md](https://github.com/animeshQKD/traceground/blob/main/eval/README.md) and
-[eval/results/review_heldout3_2026-11-21.md](https://github.com/animeshQKD/traceground/blob/main/eval/results/review_heldout3_2026-11-21.md).
+[eval/results/review_final_2026-11-21.md](https://github.com/animeshQKD/traceground/blob/main/eval/results/review_final_2026-11-21.md).
 
 ## Demo
 
@@ -247,15 +266,22 @@ python space/app.py
 then open http://127.0.0.1:7860. The same check is an MCP tool, `traceground_check`, at
 http://127.0.0.1:7860/gradio_api/mcp/ while the page runs ([space/README.md](https://github.com/animeshQKD/traceground/blob/main/space/README.md)).
 
-## Planned next
+## Known limits
 
-* 0.1.3: the false alarms and misses the third set of fresh chats showed (arithmetic in words such as
-  "€47 less"; a shown working such as "€39 × 3 + €25"; the same field in two calls), measured on another
-  fresh set.
-* Citations mode: marker styles, every marker checked, every factual sentence cited (optional).
-* An opt-in automatic fix where a fix is certain (a number cut short, thinking aloud removed).
-* LangGraph / LangChain helpers.
-* Report-only stays the default; when a check is unsure, it says nothing.
+traceground checks numbers, quotes, field values and tool arguments. It does not check:
+
+* claims made in words ("the company grew fast"), or what an answer leaves out;
+* an answer that calls no tool and then says no tool exists, when there is no number or quote in it;
+* a wrong idea behind correct arithmetic ("binary 1010 = 8 + 4 + 2 + 1 = 15");
+* a value worked out in more than one step without the working, or in a unit pair it does not know;
+* signs (a rise reported as a fall).
+
+And it reports some right numbers as unsupported: a number the answer works out itself without showing
+the working and without a word it knows ("10 weeks at 3 hours, 30 hours"; "twice the fare"; "10% off");
+a clock time plus a duration ("the 8:00 bus arrives at 8:41"). A clock time in the question can be read as
+a tool argument ("8:00" as "00"), and a price can be compared with a percentage field.
+
+When a check is unsure it says nothing, and it never changes the answer: it only reports.
 
 ## Install
 

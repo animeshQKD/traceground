@@ -436,6 +436,119 @@ def get_report(report_id: str) -> dict:
     return dict(r) if r else {"error": f"unknown report: {report_id}"}
 
 
+# ---------------------------------------------------------------- final test set (questions_final.json)
+# Written on 2026-11-21, after the 0.2.0 code was frozen and before any model answered. All made up.
+_BOOKSHOPS = {
+    "marlow & finch books": {
+        "name": "Marlow & Finch Books", "city": "Porto", "rating": 4.5, "review_count": 4,
+        "loyalty_discount_pct": 10, "hours": {"Mon-Sat": "10:0-19:30", "Sunday": "11:0-17:0"},
+        "events": [{"title": "Poetry evening", "date": "2026-12-03", "start": "19:0", "seats_left": 12},
+                   {"title": "Children's story hour", "date": "2026-12-06", "start": "10:30", "seats_left": 0}],
+        "reviews": [{"stars": 5, "text": "A maze of second-hand shelves; I lost an afternoon here happily."},
+                    {"stars": 5, "text": "The staff found a book I had been hunting for years."},
+                    {"stars": 4, "text": "Lovely, but the café upstairs closes far too early."},
+                    {"stars": 3, "text": "Charming, though prices for new books are high."}]},
+}
+
+
+def get_bookshop(name: str) -> dict:
+    b = _BOOKSHOPS.get(str(name).lower().strip().replace(" and ", " & "))
+    return json.loads(json.dumps(b)) if b else {"error": f"unknown bookshop: {name}"}
+
+
+_RENTALS = {
+    "CR-55": {"offer_id": "CR-55", "car": "compact", "price_per_day_eur": 38.0, "deposit_eur": 300.0,
+              "km_included_per_day": 200, "extra_km_eur": 0.25, "min_age": 21, "fuel": "full to full", "rating": 4.1},
+    "CR-71": {"offer_id": "CR-71", "car": "estate", "price_per_day_eur": 52.0, "deposit_eur": 450.0,
+              "km_included_per_day": 250, "extra_km_eur": 0.20, "min_age": 23, "fuel": "full to full", "rating": 4.4},
+}
+
+
+def get_car_rental(offer_id: str) -> dict:
+    r = _RENTALS.get(str(offer_id).upper().replace(" ", "-"))
+    return dict(r) if r else {"error": f"unknown offer: {offer_id}"}
+
+
+_CONCERTS = {
+    "harbour lights orchestra": {
+        "name": "Harbour Lights Orchestra", "date": "2026-12-19", "venue": "Riverside Hall", "capacity": 1200,
+        "doors_open": "18:30", "start": "19:30", "end": "21:45",
+        "tiers": [{"tier": "stalls", "price_eur": 45.0, "left": 18}, {"tier": "balcony", "price_eur": 32.0, "left": 0},
+                  {"tier": "standing", "price_eur": 20.0, "left": 140}]},
+}
+
+
+def get_concert(name: str) -> dict:
+    c = _CONCERTS.get(str(name).lower().strip())
+    return json.loads(json.dumps(c)) if c else {"error": f"unknown concert: {name}"}
+
+
+_BUS_ROUTES = {
+    "42": {"route": "42", "from": "Campanhã", "to": "Foz", "first_bus": "5:40", "last_bus": "23:15",
+           "every_min": 12, "stops": 18, "fare_eur": 2.4, "journey_min": 41, "accessible": True},
+}
+
+
+def get_bus_route(route: str) -> dict:
+    r = _BUS_ROUTES.get(str(route).strip().lstrip("#").split()[-1] if str(route).strip() else "")
+    return dict(r) if r else {"error": f"unknown route: {route}"}
+
+
+_MUSEUMS = {
+    "casa da luz": {
+        "name": "Casa da Luz", "adult_eur": 12.0, "child_eur": 6.0, "family_eur": 28.0,
+        "family_ticket": "2 adults and 2 children", "hours": {"Tue-Sun": "10:0-18:0", "Monday": "closed"},
+        "visitors_2025": 186400, "rating": 4.6,
+        "exhibitions": [{"title": "Light and Glass", "until": "2027-01-31"},
+                        {"title": "Harbour Photographs 1900-1950", "until": "2026-12-14"}]},
+}
+
+
+def get_museum(name: str) -> dict:
+    m = _MUSEUMS.get(str(name).lower().strip())
+    return json.loads(json.dumps(m)) if m else {"error": f"unknown museum: {name}"}
+
+
+_PHONE_PLANS = {
+    "P-10": {"plan_id": "P-10", "monthly_eur": 14.0, "data_gb": 25, "minutes": "unlimited", "contract_months": 12,
+             "setup_fee_eur": 10.0, "eu_roaming": True},
+    "P-30": {"plan_id": "P-30", "monthly_eur": 22.0, "data_gb": 80, "minutes": "unlimited", "contract_months": 24,
+             "setup_fee_eur": 0.0, "eu_roaming": True},
+}
+
+
+def get_phone_plan(plan_id: str) -> dict:
+    p = _PHONE_PLANS.get(str(plan_id).upper().replace(" ", "-"))
+    return dict(p) if p else {"error": f"unknown plan: {plan_id}"}
+
+
+_COURSES = {
+    "PY-101": {"course_id": "PY-101", "title": "Python for data analysis", "weeks": 10, "hours_per_week": 3,
+               "fee_eur": 480.0, "early_bird_pct": 15, "seats_left": 7, "starts": "2026-01-12",
+               "teacher": "Dr. Inês Moura", "rating": 4.8},
+}
+
+
+def get_course(course_id: str) -> dict:
+    c = _COURSES.get(str(course_id).upper().replace(" ", "-"))
+    return dict(c) if c else {"error": f"unknown course: {course_id}"}
+
+
+_PRESS = {
+    "PR-HELIX": {"id": "PR-HELIX", "company": "Helix Robotics", "date": "2026-11-12",
+                 "text": ("Helix Robotics raised 18 million euros in a Series B round led by Northgate Ventures. The "
+                          "company, founded in 2019, now employs 140 people and plans to hire 60 more by the end of "
+                          "2027. Revenue grew 72% last year to 9.4 million euros. Chief executive Tomás Reyes said the "
+                          "money would \"take our warehouse robots from pilots to full fleets\" and that Helix "
+                          "expects to be profitable in 2028.")},
+}
+
+
+def get_press_release(release_id: str) -> dict:
+    r = _PRESS.get(str(release_id).upper().replace(" ", "-"))
+    return dict(r) if r else {"error": f"unknown press release: {release_id}"}
+
+
 # ---------------------------------------------------------------- schemas
 def _schema(name, description, props, required):
     return {"type": "function", "function": {"name": name, "description": description, "parameters": {
@@ -502,6 +615,25 @@ TOOLS = {
                    "recipe.", {"name": STR}, ["name"])),
     "get_report": (get_report, _schema("get_report", "A company's quarterly report by id: company, quarter and text.",
                    {"report_id": dict(STR, description="e.g. Q3-NORTHWIND")}, ["report_id"])),
+    "get_bookshop": (get_bookshop, _schema("get_bookshop", "Rating, opening hours, loyalty discount, events and "
+                     "recent reviews of a bookshop.", {"name": STR}, ["name"])),
+    "get_car_rental": (get_car_rental, _schema("get_car_rental", "Daily price and deposit (EUR), kilometres included, "
+                       "extra-kilometre price, minimum age and fuel policy of a car rental offer.",
+                       {"offer_id": dict(STR, description="e.g. CR-55")}, ["offer_id"])),
+    "get_concert": (get_concert, _schema("get_concert", "Date, venue, capacity, times and ticket tiers (EUR) of a "
+                    "concert.", {"name": STR}, ["name"])),
+    "get_bus_route": (get_bus_route, _schema("get_bus_route", "First and last bus, frequency, stops, fare (EUR) and "
+                      "journey time of a bus route.", {"route": dict(STR, description="e.g. 42")}, ["route"])),
+    "get_museum": (get_museum, _schema("get_museum", "Ticket prices (EUR), opening hours, visitors, rating and "
+                   "exhibitions of a museum.", {"name": STR}, ["name"])),
+    "get_phone_plan": (get_phone_plan, _schema("get_phone_plan", "Monthly price (EUR), data, minutes, contract length, "
+                       "setup fee and roaming of a phone plan.", {"plan_id": dict(STR, description="e.g. P-10")},
+                       ["plan_id"])),
+    "get_course": (get_course, _schema("get_course", "Length, hours, fee (EUR), early-bird discount, seats left, start "
+                   "date, teacher and rating of a course.", {"course_id": dict(STR, description="e.g. PY-101")},
+                   ["course_id"])),
+    "get_press_release": (get_press_release, _schema("get_press_release", "A company press release by id: company, "
+                          "date and text.", {"release_id": dict(STR, description="e.g. PR-HELIX")}, ["release_id"])),
     "calculator": (calculator, _schema("calculator", "Evaluate an arithmetic expression, e.g. '0.15*240' or '(125.5-37.25)*4'.",
                    {"expression": STR}, ["expression"])),
 }

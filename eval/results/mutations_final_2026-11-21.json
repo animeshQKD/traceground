@@ -1,0 +1,4004 @@
+{
+ "date": "2026-11-21T15:25:27",
+ "runs": [
+  "2026-11-21_groq_openai-gpt-oss-120b.jsonl",
+  "2026-11-21_groq_openai-gpt-oss-20b.jsonl"
+ ],
+ "rows": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z01",
+   "kind": "digits swapped",
+   "change": "4.5 -> 5.4",
+   "answer": "Marlow & Finch Books has a rating of 5.4 stars and 4 reviews.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 5.4\": the tool results give rating = 4.5 (get_bookshop)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z01",
+   "kind": "last digit off by one",
+   "change": "4.5 -> 4.6",
+   "answer": "Marlow & Finch Books has a rating of 4.6 stars and 4 reviews.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 4.6\": the tool results give rating = 4.5 (get_bookshop)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z01",
+   "kind": "value of another field",
+   "change": "4.5 (rating) -> 4 (review_count)",
+   "answer": "Marlow & Finch Books has a rating of 4 stars and 4 reviews.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z01",
+   "kind": "value of another field",
+   "change": "4.5 (rating) -> 10 (loyalty_discount_pct)",
+   "answer": "Marlow & Finch Books has a rating of 10 stars and 4 reviews.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of 10\": the tool results give rating = 4.5 (get_bookshop). 10 is the loyalty_discount_pct (get_bookshop)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z02",
+   "kind": "last digit off by one",
+   "change": "11 -> 12",
+   "answer": "Marlow & Finch Books is open on Sundays from 12:00 to 17:00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z02",
+   "kind": "digits swapped",
+   "change": "17 -> 71",
+   "answer": "Marlow & Finch Books is open on Sundays from 11:00 to 71:00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"71\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z02",
+   "kind": "last digit off by one",
+   "change": "17 -> 18",
+   "answer": "Marlow & Finch Books is open on Sundays from 11:00 to 18:00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:00\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "digits swapped",
+   "change": "38.00 -> 30.80",
+   "answer": "The car‑rental offer CR‑55 costs €30.80 per day, with a €300.00 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"30.80\" is not in the tool results or the question. The closest values they give: 38.0 (get_car_rental) or 21 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "last digit off by one",
+   "change": "38.00 -> 38.01",
+   "answer": "The car‑rental offer CR‑55 costs €38.01 per day, with a €300.00 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"38.01\" is not in the tool results or the question. The closest values they give: 38.0 (get_car_rental) or 21 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "38.00 (price_per_day_eur) -> 300 (deposit_eur)",
+   "answer": "The car‑rental offer CR‑55 costs €300 per day, with a €300.00 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"300\": the tool results give price_per_day_eur = 38 (get_car_rental). 300 is the deposit_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "38.00 (price_per_day_eur) -> 200 (km_included_per_day)",
+   "answer": "The car‑rental offer CR‑55 costs €200 per day, with a €300.00 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"200\": the tool results give price_per_day_eur = 38 (get_car_rental). 200 is the km_included_per_day (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "last digit off by one",
+   "change": "300.00 -> 300.01",
+   "answer": "The car‑rental offer CR‑55 costs €38.00 per day, with a €300.01 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"300.01 deposit\": the tool results give deposit_eur = 300 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "300.00 (deposit_eur) -> 38 (price_per_day_eur)",
+   "answer": "The car‑rental offer CR‑55 costs €38.00 per day, with a €38 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"38 deposit\": the tool results give deposit_eur = 300 (get_car_rental). 38 is the price_per_day_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "300.00 (deposit_eur) -> 200 (km_included_per_day)",
+   "answer": "The car‑rental offer CR‑55 costs €38.00 per day, with a €200 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"200 deposit\": the tool results give deposit_eur = 300 (get_car_rental). 200 is the km_included_per_day (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z06",
+   "kind": "two values swapped",
+   "change": "38.00 (price_per_day_eur) <-> 300.00 (deposit_eur)",
+   "answer": "The car‑rental offer CR‑55 costs €300.00 per day, with a €38.00 deposit.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"300.00\": the tool results give price_per_day_eur = 38 (get_car_rental). 300.00 is the deposit_eur (get_car_rental).",
+    "\"38.00 deposit\": the tool results give deposit_eur = 300 (get_car_rental). 38.00 is the price_per_day_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z07",
+   "kind": "digits swapped",
+   "change": "152 -> 125",
+   "answer": "The 4‑day rental of offer CR‑55 would cost **€125** if you stay within the included kilometres.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"125\" is not in the tool results or the question. The closest values they give: 152 (calculator) or 200 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z07",
+   "kind": "last digit off by one",
+   "change": "152 -> 153",
+   "answer": "The 4‑day rental of offer CR‑55 would cost **€153** if you stay within the included kilometres.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"153\" is not in the tool results or the question. The closest values they give: 152 (calculator) or 200 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z10",
+   "kind": "digits swapped",
+   "change": "23 -> 32",
+   "answer": "You must be at least 32 years old to rent offer CR‑71, and its fuel policy is “full to full.”",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"32\" is not in the tool results or the question. The closest values they give: 23 (get_car_rental) or 52.0 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z10",
+   "kind": "last digit off by one",
+   "change": "23 -> 24",
+   "answer": "You must be at least 24 years old to rent offer CR‑71, and its fuel policy is “full to full.”",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24\" is not in the tool results or the question. The closest values they give: 23 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z10",
+   "kind": "value of another field",
+   "change": "23 (min_age) -> 52 (price_per_day_eur)",
+   "answer": "You must be at least 52 years old to rent offer CR‑71, and its fuel policy is “full to full.”",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z10",
+   "kind": "value of another field",
+   "change": "23 (min_age) -> 450 (deposit_eur)",
+   "answer": "You must be at least 450 years old to rent offer CR‑71, and its fuel policy is “full to full.”",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 81:30, and the performance ends at 21:45.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 19:30, and the performance ends at 21:45.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "last digit off by one",
+   "change": "30 -> 31",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 18:31, and the performance ends at 21:45.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"18:31\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "digits swapped",
+   "change": "21 -> 12",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 18:30, and the performance ends at 12:45.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12:45\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "last digit off by one",
+   "change": "21 -> 22",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 18:30, and the performance ends at 22:45.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"22:45\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 18:30, and the performance ends at 21:54.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"21:54\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z11",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "The Harbour Lights Orchestra concert’s doors open at 18:30, and the performance ends at 21:46.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"21:46\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (54 € each, 18 left) and the standing tier (20 € each, 140 left); the balcony tier is sold out.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"54\" is not in the tool results or the question. The closest values they give: 45.0 (get_concert) or 32.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (46 € each, 18 left) and the standing tier (20 € each, 140 left); the balcony tier is sold out.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"46\" is not in the tool results or the question. The closest values they give: 45.0 (get_concert) or 32.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (45 € each, 81 left) and the standing tier (20 € each, 140 left); the balcony tier is sold out.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"81 left\": the tool results give left = 18 (get_concert); left = 0 (get_concert); left = 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (45 € each, 19 left) and the standing tier (20 € each, 140 left); the balcony tier is sold out.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"19 left\": the tool results give left = 18 (get_concert); left = 0 (get_concert); left = 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "20 -> 21",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (45 € each, 18 left) and the standing tier (21 € each, 140 left); the balcony tier is sold out.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "digits swapped",
+   "change": "140 -> 104",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (45 € each, 18 left) and the standing tier (20 € each, 104 left); the balcony tier is sold out.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"104 left\": the tool results give left = 18 (get_concert); left = 0 (get_concert); left = 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "140 -> 141",
+   "answer": "The Harbour Lights Orchestra concert still has tickets available in the stalls tier (45 € each, 18 left) and the standing tier (20 € each, 141 left); the balcony tier is sold out.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"141 left\": the tool results give left = 18 (get_concert); left = 0 (get_concert); left = 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z14",
+   "kind": "digits swapped",
+   "change": "45 -> 54",
+   "answer": "Two stalls tickets for the Harbour Lights Orchestra would cost €54 × 2 = €90.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"54\" is not in the tool results or the question. The closest values they give: 45.0 (get_concert) or 32.0 (get_concert).",
+    "\"90\" is not in the tool results or the question. The closest values they give: 140 (get_concert) or 45.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z14",
+   "kind": "last digit off by one",
+   "change": "45 -> 46",
+   "answer": "Two stalls tickets for the Harbour Lights Orchestra would cost €46 × 2 = €90.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"46\" is not in the tool results or the question. The closest values they give: 45.0 (get_concert) or 32.0 (get_concert).",
+    "\"90\" is not in the tool results or the question. The closest values they give: 140 (get_concert) or 45.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z14",
+   "kind": "last digit off by one",
+   "change": "90 -> 91",
+   "answer": "Two stalls tickets for the Harbour Lights Orchestra would cost €45 × 2 = €91.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"91\" is not in the tool results or the question. The closest values they give: 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z15",
+   "kind": "digits swapped",
+   "change": "1,200 -> 1,020",
+   "answer": "The Harbour Lights Orchestra concert venue holds 1,020 people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,020\" is not in the tool results or the question. The closest values they give: 1200 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z15",
+   "kind": "last digit off by one",
+   "change": "1,200 -> 1,201",
+   "answer": "The Harbour Lights Orchestra concert venue holds 1,201 people.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1,201\" is not in the tool results or the question. The closest values they give: 1200 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z16",
+   "kind": "digits swapped",
+   "change": "42 -> 24",
+   "answer": "The first bus on route 24 departs at 5:40 am, and the last bus leaves at 11:15 pm.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"route 24\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "42 -> 43",
+   "answer": "The first bus on route 43 departs at 5:40 am, and the last bus leaves at 11:15 pm.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"route 43\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "40 -> 41",
+   "answer": "The first bus on route 42 departs at 5:41 am, and the last bus leaves at 11:15 pm.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5:41 am\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "11 -> 12",
+   "answer": "The first bus on route 42 departs at 5:40 am, and the last bus leaves at 12:15 pm.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12:15 pm\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z16",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "The first bus on route 42 departs at 5:40 am, and the last bus leaves at 11:51 pm.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"11:51 pm\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "The first bus on route 42 departs at 5:40 am, and the last bus leaves at 11:16 pm.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"11:16 pm\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "42 -> 24",
+   "answer": "Bus 24 runs every 12 minutes, and the full journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24\" is not in the tool results or the question. The closest values they give: 18 (get_bus_route) or 41 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "42 -> 43",
+   "answer": "Bus 43 runs every 12 minutes, and the full journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"43\" is not in the tool results or the question. The closest values they give: 42 (get_bus_route) or 41 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "Bus 42 runs every 21 minutes, and the full journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 21\": the tool results give every_min = 12 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "Bus 42 runs every 13 minutes, and the full journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 13\": the tool results give every_min = 12 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "12 (every_min) -> 18 (stops)",
+   "answer": "Bus 42 runs every 18 minutes, and the full journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 18\": the tool results give every_min = 12 (get_bus_route). 18 is the stops (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "12 (every_min) -> 2.4 (fare_eur)",
+   "answer": "Bus 42 runs every 2.4 minutes, and the full journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 2.4\": the tool results give every_min = 12 (get_bus_route). 2.4 is the fare_eur (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "41 -> 14",
+   "answer": "Bus 42 runs every 12 minutes, and the full journey takes about 14 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 14\": the tool results give journey_min = 41 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "41 -> 42",
+   "answer": "Bus 42 runs every 12 minutes, and the full journey takes about 42 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 42\": the tool results give journey_min = 41 (get_bus_route). 42 is the route (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "41 (journey_min) -> 12 (every_min)",
+   "answer": "Bus 42 runs every 12 minutes, and the full journey takes about 12 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 12\": the tool results give journey_min = 41 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "41 (journey_min) -> 18 (stops)",
+   "answer": "Bus 42 runs every 12 minutes, and the full journey takes about 18 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 18\": the tool results give journey_min = 41 (get_bus_route). 18 is the stops (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z17",
+   "kind": "two values swapped",
+   "change": "12 (every_min) <-> 41 (journey_min)",
+   "answer": "Bus 42 runs every 41 minutes, and the full journey takes about 12 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 41\": the tool results give every_min = 12 (get_bus_route). 41 is the journey_min (get_bus_route).",
+    "\"journey takes about 12\": the tool results give journey_min = 41 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z20",
+   "kind": "digits swapped",
+   "change": "42 -> 24",
+   "answer": "The bus route 24 has 18 stops and it is accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"route 24\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z20",
+   "kind": "last digit off by one",
+   "change": "42 -> 43",
+   "answer": "The bus route 43 has 18 stops and it is accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"route 43\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z20",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "The bus route 42 has 81 stops and it is accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"81 stops\": the tool results give stops = 18 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z20",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "The bus route 42 has 19 stops and it is accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"19 stops\": the tool results give stops = 18 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z20",
+   "kind": "value of another field",
+   "change": "18 (stops) -> 12 (every_min)",
+   "answer": "The bus route 42 has 12 stops and it is accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 stops\": the tool results give stops = 18 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z20",
+   "kind": "value of another field",
+   "change": "18 (stops) -> 2.4 (fare_eur)",
+   "answer": "The bus route 42 has 2.4 stops and it is accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2.4 stops\": the tool results give stops = 18 (get_bus_route). 2.4 is the fare_eur (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z21",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "Adult tickets cost €21 and child tickets cost €6 at Casa da Luz.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"21\" is not in the tool results or the question. The closest values they give: 18 (get_museum) or 28.0 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z21",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "Adult tickets cost €13 and child tickets cost €6 at Casa da Luz.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"13\" is not in the tool results or the question. The closest values they give: 12.0 (get_museum) or 10 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z21",
+   "kind": "value of another field",
+   "change": "12 (adult_eur) -> 6 (child_eur)",
+   "answer": "Adult tickets cost €6 and child tickets cost €6 at Casa da Luz.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"6\": the tool results give adult_eur = 12 (get_museum). 6 is the child_eur (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z21",
+   "kind": "value of another field",
+   "change": "12 (adult_eur) -> 28 (family_eur)",
+   "answer": "Adult tickets cost €28 and child tickets cost €6 at Casa da Luz.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"28\": the tool results give adult_eur = 12 (get_museum). 28 is the family_eur (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "1900 -> 1090",
+   "answer": "Casa da Luz currently hosts two exhibitions: “Light and Glass,” which runs until 2027‑01‑31, and “Harbour Photographs 1090‑1950,” which runs until 2026‑12‑14.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1090\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "1900 -> 1901",
+   "answer": "Casa da Luz currently hosts two exhibitions: “Light and Glass,” which runs until 2027‑01‑31, and “Harbour Photographs 1901‑1950,” which runs until 2026‑12‑14.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1901\" is not in the tool results or the question. The closest values they give: 1900 (get_museum) or 1950 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "1950 -> 1905",
+   "answer": "Casa da Luz currently hosts two exhibitions: “Light and Glass,” which runs until 2027‑01‑31, and “Harbour Photographs 1900‑1905,” which runs until 2026‑12‑14.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1905\" is not in the tool results or the question. The closest values they give: 1900 (get_museum) or 1950 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "1950 -> 1951",
+   "answer": "Casa da Luz currently hosts two exhibitions: “Light and Glass,” which runs until 2027‑01‑31, and “Harbour Photographs 1900‑1951,” which runs until 2026‑12‑14.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1951\" is not in the tool results or the question. The closest values they give: 1950 (get_museum) or 1900 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z25",
+   "kind": "digits swapped",
+   "change": "186,400 -> 186,040",
+   "answer": "Casa da Luz had 186,040 visitors in 2025.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"186,040 visitors\": the tool results give visitors_2025 = 186400 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z25",
+   "kind": "last digit off by one",
+   "change": "186,400 -> 186,401",
+   "answer": "Casa da Luz had 186,401 visitors in 2025.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"186,401 visitors\": the tool results give visitors_2025 = 186400 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z25",
+   "kind": "value of another field",
+   "change": "186,400 (visitors_2025) -> 12 (adult_eur)",
+   "answer": "Casa da Luz had 12 visitors in 2025.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 visitors\": the tool results give visitors_2025 = 186400 (get_museum). 12 is the adult_eur (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z25",
+   "kind": "value of another field",
+   "change": "186,400 (visitors_2025) -> 6 (child_eur)",
+   "answer": "Casa da Luz had 6 visitors in 2025.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"6 visitors\": the tool results give visitors_2025 = 186400 (get_museum). 6 is the child_eur (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z25",
+   "kind": "digits swapped",
+   "change": "2025 -> 2052",
+   "answer": "Casa da Luz had 186,400 visitors in 2052.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2052\" is not in the tool results or the question. The closest values they give: 1950 (get_museum) or 1900 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z25",
+   "kind": "last digit off by one",
+   "change": "2025 -> 2026",
+   "answer": "Casa da Luz had 186,400 visitors in 2026.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "digits swapped",
+   "change": "14 -> 41",
+   "answer": "The P‑10 phone plan costs €41 per month and includes 25 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"41 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "last digit off by one",
+   "change": "14 -> 15",
+   "answer": "The P‑10 phone plan costs €15 per month and includes 25 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"15 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "14 (monthly_eur) -> 25 (data_gb)",
+   "answer": "The P‑10 phone plan costs €25 per month and includes 25 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "14 (monthly_eur) -> 12 (contract_months)",
+   "answer": "The P‑10 phone plan costs €12 per month and includes 25 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 per month\": the tool results give monthly_eur = 14 (get_phone_plan). 12 is the contract_months (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "digits swapped",
+   "change": "25 -> 52",
+   "answer": "The P‑10 phone plan costs €14 per month and includes 52 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"52\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "last digit off by one",
+   "change": "25 -> 26",
+   "answer": "The P‑10 phone plan costs €14 per month and includes 26 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"26\" is not in the tool results or the question. The closest values they give: 25 (get_phone_plan) or 14.0 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "25 (data_gb) -> 14 (monthly_eur)",
+   "answer": "The P‑10 phone plan costs €14 per month and includes 14 GB of data.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "25 (data_gb) -> 12 (contract_months)",
+   "answer": "The P‑10 phone plan costs €14 per month and includes 12 GB of data.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z26",
+   "kind": "two values swapped",
+   "change": "14 (monthly_eur) <-> 25 (data_gb)",
+   "answer": "The P‑10 phone plan costs €25 per month and includes 14 GB of data.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "The total cost for plan P‑10 over its 21‑month contract, including the €10 setup fee, is €178.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"21‑month contract\": the tool results give monthly_eur = 14 (get_phone_plan); contract_months = 12 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "The total cost for plan P‑10 over its 13‑month contract, including the €10 setup fee, is €178.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"13‑month contract\": the tool results give monthly_eur = 14 (get_phone_plan); contract_months = 12 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "value of another field",
+   "change": "12 (contract_months) -> 14 (monthly_eur)",
+   "answer": "The total cost for plan P‑10 over its 14‑month contract, including the €10 setup fee, is €178.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "value of another field",
+   "change": "12 (contract_months) -> 25 (data_gb)",
+   "answer": "The total cost for plan P‑10 over its 25‑month contract, including the €10 setup fee, is €178.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25‑month contract\": the tool results give monthly_eur = 14 (get_phone_plan); contract_months = 12 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "digits swapped",
+   "change": "178 -> 187",
+   "answer": "The total cost for plan P‑10 over its 12‑month contract, including the €10 setup fee, is €187.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"187\" is not in the tool results or the question. The closest values they give: 178 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "last digit off by one",
+   "change": "178 -> 179",
+   "answer": "The total cost for plan P‑10 over its 12‑month contract, including the €10 setup fee, is €179.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"179\" is not in the tool results or the question. The closest values they give: 178 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z27",
+   "kind": "two values swapped",
+   "change": "12 (contract_months) <-> 178 (result)",
+   "answer": "The total cost for plan P‑10 over its 178‑month contract, including the €10 setup fee, is €12.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "last digit off by one",
+   "change": "22 -> 23",
+   "answer": "The P‑30 plan costs €23 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"23 per month\": the tool results give monthly_eur = 22 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "22 (monthly_eur) -> 80 (data_gb)",
+   "answer": "The P‑30 plan costs €80 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"80 per month\": the tool results give monthly_eur = 22 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "22 (monthly_eur) -> 24 (contract_months)",
+   "answer": "The P‑30 plan costs €24 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24 per month\": the tool results give monthly_eur = 22 (get_phone_plan). 24 is the contract_months (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "digits swapped",
+   "change": "24 -> 42",
+   "answer": "The P‑30 plan costs €22 per month for a 42‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"42\" is not in the tool results or the question. The closest values they give: 24 (get_phone_plan) or 80 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "last digit off by one",
+   "change": "24 -> 25",
+   "answer": "The P‑30 plan costs €22 per month for a 25‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"25\" is not in the tool results or the question. The closest values they give: 24 (get_phone_plan) or 22.0 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 22 (monthly_eur)",
+   "answer": "The P‑30 plan costs €22 per month for a 22‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 80 (data_gb)",
+   "answer": "The P‑30 plan costs €22 per month for a 80‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "last digit off by one",
+   "change": "22 -> 23",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €23 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23\" is not in the tool results or the question. The closest values they give: 24 (get_phone_plan) or 22.0 (get_phone_plan).",
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "22 (monthly_eur) -> 80 (data_gb)",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €80 × 24 = €528.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "22 (monthly_eur) -> 24 (contract_months)",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €24 × 24 = €528.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "digits swapped",
+   "change": "24 -> 42",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 42 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"42\" is not in the tool results or the question. The closest values they give: 24 (get_phone_plan) or 80 (get_phone_plan).",
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "last digit off by one",
+   "change": "24 -> 25",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 25 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"25\" is not in the tool results or the question. The closest values they give: 24 (get_phone_plan) or 22.0 (get_phone_plan).",
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 22 (monthly_eur)",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 22 = €528.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 80 (data_gb)",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 80 = €528.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "digits swapped",
+   "change": "528 -> 582",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €582.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"582\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "last digit off by one",
+   "change": "528 -> 529",
+   "answer": "The P‑30 plan costs €22 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €529.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"529\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "two values swapped",
+   "change": "22 (monthly_eur) <-> 24 (contract_months)",
+   "answer": "The P‑30 plan costs €24 per month for a 22‑month contract with no setup fee, so the total cost over the whole contract is €22 × 24 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24 per month\": the tool results give monthly_eur = 22 (get_phone_plan). 24 is the contract_months (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "two values swapped",
+   "change": "22 (monthly_eur) <-> 24 (contract_months)",
+   "answer": "The P‑30 plan costs €24 per month for a 24‑month contract with no setup fee, so the total cost over the whole contract is €22 × 22 = €528.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"24 per month\": the tool results give monthly_eur = 22 (get_phone_plan). 24 is the contract_months (get_phone_plan).",
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z28",
+   "kind": "two values swapped",
+   "change": "24 (contract_months) <-> 22 (monthly_eur)",
+   "answer": "The P‑30 plan costs €22 per month for a 22‑month contract with no setup fee, so the total cost over the whole contract is €24 × 24 = €528.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"528\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z30",
+   "kind": "digits swapped",
+   "change": "24 -> 42",
+   "answer": "Plan P‑30 has no setup fee (0 €) and a 42‑month contract.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"42‑month contract\": the tool results give monthly_eur = 22 (get_phone_plan); contract_months = 24 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z30",
+   "kind": "last digit off by one",
+   "change": "24 -> 25",
+   "answer": "Plan P‑30 has no setup fee (0 €) and a 25‑month contract.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25‑month contract\": the tool results give monthly_eur = 22 (get_phone_plan); contract_months = 24 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z30",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 22 (monthly_eur)",
+   "answer": "Plan P‑30 has no setup fee (0 €) and a 22‑month contract.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z30",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 80 (data_gb)",
+   "answer": "Plan P‑30 has no setup fee (0 €) and a 80‑month contract.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"80‑month contract\": the tool results give monthly_eur = 22 (get_phone_plan); contract_months = 24 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z31",
+   "kind": "digits swapped",
+   "change": "480 -> 408",
+   "answer": "The fee for course PY‑101 is €408 and there are 7 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"fee for course PY‑101 is €408\": the tool results give fee_eur = 480 (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z31",
+   "kind": "last digit off by one",
+   "change": "480 -> 481",
+   "answer": "The fee for course PY‑101 is €481 and there are 7 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"fee for course PY‑101 is €481\": the tool results give fee_eur = 480 (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z31",
+   "kind": "value of another field",
+   "change": "480 (fee_eur) -> 10 (weeks)",
+   "answer": "The fee for course PY‑101 is €10 and there are 7 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"10\": the tool results give fee_eur = 480 (get_course). 10 is the weeks (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z31",
+   "kind": "value of another field",
+   "change": "480 (fee_eur) -> 3 (hours_per_week)",
+   "answer": "The fee for course PY‑101 is €3 and there are 7 seats left.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"3\": the tool results give fee_eur = 480 (get_course). 3 is the hours_per_week (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "18  -> 81 ",
+   "answer": "Helix Robotics announced a €81 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81 million\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "18  -> 19 ",
+   "answer": "Helix Robotics announced a €19 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19 million\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "140 -> 104",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 104 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"104\" is not in the tool results or the question. The closest values they give: 140 (get_press_release) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "140 -> 141",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 141 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"141\" is not in the tool results or the question. The closest values they give: 140 (get_press_release) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "60 -> 61",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 61 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"61\" is not in the tool results or the question. The closest values they give: 60 (get_press_release) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "2027 -> 2072",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2072 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2072\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "2027 -> 2028",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2028 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "72  -> 27 ",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 27 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"27 %\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "72  -> 73 ",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 73 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"73 %\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "fraction as percent",
+   "change": "72 % -> 0.72%",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 0.72% revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.72%\" is not in the tool results or the question. The closest values they give: 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "9.4 -> 4.9",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €4.9 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.9 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "9.4 -> 9.5",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.5 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.5 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release) or 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "2028 -> 2082",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2082.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2082\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "2028 -> 2029",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, bringing its workforce to 140 employees and targeting an additional 60 hires by the end of 2027 while reporting a 72 % revenue increase to €9.4 million last year. CEO Tomás Reyes said the capital will scale its warehouse robots from pilot projects to full‑fleet deployments and that the company aims to achieve profitability in 2029.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2029\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z38",
+   "kind": "digits swapped",
+   "change": "18  -> 81 ",
+   "answer": "Helix Robotics raised **€81 million**, and the round was led by **Northgate Ventures**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81 million\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z38",
+   "kind": "last digit off by one",
+   "change": "18  -> 19 ",
+   "answer": "Helix Robotics raised **€19 million**, and the round was led by **Northgate Ventures**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19 million\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "digits swapped",
+   "change": "72  -> 27 ",
+   "answer": "The press release says Helix Robotics’ revenue grew 27 % last year to €9.4 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"27 %\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "last digit off by one",
+   "change": "72  -> 73 ",
+   "answer": "The press release says Helix Robotics’ revenue grew 73 % last year to €9.4 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"73 %\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "fraction as percent",
+   "change": "72 % -> 0.72%",
+   "answer": "The press release says Helix Robotics’ revenue grew 0.72% last year to €9.4 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.72%\" is not in the tool results or the question. The closest values they give: 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "digits swapped",
+   "change": "9.4 -> 4.9",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €4.9 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.9 million\" is not in the tool results or the question. The closest values they give: 5.465116 (calculator) or 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "last digit off by one",
+   "change": "9.4 -> 9.5",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.5 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.5 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release) or 9.4 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "digits swapped",
+   "change": "5.47 -> 5.74",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.4 million, which means the revenue the year before last was about €5.74 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.74 million\" is not in the tool results or the question. The closest values they give: 5.465116 (calculator) or 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "last digit off by one",
+   "change": "5.47 -> 5.48",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.4 million, which means the revenue the year before last was about €5.48 million (9.4 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5.48 million\" is not in the tool results or the question. The closest values they give: 5.465116 (calculator) or 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "digits swapped",
+   "change": "9.4 -> 4.9",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.4 million, which means the revenue the year before last was about €5.47 million (4.9 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.9\" is not in the tool results or the question. The closest values they give: 5.465116 (calculator) or 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "last digit off by one",
+   "change": "9.4 -> 9.5",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.4 million, which means the revenue the year before last was about €5.47 million (9.5 ÷ 1.72).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.5\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release) or 9.4 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "digits swapped",
+   "change": "1.72 -> 1.27",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.4 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.27).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.27\" is not in the tool results or the question. The closest values they give: 1.72 (calculator) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z40",
+   "kind": "last digit off by one",
+   "change": "1.72 -> 1.73",
+   "answer": "The press release says Helix Robotics’ revenue grew 72 % last year to €9.4 million, which means the revenue the year before last was about €5.47 million (9.4 ÷ 1.73).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1.73\" is not in the tool results or the question. The closest values they give: 1.72 (calculator)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z01",
+   "kind": "digits swapped",
+   "change": "4.5 -> 5.4",
+   "answer": "Marlow & Finch Books has a rating of **5.4 stars** and has received **4 reviews**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **5.4\": the tool results give rating = 4.5 (get_bookshop)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z01",
+   "kind": "last digit off by one",
+   "change": "4.5 -> 4.6",
+   "answer": "Marlow & Finch Books has a rating of **4.6 stars** and has received **4 reviews**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **4.6\": the tool results give rating = 4.5 (get_bookshop)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z01",
+   "kind": "value of another field",
+   "change": "4.5 (rating) -> 4 (review_count)",
+   "answer": "Marlow & Finch Books has a rating of **4 stars** and has received **4 reviews**.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z01",
+   "kind": "value of another field",
+   "change": "4.5 (rating) -> 10 (loyalty_discount_pct)",
+   "answer": "Marlow & Finch Books has a rating of **10 stars** and has received **4 reviews**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"rating of **10\": the tool results give rating = 4.5 (get_bookshop). 10 is the loyalty_discount_pct (get_bookshop)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z02",
+   "kind": "last digit off by one",
+   "change": "11 -> 12",
+   "answer": "Marlow & Finch Books is open on Sundays from 12:00 am to 5:00 pm.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"12:00 am\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "digits swapped",
+   "change": "38.00 -> 30.80",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €30.80 and requires a deposit of €300.00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"30.80\" is not in the tool results or the question. The closest values they give: 38.0 (get_car_rental) or 21 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "last digit off by one",
+   "change": "38.00 -> 38.01",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €38.01 and requires a deposit of €300.00.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"38.01\" is not in the tool results or the question. The closest values they give: 38.0 (get_car_rental) or 21 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "38.00 (price_per_day_eur) -> 300 (deposit_eur)",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €300 and requires a deposit of €300.00.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"300\": the tool results give price_per_day_eur = 38 (get_car_rental). 300 is the deposit_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "38.00 (price_per_day_eur) -> 200 (km_included_per_day)",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €200 and requires a deposit of €300.00.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"200\": the tool results give price_per_day_eur = 38 (get_car_rental). 200 is the km_included_per_day (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "last digit off by one",
+   "change": "300.00 -> 300.01",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €38.00 and requires a deposit of €300.01.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"deposit of €300.01\": the tool results give deposit_eur = 300 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "300.00 (deposit_eur) -> 38 (price_per_day_eur)",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €38.00 and requires a deposit of €38.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"deposit of €38\": the tool results give deposit_eur = 300 (get_car_rental). 38 is the price_per_day_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "value of another field",
+   "change": "300.00 (deposit_eur) -> 200 (km_included_per_day)",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €38.00 and requires a deposit of €200.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"deposit of €200\": the tool results give deposit_eur = 300 (get_car_rental). 200 is the km_included_per_day (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z06",
+   "kind": "two values swapped",
+   "change": "38.00 (price_per_day_eur) <-> 300.00 (deposit_eur)",
+   "answer": "The CR‑55 car‑rental offer lists a daily rate of €300.00 and requires a deposit of €38.00.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"300.00\": the tool results give price_per_day_eur = 38 (get_car_rental). 300.00 is the deposit_eur (get_car_rental).",
+    "\"deposit of €38.00\": the tool results give deposit_eur = 300 (get_car_rental). 38.00 is the price_per_day_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "digits swapped",
+   "change": "38 -> 83",
+   "answer": "The CR‑55 car rental costs €83 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"83\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "last digit off by one",
+   "change": "38 -> 39",
+   "answer": "The CR‑55 car rental costs €39 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"39\" is not in the tool results or the question. The closest values they give: 38.0 (get_car_rental) or 21 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "value of another field",
+   "change": "38 (price_per_day_eur) -> 300 (deposit_eur)",
+   "answer": "The CR‑55 car rental costs €300 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"300\": the tool results give price_per_day_eur = 38 (get_car_rental). 300 is the deposit_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "value of another field",
+   "change": "38 (price_per_day_eur) -> 200 (km_included_per_day)",
+   "answer": "The CR‑55 car rental costs €200 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"200\": the tool results give price_per_day_eur = 38 (get_car_rental). 200 is the km_included_per_day (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "digits swapped",
+   "change": "38 -> 83",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €83 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"83\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "last digit off by one",
+   "change": "38 -> 39",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €39 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"39\" is not in the tool results or the question. The closest values they give: 38.0 (get_car_rental) or 21 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "value of another field",
+   "change": "38 (price_per_day_eur) -> 300 (deposit_eur)",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €300 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "value of another field",
+   "change": "38 (price_per_day_eur) -> 200 (km_included_per_day)",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €200 = **€152**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "digits swapped",
+   "change": "152 -> 125",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€125**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"125\" is not in the tool results or the question. The closest values they give: 200 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "last digit off by one",
+   "change": "152 -> 153",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€153**. (The deposit of €300 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"153\" is not in the tool results or the question. The closest values they give: 200 (get_car_rental) or 300.0 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "last digit off by one",
+   "change": "300 -> 301",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €301 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"deposit of €301\": the tool results give deposit_eur = 300 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "value of another field",
+   "change": "300 (deposit_eur) -> 38 (price_per_day_eur)",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €38 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"deposit of €38\": the tool results give deposit_eur = 300 (get_car_rental). 38 is the price_per_day_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z07",
+   "kind": "value of another field",
+   "change": "300 (deposit_eur) -> 200 (km_included_per_day)",
+   "answer": "The CR‑55 car rental costs €38 per day. For a 4‑day stay that stays within the included kilometres, the total would be 4 × €38 = **€152**. (The deposit of €200 is separate and not included in the daily rate.)",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"deposit of €200\": the tool results give deposit_eur = 300 (get_car_rental). 200 is the km_included_per_day (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "digits swapped",
+   "change": "250 -> 205",
+   "answer": "CR‑71 includes more kilometres per day. It offers 205 km/day versus 200 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"205\" is not in the tool results or the question. The closest values they give: 200 (get_car_rental (call 1)) or 250 (get_car_rental (call 2)).",
+    "\"50\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "last digit off by one",
+   "change": "250 -> 251",
+   "answer": "CR‑71 includes more kilometres per day. It offers 251 km/day versus 200 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"251\" is not in the tool results or the question. The closest values they give: 250 (get_car_rental (call 2)) or 300.0 (get_car_rental (call 1)).",
+    "\"50\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "value of another field",
+   "change": "250 (km_included_per_day) -> 52 (price_per_day_eur)",
+   "answer": "CR‑71 includes more kilometres per day. It offers 52 km/day versus 200 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"50\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "value of another field",
+   "change": "250 (km_included_per_day) -> 450 (deposit_eur)",
+   "answer": "CR‑71 includes more kilometres per day. It offers 450 km/day versus 200 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"50\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "last digit off by one",
+   "change": "200 -> 201",
+   "answer": "CR‑71 includes more kilometres per day. It offers 250 km/day versus 201 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"201\" is not in the tool results or the question. The closest values they give: 200 (get_car_rental (call 1)) or 250 (get_car_rental (call 2)).",
+    "\"50\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "value of another field",
+   "change": "200 (km_included_per_day) -> 38 (price_per_day_eur)",
+   "answer": "CR‑71 includes more kilometres per day. It offers 250 km/day versus 38 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "flagged elsewhere",
+   "checks": [],
+   "findings": [
+    "\"50\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "value of another field",
+   "change": "200 (km_included_per_day) -> 300 (deposit_eur)",
+   "answer": "CR‑71 includes more kilometres per day. It offers 250 km/day versus 300 km/day for CR‑55, so it’s 50 km/day higher.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z08",
+   "kind": "last digit off by one",
+   "change": "50 -> 51",
+   "answer": "CR‑71 includes more kilometres per day. It offers 250 km/day versus 200 km/day for CR‑55, so it’s 51 km/day higher.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"51\" is not in the tool results or the question. The closest values they give: 52.0 (get_car_rental (call 2)) or 38.0 (get_car_rental (call 1))."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z10",
+   "kind": "digits swapped",
+   "change": "23 -> 32",
+   "answer": "The CR‑71 rental requires a minimum age of **32 years**. Its fuel policy is **full‑to‑full**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"age of **32\": the tool results give min_age = 23 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z10",
+   "kind": "last digit off by one",
+   "change": "23 -> 24",
+   "answer": "The CR‑71 rental requires a minimum age of **24 years**. Its fuel policy is **full‑to‑full**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"age of **24\": the tool results give min_age = 23 (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z10",
+   "kind": "value of another field",
+   "change": "23 (min_age) -> 52 (price_per_day_eur)",
+   "answer": "The CR‑71 rental requires a minimum age of **52 years**. Its fuel policy is **full‑to‑full**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"age of **52\": the tool results give min_age = 23 (get_car_rental). 52 is the price_per_day_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z10",
+   "kind": "value of another field",
+   "change": "23 (min_age) -> 450 (deposit_eur)",
+   "answer": "The CR‑71 rental requires a minimum age of **450 years**. Its fuel policy is **full‑to‑full**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"age of **450\": the tool results give min_age = 23 (get_car_rental). 450 is the deposit_eur (get_car_rental)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "digits swapped",
+   "change": "45.00 -> 40.50",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €40.50 each, 18 seats left.  \n- **Standing**: €20.00 each, 140 tickets left.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"40.50\" is not in the tool results or the question. The closest values they give: 45.0 (get_concert) or 32.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "45.00 -> 45.01",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €45.01 each, 18 seats left.  \n- **Standing**: €20.00 each, 140 tickets left.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"45.01\" is not in the tool results or the question. The closest values they give: 45.0 (get_concert) or 32.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €45.00 each, 81 seats left.  \n- **Standing**: €20.00 each, 140 tickets left.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81\" is not in the tool results or the question. The closest values they give: 140 (get_concert) or 45.0 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €45.00 each, 19 seats left.  \n- **Standing**: €20.00 each, 140 tickets left.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "20.00 -> 20.01",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €45.00 each, 18 seats left.  \n- **Standing**: €20.01 each, 140 tickets left.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"20.01\" is not in the tool results or the question. The closest values they give: 20.0 (get_concert) or 18 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "digits swapped",
+   "change": "140 -> 104",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €45.00 each, 18 seats left.  \n- **Standing**: €20.00 each, 104 tickets left.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"104\" is not in the tool results or the question. The closest values they give: 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z13",
+   "kind": "last digit off by one",
+   "change": "140 -> 141",
+   "answer": "The Harbour Lights Orchestra concert still has seats available in the **stalls** and **standing** tiers.  \n- **Stalls**: €45.00 each, 18 seats left.  \n- **Standing**: €20.00 each, 141 tickets left.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"141\" is not in the tool results or the question. The closest values they give: 140 (get_concert)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "digits swapped",
+   "change": "42 -> 24",
+   "answer": "The first bus on route 24 departs at **5:40 am**, and the last one leaves at **23:15 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"route 24\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "42 -> 43",
+   "answer": "The first bus on route 43 departs at **5:40 am**, and the last one leaves at **23:15 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"route 43\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "40 -> 41",
+   "answer": "The first bus on route 42 departs at **5:41 am**, and the last one leaves at **23:15 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5:41 am\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "digits swapped",
+   "change": "23 -> 32",
+   "answer": "The first bus on route 42 departs at **5:40 am**, and the last one leaves at **32:15 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"32\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "23 -> 24",
+   "answer": "The first bus on route 42 departs at **5:40 am**, and the last one leaves at **24:15 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24:15\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "The first bus on route 42 departs at **5:40 am**, and the last one leaves at **23:51 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23:51\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z16",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "The first bus on route 42 departs at **5:40 am**, and the last one leaves at **23:16 pm**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23:16\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "42 -> 24",
+   "answer": "Bus 24 runs every 12 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24\" is not in the tool results or the question. The closest values they give: 18 (get_bus_route) or 41 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "42 -> 43",
+   "answer": "Bus 43 runs every 12 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"43\" is not in the tool results or the question. The closest values they give: 42 (get_bus_route) or 41 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "Bus 42 runs every 21 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 21\": the tool results give every_min = 12 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "Bus 42 runs every 13 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 13\": the tool results give every_min = 12 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "12 (every_min) -> 18 (stops)",
+   "answer": "Bus 42 runs every 18 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 18\": the tool results give every_min = 12 (get_bus_route). 18 is the stops (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "12 (every_min) -> 2.4 (fare_eur)",
+   "answer": "Bus 42 runs every 2.4 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 2.4\": the tool results give every_min = 12 (get_bus_route). 2.4 is the fare_eur (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "40 -> 41",
+   "answer": "Bus 42 runs every 12 minutes between 5:41 am and 23:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"5:41 am\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "23 -> 32",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 32:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"32\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "23 -> 24",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 24:15 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"24:15\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "15 -> 51",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:51 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23:51\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "15 -> 16",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:16 pm, covering 18 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"23:16\" is not a time given in the tool results or the question."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 81 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"81 stops\": the tool results give stops = 18 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 19 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"19 stops\": the tool results give stops = 18 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "18 (stops) -> 12 (every_min)",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 12 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 stops\": the tool results give stops = 18 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "18 (stops) -> 2.4 (fare_eur)",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 2.4 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2.4 stops\": the tool results give stops = 18 (get_bus_route). 2.4 is the fare_eur (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "digits swapped",
+   "change": "41 -> 14",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 14 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 14\": the tool results give journey_min = 41 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "last digit off by one",
+   "change": "41 -> 42",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 42 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 42\": the tool results give journey_min = 41 (get_bus_route). 42 is the route (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "41 (journey_min) -> 12 (every_min)",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 12 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 12\": the tool results give journey_min = 41 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "value of another field",
+   "change": "41 (journey_min) -> 18 (stops)",
+   "answer": "Bus 42 runs every 12 minutes between 5:40 am and 23:15 pm, covering 18 stops. The total journey takes about 18 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"journey takes about 18\": the tool results give journey_min = 41 (get_bus_route). 18 is the stops (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z17",
+   "kind": "two values swapped",
+   "change": "12 (every_min) <-> 18 (stops)",
+   "answer": "Bus 42 runs every 18 minutes between 5:40 am and 23:15 pm, covering 12 stops. The total journey takes about 41 minutes.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"every 18\": the tool results give every_min = 12 (get_bus_route). 18 is the stops (get_bus_route).",
+    "\"12 stops\": the tool results give stops = 18 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z20",
+   "kind": "digits swapped",
+   "change": "42 -> 24",
+   "answer": "Route 24 has 18 stops and it is fully accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"Route 24\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z20",
+   "kind": "last digit off by one",
+   "change": "42 -> 43",
+   "answer": "Route 43 has 18 stops and it is fully accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"Route 43\": the tool results give route = 42 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z20",
+   "kind": "digits swapped",
+   "change": "18 -> 81",
+   "answer": "Route 42 has 81 stops and it is fully accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"81 stops\": the tool results give stops = 18 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z20",
+   "kind": "last digit off by one",
+   "change": "18 -> 19",
+   "answer": "Route 42 has 19 stops and it is fully accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"19 stops\": the tool results give stops = 18 (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z20",
+   "kind": "value of another field",
+   "change": "18 (stops) -> 12 (every_min)",
+   "answer": "Route 42 has 12 stops and it is fully accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 stops\": the tool results give stops = 18 (get_bus_route). 12 is the every_min (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z20",
+   "kind": "value of another field",
+   "change": "18 (stops) -> 2.4 (fare_eur)",
+   "answer": "Route 42 has 2.4 stops and it is fully accessible.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"2.4 stops\": the tool results give stops = 18 (get_bus_route). 2.4 is the fare_eur (get_bus_route)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "31 -> 13",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 13 January 2027 |\n| Harbour Photographs 1900‑1950 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"13\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "31 -> 32",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 32 January 2027 |\n| Harbour Photographs 1900‑1950 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"32\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "2027 -> 2072",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2072 |\n| Harbour Photographs 1900‑1950 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2072\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "2027 -> 2028",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2028 |\n| Harbour Photographs 1900‑1950 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2028\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "1900 -> 1090",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1090‑1950 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1090\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "1900 -> 1901",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1901‑1950 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1901\" is not in the tool results or the question. The closest values they give: 1900 (get_museum) or 1950 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "1950 -> 1905",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1900‑1905 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1905\" is not in the tool results or the question. The closest values they give: 1900 (get_museum) or 1950 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "1950 -> 1951",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1900‑1951 | 14 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"1951\" is not in the tool results or the question. The closest values they give: 1950 (get_museum) or 1900 (get_museum)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "14 -> 41",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1900‑1950 | 41 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"41\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "14 -> 15",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1900‑1950 | 15 December 2026 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"15\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "digits swapped",
+   "change": "2026 -> 2062",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1900‑1950 | 14 December 2062 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2062\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z24",
+   "kind": "last digit off by one",
+   "change": "2026 -> 2027",
+   "answer": "At Casa da Luz you can see two current exhibitions:\n\n| Exhibition | Until |\n|------------|-------|\n| Light and Glass | 31 January 2027 |\n| Harbour Photographs 1900‑1950 | 14 December 2027 |\n\nBoth are still on display, so you can visit them before the listed dates.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "digits swapped",
+   "change": "14.00 -> 10.40",
+   "answer": "The phone plan **P‑10** costs **€10.40 per month** and includes **25 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"10.40 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "last digit off by one",
+   "change": "14.00 -> 14.01",
+   "answer": "The phone plan **P‑10** costs **€14.01 per month** and includes **25 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"14.01 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "14.00 (monthly_eur) -> 25 (data_gb)",
+   "answer": "The phone plan **P‑10** costs **€25 per month** and includes **25 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "14.00 (monthly_eur) -> 12 (contract_months)",
+   "answer": "The phone plan **P‑10** costs **€12 per month** and includes **25 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"12 per month\": the tool results give monthly_eur = 14 (get_phone_plan). 12 is the contract_months (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "digits swapped",
+   "change": "25 -> 52",
+   "answer": "The phone plan **P‑10** costs **€14.00 per month** and includes **52 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"52\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "last digit off by one",
+   "change": "25 -> 26",
+   "answer": "The phone plan **P‑10** costs **€14.00 per month** and includes **26 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"26\" is not in the tool results or the question. The closest values they give: 25 (get_phone_plan) or 14.0 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "25 (data_gb) -> 14 (monthly_eur)",
+   "answer": "The phone plan **P‑10** costs **€14.00 per month** and includes **14 GB of data** (plus unlimited minutes).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "value of another field",
+   "change": "25 (data_gb) -> 12 (contract_months)",
+   "answer": "The phone plan **P‑10** costs **€14.00 per month** and includes **12 GB of data** (plus unlimited minutes).",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z26",
+   "kind": "two values swapped",
+   "change": "14.00 (monthly_eur) <-> 25 (data_gb)",
+   "answer": "The phone plan **P‑10** costs **€25 per month** and includes **14.00 GB of data** (plus unlimited minutes).",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25 per month\": the tool results give monthly_eur = 14 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z30",
+   "kind": "digits swapped",
+   "change": "24 -> 42",
+   "answer": "Plan P‑30 has no setup fee (0 €) and comes with a 42‑month contract.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"42‑month contract\": the tool results give monthly_eur = 22 (get_phone_plan); contract_months = 24 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z30",
+   "kind": "last digit off by one",
+   "change": "24 -> 25",
+   "answer": "Plan P‑30 has no setup fee (0 €) and comes with a 25‑month contract.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"25‑month contract\": the tool results give monthly_eur = 22 (get_phone_plan); contract_months = 24 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z30",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 22 (monthly_eur)",
+   "answer": "Plan P‑30 has no setup fee (0 €) and comes with a 22‑month contract.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z30",
+   "kind": "value of another field",
+   "change": "24 (contract_months) -> 80 (data_gb)",
+   "answer": "Plan P‑30 has no setup fee (0 €) and comes with a 80‑month contract.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"80‑month contract\": the tool results give monthly_eur = 22 (get_phone_plan); contract_months = 24 (get_phone_plan)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z31",
+   "kind": "digits swapped",
+   "change": "480.00 -> 408.00",
+   "answer": "The course **PY‑101 (Python for data analysis)** has a fee of **€408.00** and currently **7 seats** are still available.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"fee of **€408.00\": the tool results give fee_eur = 480 (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z31",
+   "kind": "last digit off by one",
+   "change": "480.00 -> 480.01",
+   "answer": "The course **PY‑101 (Python for data analysis)** has a fee of **€480.01** and currently **7 seats** are still available.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"fee of **€480.01\": the tool results give fee_eur = 480 (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z31",
+   "kind": "value of another field",
+   "change": "480.00 (fee_eur) -> 10 (weeks)",
+   "answer": "The course **PY‑101 (Python for data analysis)** has a fee of **€10** and currently **7 seats** are still available.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"fee of **€10\": the tool results give fee_eur = 480 (get_course). 10 is the weeks (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z31",
+   "kind": "value of another field",
+   "change": "480.00 (fee_eur) -> 3 (hours_per_week)",
+   "answer": "The course **PY‑101 (Python for data analysis)** has a fee of **€3** and currently **7 seats** are still available.",
+   "outcome": "caught",
+   "checks": [
+    "value-to-field"
+   ],
+   "findings": [
+    "\"fee of **€3\": the tool results give fee_eur = 480 (get_course). 3 is the hours_per_week (get_course)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z34",
+   "kind": "digits swapped",
+   "change": "12 -> 21",
+   "answer": "The course **PY‑101 “Python for data analysis”** begins on **21 January 2026** and is taught by **Dr. Inês Moura**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"21\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z34",
+   "kind": "last digit off by one",
+   "change": "12 -> 13",
+   "answer": "The course **PY‑101 “Python for data analysis”** begins on **13 January 2026** and is taught by **Dr. Inês Moura**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"13\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z34",
+   "kind": "digits swapped",
+   "change": "2026 -> 2062",
+   "answer": "The course **PY‑101 “Python for data analysis”** begins on **12 January 2062** and is taught by **Dr. Inês Moura**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2062\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z34",
+   "kind": "last digit off by one",
+   "change": "2026 -> 2027",
+   "answer": "The course **PY‑101 “Python for data analysis”** begins on **12 January 2027** and is taught by **Dr. Inês Moura**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2027\" is not in the tool results or the question, and they give no value close to it."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "18  -> 81 ",
+   "answer": "Helix Robotics announced a €81 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81 million\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "18  -> 19 ",
+   "answer": "Helix Robotics announced a €19 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19 million\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "140 -> 104",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 104 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"104\" is not in the tool results or the question. The closest values they give: 140 (get_press_release) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "140 -> 141",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 141 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"141\" is not in the tool results or the question. The closest values they give: 140 (get_press_release) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "60 -> 61",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 61 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"61\" is not in the tool results or the question. The closest values they give: 60 (get_press_release) or 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "2027 -> 2072",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2072. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2072\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "2027 -> 2028",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2028. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "72  -> 27 ",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 27 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"27 %\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "72  -> 73 ",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 73 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"73 %\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "fraction as percent",
+   "change": "72 % -> 0.72%",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 0.72% to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"0.72%\" is not in the tool results or the question. The closest values they give: 72% (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "9.4 -> 4.9",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €4.9 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.9 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "9.4 -> 9.5",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.5 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2028.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.5 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release) or 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "digits swapped",
+   "change": "2028 -> 2082",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2082.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2082\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z36",
+   "kind": "last digit off by one",
+   "change": "2028 -> 2029",
+   "answer": "Helix Robotics announced a €18 million Series B funding round led by Northgate Ventures, boosting its workforce to 140 and targeting an additional 60 hires by the end of 2027. The company, which saw revenue jump 72 % to €9.4 million last year, plans to scale its warehouse‑robot fleet from pilot projects to full deployments and expects profitability by 2029.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2029\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z38",
+   "kind": "digits swapped",
+   "change": "18  -> 81 ",
+   "answer": "Helix Robotics raised **81 million euros** in a Series B round, which was **led by Northgate Ventures**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"81 million\" is not in the tool results or the question. The closest values they give: 72% (get_press_release) or 60 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z38",
+   "kind": "last digit off by one",
+   "change": "18  -> 19 ",
+   "answer": "Helix Robotics raised **19 million euros** in a Series B round, which was **led by Northgate Ventures**.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"19 million\" is not in the tool results or the question. The closest values they give: 18 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z39",
+   "kind": "digits swapped",
+   "change": "140 -> 104",
+   "answer": "According to the press release (PR‑HELIX), Helix Robotics currently employs 104 people and plans to hire 60 more by the end of 2027, bringing the total to 200 employees.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"104\" is not in the tool results or the question. The closest values they give: 140 (get_press_release) or 72% (get_press_release).",
+    "\"200\" is not in the tool results or the question. The closest values they give: 140 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z39",
+   "kind": "last digit off by one",
+   "change": "140 -> 141",
+   "answer": "According to the press release (PR‑HELIX), Helix Robotics currently employs 141 people and plans to hire 60 more by the end of 2027, bringing the total to 200 employees.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"141\" is not in the tool results or the question. The closest values they give: 140 (get_press_release) or 72% (get_press_release).",
+    "\"200\" is not in the tool results or the question. The closest values they give: 140 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z39",
+   "kind": "last digit off by one",
+   "change": "60 -> 61",
+   "answer": "According to the press release (PR‑HELIX), Helix Robotics currently employs 140 people and plans to hire 61 more by the end of 2027, bringing the total to 200 employees.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"61\" is not in the tool results or the question. The closest values they give: 60 (get_press_release) or 72% (get_press_release).",
+    "\"200\" is not in the tool results or the question. The closest values they give: 140 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z39",
+   "kind": "digits swapped",
+   "change": "2027 -> 2072",
+   "answer": "According to the press release (PR‑HELIX), Helix Robotics currently employs 140 people and plans to hire 60 more by the end of 2072, bringing the total to 200 employees.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"2072\" is not in the tool results or the question. The closest values they give: 2028 (get_press_release) or 2027 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z39",
+   "kind": "last digit off by one",
+   "change": "2027 -> 2028",
+   "answer": "According to the press release (PR‑HELIX), Helix Robotics currently employs 140 people and plans to hire 60 more by the end of 2028, bringing the total to 200 employees.",
+   "outcome": "missed",
+   "checks": [],
+   "findings": []
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z39",
+   "kind": "last digit off by one",
+   "change": "200 -> 201",
+   "answer": "According to the press release (PR‑HELIX), Helix Robotics currently employs 140 people and plans to hire 60 more by the end of 2027, bringing the total to 201 employees.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"201\" is not in the tool results or the question. The closest values they give: 140 (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z40",
+   "kind": "digits swapped",
+   "change": "9.4 -> 4.9",
+   "answer": "I’m sorry, but the press release only gives Helix Robotics’ revenue for the most recent year (4.9 million €). It doesn’t provide the figure for the year before that, so I can’t give you that number.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"4.9 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release)."
+   ]
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z40",
+   "kind": "last digit off by one",
+   "change": "9.4 -> 9.5",
+   "answer": "I’m sorry, but the press release only gives Helix Robotics’ revenue for the most recent year (9.5 million €). It doesn’t provide the figure for the year before that, so I can’t give you that number.",
+   "outcome": "caught",
+   "checks": [
+    "number"
+   ],
+   "findings": [
+    "\"9.5 million\" is not in the tool results or the question. The closest values they give: 9.4 million (get_press_release) or 18 million (get_press_release)."
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z03",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z04",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z05",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z08",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z09",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z12",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z18",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z19",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z29",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z32",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z33",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z34",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z35",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z39",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z03",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z04",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z05",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z09",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z14",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z18",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z19",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z21",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z25",
+   "why": "wrong by hand"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z28",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z29",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z32",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z33",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z35",
+   "why": "traceground says problems"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z37",
+   "why": "wrong by hand"
+  }
+ ]
+}

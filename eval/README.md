@@ -117,6 +117,26 @@ no answer: the API rejected the model's tool call), false alarms on 7 of 34 corr
 answers: 9), 2 of 3 wrong answers caught (the third said it had no data, with nothing to check), and 162 of
 199 planted errors caught, a value of another field 28 of 56. This set has now been read too.
 
+### The final test set
+
+`questions_final.json` holds 40 questions on eight more new tools (`get_bookshop`, `get_car_rental`,
+`get_concert`, `get_bus_route`, `get_museum`, `get_phone_plan`, `get_course`, `get_press_release`), written on
+2026-11-21 after the 0.2.0 code was frozen. Its SHA-256 and the code's were given before any run; each
+command was run once, a question that ended in an error was asked once more, and the result was fixed in
+advance to be published as it came out, with no change to the code after it.
+
+```
+python run_eval.py --provider groq --set final --max-calls 250
+python run_eval.py --provider groq --model openai/gpt-oss-20b --set final --max-calls 250
+python score.py --set final
+python mutate.py --set final
+```
+
+Measured once with 0.2.0 on 2026-11-21 (`results/review_final_2026-11-21.md`): 79 answers, false alarms on 20
+of 62 correct answers (0.1.2 on the same answers: the same 20), 2 of 8 wrong answers caught, and 249 of 282
+planted errors caught. Most false alarms are arithmetic the answer does itself in a form the rules do not
+read.
+
 ## RAGTruth: real answers marked by people
 
 `ragtruth.py` runs traceground on [RAGTruth](https://github.com/ParticleMedia/RAGTruth) (Niu et al., ACL

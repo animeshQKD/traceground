@@ -8,6 +8,7 @@ each chat (OpenAI-style messages) for score.py.
     python run_eval.py --provider groq --set heldout        # the 20 held-out questions, into runs/heldout/
     python run_eval.py --provider groq --set heldout2       # the second held-out set, into runs/heldout2/
     python run_eval.py --provider groq --set heldout3       # the third held-out set, into runs/heldout3/
+    python run_eval.py --provider groq --set final --max-calls 250   # the final test set, into runs/final/
 
 Writes runs/<date>_<provider>_<model>.jsonl, one line per question. Run it again with the same
 provider and model on the same day to continue where it stopped: questions already answered are
@@ -37,6 +38,7 @@ SETS = {   # question set -> (questions file, folder of its runs)
     "heldout": (HERE / "questions_heldout.json", HERE / "runs" / "heldout"),
     "heldout2": (HERE / "questions_heldout2.json", HERE / "runs" / "heldout2"),
     "heldout3": (HERE / "questions_heldout3.json", HERE / "runs" / "heldout3"),
+    "final": (HERE / "questions_final.json", HERE / "runs" / "final"),
 }
 
 

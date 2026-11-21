@@ -15,8 +15,8 @@ equals it at the precision the answer wrote it with (project 1's rule): "1.98" i
     the sum of all (with "total", "together", "extra", "warmer" ...), or a stated number times or
     divided by a count from the question (with "each", "per", "times"), the difference of two durations
     the answer states ("1 hour 52 minutes ... 2 hours 11 minutes ... faster by 19 minutes"), or the
-    result of a product the answer writes next to it ("€426 (3 × €142)", "3 × €142 = €426"), at the
-    written precision. Wrong arithmetic ("a total of 550") stays unsupported;
+    result of a working the answer writes next to it ("€426 (3 × €142)", "€39 × 3 + €25 = €142", "€9.80
+    ÷ 4 ≈ €2.45"), at the written precision. Wrong arithmetic ("a total of 550") stays unsupported;
   * a source number times or divided by a whole count from the question ("3 lamps" at 39.9 is 119.70)
     is reported as minor: worked out in the answer, not by a tool;
   * a duration written in two units whose total is a source number ("535 minutes, 8 hours 55 minutes");
@@ -380,7 +380,8 @@ def _suggest(n: Number, right: str):
 
 _SUM_CUE = re.compile(r"(?i)\b(?:total(?:s|ling)?|altogether|together|combined|sum|overall|in all|difference|"
                       r"differs?|extra|additional|adds?|added|sav(?:e|es|ing|ings)|gap|apart|net|remaining|left over|"
-                      r"warmer|cooler|colder|hotter|higher|lower|longer|shorter|cheaper|"
+                      r"warmer|cooler|colder|hotter|higher|lower|longer|shorter|cheaper|dearer|more expensive|"
+                      r"less|declined?|declines|declining|fell|fallen|falls?|rose|risen|dropped|percentage points?|"
                       r"more than|less than|"
                       r"fewer than|increased?|decreased?|rises?|drops?|minus|plus|makes|comes? to|all told|in sum)\b")
 # a difference of two durations the answer states: "RX-12 is faster by 19 minutes"
@@ -401,7 +402,10 @@ def derived_from(n: Number, stated: list, question_numbers: list, sentence: str 
     ("faster by 19 minutes"); their parts are not used as numbers of their own.
     Returns a short description ("315 + 234"), or None."""
     # the parts of "2 hours 5 minutes" are one quantity, not two numbers to add or subtract
-    ops = [x for x in stated if x is not n and not x.percent
+    # "fell from 7.1% to 6.5%, a decline of 0.6 percentage points": percentages are subtracted only then
+    points = bool(re.match(r"\s*(?:%\s*)?percentage points?\b", sentence[sentence.find(n.text) + len(n.text):]
+                           if n.text in sentence else ""))
+    ops = [x for x in stated if x is not n and (not x.percent or points)
            and not any(d[2] <= x.start < d[3] for d in durations)]
     counts = [q for q in question_numbers if q.integer and not q.percent and 2 <= q.value <= 1000]
     # a percentage is the fraction it stands for: "0.15%" is 0.0015, not 36 / 240
@@ -499,33 +503,72 @@ _DURATION = re.compile(r"(?i)\b(\d+)\s*(?:hours?|hrs?|h)\s*(?:and\s+)?(\d+)\s*(?
                        r"|\b(\d+)\s*(?:days?|d)\s*(?:and\s+)?(\d+)\s*(?:hours?|hrs?|h)\b")
 
 
-_PRODUCT = re.compile(r"(?<![\w.,])(\d{1,4})\s*(?:nights?|days?|items?|people|persons?|tickets?)?\s*[\u00d7x*]\s*"
-                      r"[$€£₹¥]?\s*(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)(?![\d.,]*\d)")
+_WORK_TOKEN = re.compile(r"\s*(?:(?P<num>[$€£₹¥]?\s?\d{1,3}(?:,\d{3})+(?:\.\d+)?|[$€£₹¥]?\s?\d+(?:\.\d+)?)"
+                         r"(?![\d.,]*\d)\s*(?P<pct>%)?|(?P<op>[×*·÷/+−–]|(?<=\s)[x-](?=\s))|(?P<word>[^\W\d_][\w'’]*))")
+_OP = {"×": "*", "*": "*", "·": "*", "x": "*", "÷": "/", "/": "/", "+": "+", "−": "-", "–": "-", "-": "-"}
+_RESULT_AFTER = re.compile(r"[\s*_]*\)?[\s*_]*(?:=|≈|~|is|equals|comes to|gives|makes)[\s*_]*(?:about\s+|around\s+)?"
+                           r"[$€£₹¥]?[\s*_]*$")
 
 
-def explicit_products(answer: str) -> list:
-    """[(operand, multiplier, start, end)] of products the answer writes out: "3 × €142", "2 x 15.50".
-    The multiplier (a whole number, 2 to 1000) is returned as a Number; the operand as its text."""
-    out = []
-    for m in _PRODUCT.finditer(answer):
-        q = int(m.group(1))
-        if 2 <= q <= 1000:
-            out.append((m.group(2), Number(text=m.group(1), start=m.start(1), end=m.end(1), value=float(q),
-                                           decimals=0, scale=1.0, percent=False, integer=True, exponent=0),
-                        m.start(), m.end()))
-    return out
+def shown_workings(answer: str) -> list:
+    """[(value, operands, start, end)] of the arithmetic the answer writes out: "€39 × 3 months + €25 joining
+    fee", "€9.80 ÷ 4", "2 x 15.50": numbers joined by ×, ÷, +, − (a "-" or "x" only between spaces), with up
+    to three words after a number. `operands` are the Numbers in it."""
+    out, pos = [], 0
+    while True:
+        m = re.search(r"[$€£₹¥]?\s?\d", answer[pos:])
+        if not m:
+            return out
+        start = pos + m.start()
+        expr, operands, j, words, last_end, expect_num = "", [], start, 0, start, True
+        while j < len(answer):
+            t = _WORK_TOKEN.match(answer, j)
+            if not t or t.end() == j:
+                break
+            if t.group("num") is not None and expect_num:
+                nums = find_numbers(answer[t.start("num"):t.end("num")])
+                if not nums:
+                    break
+                x = nums[0]
+                operands.append(Number(text=x.text, start=x.start + t.start("num"), end=x.end + t.start("num"),
+                                       value=x.value, decimals=x.decimals, exponent=x.exponent, scale=x.scale,
+                                       percent=bool(t.group("pct")), integer=x.integer and not t.group("pct")))
+                expr += repr(x.value * x.scale / (100 if t.group("pct") else 1))
+                expect_num, words, last_end = False, 0, t.end()
+            elif t.group("op") and not expect_num:
+                expr += _OP[t.group("op")]
+                expect_num = True
+            elif t.group("word") and not expect_num and words < 3:
+                words += 1
+            else:
+                break
+            j = t.end()
+        if len(operands) >= 2 and not expect_num:
+            try:
+                value = eval(expr, {"__builtins__": {}}, {})       # digits and + - * / only
+            except ZeroDivisionError:
+                value = None
+            if value is not None:
+                out.append((float(value), operands, start, last_end))
+        pos = max(last_end, start + 1)
 
 
-def _shown_product(n: Number, answer: str, products: list, supported: list) -> bool:
-    """n is the result of a product the answer writes next to it, of a supported number: "€426 (3 × €142)",
-    "3 × €142 = €426". The multiplier is the answer's own count; the product must round to n."""
-    for operand, q, a, b in products:
-        before = re.fullmatch(r"[\s\w]{0,20}\(\s*", answer[n.end:a]) if n.end <= a else None
-        after = re.fullmatch(r"\s*\)?\s*(?:=|is|equals|comes to)\s*[$€£₹¥]?\s*", answer[b:n.start]) if b <= n.start else None
+def _shown_result(n: Number, answer: str, workings: list, supported: list) -> bool:
+    """n is the result of a working the answer writes next to it ("€426 for the rooms (3 × €142)", "€39 × 3
+    + €25 = €142", "€9.80 ÷ 4 ≈ €2.45"), whose numbers are supported or whole counts (2 to 1000); the working
+    must round to n."""
+    for value, operands, a, b in workings:
+        if a <= n.start < b:
+            continue
+        before = n.end <= a and re.fullmatch(r"[\s\w*_]{0,24}\(\s*", answer[n.end:a])
+        after = b <= n.start and _RESULT_AFTER.fullmatch(answer[b:n.start])
         if not (before or after):
             continue
-        x = next((y for y in supported if answer[y.start:y.end].strip() == operand and a <= y.start < b), None)
-        if x is not None and abs(x.value * x.scale * q.value - n.value * n.scale) <= n.tolerance * n.scale + 1e-9:
+        backed = [any(y.start == x.start for y in supported) for x in operands]
+        # "50 x 20 = 1000" of made-up numbers is not backed: at least one number must be in the evidence
+        if not any(backed) or not all(ok or (x.integer and 2 <= x.value <= 1000) for ok, x in zip(backed, operands)):
+            continue
+        if abs(value - n.value * n.scale) <= n.tolerance * n.scale + 1e-9:
             return True
     return False
 
@@ -604,16 +647,17 @@ def check_numbers(answer: str, sources: list, question: str = "", *, percent_as_
                     message=f"\"{answer[a:b].strip()}\" is not a time given in {evidence_name}.",
                     evidence=[], suggestion=None))
     supported = [n for n in keep + left if _supported(n, evidence, percent_as_fraction)]
-    if worked_out is not None:      # the multipliers of "3 × €142" are counts, not values to bind to a field
-        worked_out.extend((x.start, x.end) for _o, x, _a, _b in explicit_products(answer))
+    # "€426 for the rooms (3 × €142)": the answer shows the working of a number it works out
+    workings = shown_workings(answer)
+    if worked_out is not None:      # the whole counts in "3 × €142" are counts, not values to bind to a field
+        worked_out.extend((x.start, x.end) for _v, ops, _a, _b in workings for x in ops
+                          if x.integer and 2 <= x.value <= 1000
+                          and any(_supported(y, evidence, percent_as_fraction) for y in ops if y is not x))
     conversions = conversion_pairs(answer)
     durations = duration_parts(answer, [v for e in evidence for v in e.values] +
                                [n.value * n.scale for n in supported])
     supported += [n for n in keep if n not in supported and any(a <= n.start < b for a, b in durations)]
     question_numbers = find_numbers(question) if question else []
-    # "€426 for the rooms (3 × €142)": the answer shows the product it works out; its whole multiplier
-    # counts like a count from the question
-    products = explicit_products(answer)
     answer_durations = durations_of(answer)
     derived, computed_n = 0, 0
     for n in keep:
@@ -621,7 +665,7 @@ def check_numbers(answer: str, sources: list, question: str = "", *, percent_as_
             continue
         sentence = sentence_of(n.start) if sentence_of else answer
         if derived_from(n, supported, question_numbers, sentence, answer_durations) or \
-                _shown_product(n, answer, products, supported):
+                _shown_result(n, answer, workings, supported):
             derived += 1
             if worked_out is not None:
                 worked_out.append((n.start, n.end))

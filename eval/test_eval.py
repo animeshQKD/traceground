@@ -401,3 +401,38 @@ def test_heldout3_tool_values():
     assert "error" in T.get_flight_times("LX-999") and "error" in T.get_flat("Z-1") and "error" in T.get_report("x")
     g["classes"].clear()
     assert len(T.get_gym("Ironleaf Fitness")["classes"]) == 3        # a copy, not the table itself
+
+
+# ---------------------------------------------------------------- final test set
+FINAL = run_eval.load_questions("final")
+
+
+def test_final_questions_are_well_formed_and_separate():
+    ids = [q["id"] for q in FINAL]
+    others = {q["id"] for s in ("dev", "heldout", "heldout2", "heldout3") for q in run_eval.load_questions(s)}
+    assert len(ids) == len(set(ids)) == 40 and not set(ids) & others
+    for q in FINAL:
+        assert q["kind"] == "value" and all(name in T.TOOLS for name, _a in q["calls"])
+        for name, args in q["calls"]:
+            assert "error" not in T.run_tool(name, args), (q["id"], name, args)
+
+
+def test_final_tool_values():
+    by_id = {q["id"]: q for q in FINAL}
+    b, a, c = T.get_bookshop("Marlow and Finch Books"), T.get_car_rental("CR-55"), T.get_car_rental("CR-71")
+    assert score.expected_values(by_id["z05"]) == [24 * (1 - b["loyalty_discount_pct"] / 100)] == [21.6]
+    assert score.expected_values(by_id["z07"]) == [4 * a["price_per_day_eur"]] == [152.0]
+    assert score.expected_values(by_id["z08"]) == [c["km_included_per_day"] - a["km_included_per_day"]] == [50.0]
+    assert score.expected_values(by_id["z09"]) == [3 * c["price_per_day_eur"]
+                                                   + (900 - 3 * c["km_included_per_day"]) * c["extra_km_eur"]] == [186.0]
+    m, p10, p30, k = T.get_museum("Casa da Luz"), T.get_phone_plan("P-10"), T.get_phone_plan("P-30"), T.get_course("PY-101")
+    assert score.expected_values(by_id["z22"]) == [2 * m["adult_eur"] + 2 * m["child_eur"] - m["family_eur"]] == [8.0]
+    assert score.expected_values(by_id["z27"]) == [p10["monthly_eur"] * p10["contract_months"] + p10["setup_fee_eur"]] == [178.0]
+    assert score.expected_values(by_id["z28"]) == [p30["monthly_eur"] * p30["contract_months"]] == [528.0]
+    assert score.expected_values(by_id["z32"]) == [k["weeks"] * k["hours_per_week"]] == [30.0]
+    assert score.expected_values(by_id["z33"]) == [k["fee_eur"] * (1 - k["early_bird_pct"] / 100)] == [408.0]
+    assert score.expected_values(by_id["z35"]) == [k["fee_eur"] / (k["weeks"] * k["hours_per_week"])] == [16.0]
+    assert T.get_bus_route("route 42")["journey_min"] == 41 and "error" in T.get_bus_route("7")
+    assert b["review_count"] == len(b["reviews"]) and "error" in T.get_press_release("x")
+    b["reviews"].clear()
+    assert len(T.get_bookshop("Marlow & Finch Books")["reviews"]) == 4      # a copy, not the table itself

@@ -1,3 +1,3 @@
 # For the Hugging Face Space. Locally, traceground is already installed from this folder (pip install -e .)
 gradio[mcp]==6.32.0
-traceground==0.1.2
+traceground==0.2.0

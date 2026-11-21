@@ -2,6 +2,56 @@
 
 All notable changes to traceground are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
+## 0.2.0
+
+The last planned release. Developed on the third held-out set (eval/results/review_heldout3_2026-11-21.md),
+then measured once on a final test set written after the code was frozen, with the result fixed in
+advance to be published as it came out and the code not changed after it.
+
+### Fixed
+
+- Arithmetic the answer does itself is accepted in more forms: a difference said with "less", "more
+  expensive", "a decline of", "fell", "rose" (and the like); a difference of two percentages in percentage
+  points ("fell from 7.1% to 6.5%, a decline of 0.6 percentage points"); and the result of a working the
+  answer writes next to it with ×, ÷, + or − ("€142 (€39 × 3 months + €25 joining fee)", "€9.80 ÷ 4 ≈
+  **€2.45**"), when at least one of its numbers is in the evidence and the others are too or are whole
+  counts (so "50 x 20 = 1000" of made-up numbers is still reported).
+- Value-to-field: a value a calculator worked out from the field is not compared with it, also when the
+  calculator's result has no field name ({"result": 21.32} for "1450/68"); a field named right after a time
+  unit is the one meant ("35 minutes cook" for cook_min, but not "5 years the total paid"); of the same field
+  in two calls, the call whose item (a string argument such as "B-12") the answer names last before the
+  number; and the parts of a duration ("2 hours 11 minutes") are not compared with fields.
+
+On the third held-out set, false alarms on correct answers went from 7 of 34 to 1, and the planted errors
+caught from 162 of 199 to 232 of 270 (an answer that is flagged is not used for planting). On the dev set and the first two held-out sets, no false alarm was added and the
+planted errors caught went up or stayed (dev 600 to 608, first held-out 263 to 272). On RAGTruth, test is
+unchanged, and on train one finding on a marked span is no longer raised: "1010 = 8 + 4 + 2 + 1 = 15", right
+arithmetic of source numbers behind a wrong claim (binary 1010 is 10).
+
+### Measured
+
+On the final test (79 answers by gpt-oss-120b and gpt-oss-20b to 40 questions on eight new tools, labelled
+by hand before traceground was run; eval/results/review_final_2026-11-21.md): false alarms on 20 of 62
+correct answers (32%; 0.1.2: the same 20), 2 of 8 wrong answers caught (the other 6 had no number or quote
+to check, or a misspelt name), and 249 of 282 planted errors caught (88%; 0.1.2: 250). Fifteen of the false
+alarms are arithmetic the answer does itself in a form the rules do not read; 17 of the 40 questions asked
+for a computed number.
+
+### Known, not fixed
+
+- A number the answer works out without showing the working and without a word the rules know ("10 weeks
+  at 3 hours per week, 30 hours"; "twice the €2.40 fare"; "€21.60 after the 10% discount") is reported.
+- A clock time plus a duration ("the 8:00 bus ... 41 minutes ... 8:41") is reported, and a clock time in the
+  question can be read as a tool argument ("8:00" as "00").
+- A price can be compared with a percentage field ("the early-bird price is €408" against
+  early_bird_pct), and "2 hours and 15 minutes" is not read as one duration.
+
+### Added (repository)
+
+- The third and final held-out sets' tools, questions, runs, scores and hand reviews (`--set heldout3`,
+  `--set final`).
+- The demo on the Space installs traceground 0.2.0. The package is marked beta.
+
 ## 0.1.2
 
 Fixes for the false alarms and misses found by hand on the second held-out set

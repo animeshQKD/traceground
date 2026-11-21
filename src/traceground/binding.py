@@ -24,11 +24,14 @@ is in the number's clause ("0.8 km from the train station" for station_km; "a ni
 price field rate_eur), and minutes for keys such as delay_min ("running 12 minutes late").
 A field named before the number wins over a list's field named after it ("an overall rating of 4.3
 stars": rating, not the reviews' stars), and a list's field named for a number its whole holds, with the
-list not mentioned, is not compared ("Harbor Noodle House (3.9 stars)" for the restaurant's rating). Also bound: a lone word that only one multi-word
+list not mentioned, is not compared ("Harbor Noodle House (3.9 stars)" for the restaurant's rating). A
+field named right after a time unit is the one meant ("35 minutes cook": cook_min), and of the same field
+in two calls, the call whose item (a string argument such as "B-12") the answer names last before the
+number. The parts of a duration ("2 hours 11 minutes") are not compared with fields. Also bound: a lone word that only one multi-word
 field name has ("€789.52 in interest" for total_interest), the subject of "... is N" ("The total
 interest you'll pay on the loan is $3,034.15"), and the two ends of a range ("between $69.80 and
 $72.90" for day_low and day_high). A value another call worked out from the field (a calculator's
-39.9 * 3) is not compared with the field, nor is a number whose clause says it is worked out ("the
+39.9 * 3, also when its result has no field name: {"result": 21.32}) is not compared with the field, nor is a number whose clause says it is worked out ("the
 difference in monthly payment is $166.03", but not "a guest rating of 142 is higher than ..."), nor one
 the answer works out itself ("€426 for the rooms (3 × €142)"). A field's exact value written in another currency, with no
 call that converted it, is reported ("€221.4 million" for net_income_musd). Values are compared as
@@ -431,8 +434,25 @@ def _near_words(items: list, i: int) -> set:
     return near
 
 
+_TIME_UNIT_WORDS = {"second", "minute", "min", "hour", "hr", "day", "week", "month", "year"}
 # words that stand for a price whichever field holds it: "a night costs €142" for rate_eur
 _PRICE_WORDS = {"cost", "costs", "costing", "price", "priced", "rate", "fee", "fare", "charge", "charged"}
+
+
+def _last_named_call(answer: str, pos: int, calls: dict):
+    """Of several calls, the one whose string argument (three characters or more) the answer mentions last
+    before `pos`, if that is one call; None otherwise. Hyphens and case do not matter."""
+    text = re.sub(r"[\u2010-\u2015\u2212]", "-", answer[:pos]).lower()
+    best, at = None, -1
+    for c in calls.values():
+        for v in c.args.values():
+            if isinstance(v, str) and len(v.strip()) >= 3:
+                k = text.rfind(re.sub(r"[\u2010-\u2015\u2212]", "-", v.strip()).lower())
+                if k > at:
+                    best, at = c, k
+                elif k == at and k >= 0 and c is not best:
+                    best = None
+    return best if at >= 0 else None
 
 
 def _list_words(path: str) -> set:
@@ -472,6 +492,8 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
     skip = num.excluded_spans(answer)
     # "high and low are 9 and 4 respectively": the pairing is by position, not by neighbouring words
     skip += [(m.start(), m.end()) for m in re.finditer(r"[^.!?\n]*\brespectively\b[^.!?\n]*", answer, re.I)]
+    # "2 hours 11 minutes": the parts of a duration are not values of fields
+    skip += [(a, b) for _t, _m, a, b in num.durations_of(answer)]
     used_words = set()
     findings, checked = [], 0
     rendered = " ".join(re.sub(r"\s+", " ", c.render().lower()) for c in calls)
@@ -491,6 +513,10 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
             continue
         after_words = _words_after(items, i)
         after = _matching(after_words, results, slack=0)      # "7 rebounds": the name follows at once
+        if not after and len(after_words) > 1 and after_words[0][0] in _TIME_UNIT_WORDS \
+                and re.fullmatch(r"\s+", answer[after_words[0][2]:after_words[1][1]]):
+            # "35 minutes cook": right past the time unit, the field's name (cook_min); not "5 years the total"
+            after = _matching(after_words[1:], results, slack=0)
         if after:              # "3 years at 7%": the words a number takes after it are not the next number's
             used_words.update((a2, b2) for _w, a2, b2 in after_words)
         before_words = [w for w in _words_before(items, i) if (w[1], w[2]) not in used_words]
@@ -547,6 +573,12 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
                     if named:
                         same_unit = named
                         break
+            if len({id(f["call"]) for f in same_unit}) > 1 and len({f["key"] for f in same_unit}) == 1:
+                # "flat B-12 is roughly 1.6 km from the metro": metro_km of two calls; the call whose own
+                # name (an argument such as "B-12") the answer last mentions before the number
+                call = _last_named_call(answer, n.start, {id(f["call"]): f["call"] for f in same_unit})
+                if call is not None:
+                    same_unit = [f for f in same_unit if f["call"] is call]
             if len({(id(f["call"]), f["key"]) for f in same_unit}) == 1:
                 f = same_unit[0]
                 # only a value of another field of that same call is reported: "$1.35" when weight_kg is 1.35
@@ -575,6 +607,11 @@ def check_value_to_field(answer: str, calls: list, *, field_synonyms=None, sente
         if any(g["call"] is not f["call"] and _hit(n, g) and
                any(abs(v - f["value"]) < 1e-9 for _k, v in _arg_values(g["call"]))
                for f in same_name for g in results):
+            continue
+        # the same, for a call whose result has no field name ({"result": 21.323529} for "1450/68")
+        if any(c is not f["call"] and not c.error and any(_matches(n, v) for _p, _k, v in numeric_fields(c.result))
+               and any(abs(v - f["value"]) < 1e-9 for _k, v in _arg_values(c))
+               for f in same_name for c in calls):
             continue
         checked += 1
         names = {f["words"] for f in same_name}

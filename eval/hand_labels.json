@@ -1,5 +1,5 @@
 {
- "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md, review_heldout2_2026-11-20.md, review_heldout3_2026-11-21.md). mutate.py plants errors only in the other answers.",
+ "about": "Answers found wrong by hand (eval/results/review_2026-11-17.md, review_heldout2_2026-11-20.md, review_heldout3_2026-11-21.md, review_final_2026-11-21.md). mutate.py plants errors only in the other answers.",
  "wrong": [
   {
    "model": "openai/gpt-oss-120b",
@@ -60,6 +60,54 @@
    "id": "m05",
    "set": "heldout3",
    "why": "calls no tool and says it has no data on class schedules; get_gym gives them"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z03",
+   "set": "final",
+   "why": "calls no tool and says it cannot look up the event schedule; get_bookshop gives the events"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z04",
+   "set": "final",
+   "why": "calls no tool and says no tool gives reviews; get_bookshop gives them"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "id": "z34",
+   "set": "final",
+   "why": "the teacher's name is 'Dr. Inéas Moura'; the tool gives Dr. Inês Moura (the date is right)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z04",
+   "set": "final",
+   "why": "calls no tool and says no tool gives reviewers' comments; get_bookshop gives them"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z05",
+   "set": "final",
+   "why": "says €21 after the 10% discount; 24 x 0.9 = 21.60"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z21",
+   "set": "final",
+   "why": "after get_restaurant failed, says 'Casa da Luz is a restaurant, not an event venue, so it doesn't sell adult or child tickets'; it is a museum (€12 and €6)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z25",
+   "set": "final",
+   "why": "calls no tool and says no tool gives visitor numbers; get_museum gives 186,400"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "id": "z37",
+   "set": "final",
+   "why": "the quote is exact, but the name is 'Tom Á Reyes' for Tomás Reyes"
   }
  ]
 }
